@@ -112,8 +112,6 @@ func newThroughputBind(tb testing.TB, network, address string) (*bind, conn.Rece
 	if err != nil {
 		tb.Fatal(err)
 	}
-	udp.SetReadBuffer(4 << 20)
-	udp.SetWriteBuffer(4 << 20)
 	udp.SetDeadline(time.Now().Add(30 * time.Second))
 	b := &bind{listenFunc: func() (net.PacketConn, error) { return udp, nil }}
 	fns, _, err := b.Open(0)

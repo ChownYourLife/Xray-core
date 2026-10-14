@@ -5,18 +5,23 @@ import (
 	"errors"
 	"io"
 	"net"
+	"net/netip"
 	"os"
 	"sync/atomic"
 	"testing"
 	"time"
 
+	"github.com/xtls/xray-core/common/buf"
 	xnet "github.com/xtls/xray-core/common/net"
 	"golang.zx2c4.com/wireguard/conn"
 	"gvisor.dev/gvisor/pkg/buffer"
 	"gvisor.dev/gvisor/pkg/tcpip"
+	"gvisor.dev/gvisor/pkg/tcpip/adapters/gonet"
 	"gvisor.dev/gvisor/pkg/tcpip/header"
 	"gvisor.dev/gvisor/pkg/tcpip/stack"
 	"gvisor.dev/gvisor/pkg/tcpip/transport/tcp"
+	"gvisor.dev/gvisor/pkg/tcpip/transport/udp"
+	"gvisor.dev/gvisor/pkg/waiter"
 )
 
 type bindTestCounter struct{ atomic.Int64 }
@@ -156,6 +161,91 @@ func TestNetTUNTCPOptions(t *testing.T) {
 	}
 	if congestion != "cubic" {
 		t.Fatalf("congestion control: %s", congestion)
+	}
+}
+
+func TestNetTUNUDPBuffers(t *testing.T) {
+	dev := newThroughputTUN(t)
+	var send tcpip.SendBufferSizeOption
+	var receive tcpip.ReceiveBufferSizeOption
+	if err := dev.stack.Option(&send); err != nil {
+		t.Fatal(err)
+	}
+	if err := dev.stack.Option(&receive); err != nil {
+		t.Fatal(err)
+	}
+	if send.Min != stack.MinBufferSize || receive.Min != stack.MinBufferSize ||
+		send.Default != 4<<20 || receive.Default != 4<<20 || send.Max != 16<<20 || receive.Max != 16<<20 {
+		t.Fatalf("unexpected UDP buffers: send=%v receive=%v", send, receive)
+	}
+	var wq waiter.Queue
+	ep, err := dev.stack.NewEndpoint(udp.ProtocolNumber, header.IPv4ProtocolNumber, &wq)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer ep.Close()
+	if ep.SocketOptions().GetSendBufferSize() != 4<<20 || ep.SocketOptions().GetReceiveBufferSize() != 4<<20 {
+		t.Fatal("UDP endpoint did not inherit stack buffers")
+	}
+}
+
+func TestNetTUNUDPMultipleTargets(t *testing.T) {
+	ip := netip.MustParseAddr("10.66.0.1")
+	dev, tnet, s, err := CreateNetTUN([]netip.Addr{ip}, nil, 1420, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer dev.Close()
+	var targets [2]*gonet.UDPConn
+	for i := range targets {
+		local, pn := convertToFullAddr(netip.AddrPortFrom(ip, 0))
+		targets[i], err = gonet.DialUDP(s, &local, nil, pn)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer targets[i].Close()
+		targets[i].SetDeadline(time.Now().Add(3 * time.Second))
+	}
+	conn, err := tnet.DialUDPAddrPort(netip.AddrPort{}, targets[0].LocalAddr().(*net.UDPAddr).AddrPort())
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer conn.Close()
+	pc := conn.(*xnet.PacketConnWrapper).PacketConn
+	if pc.(*gonet.UDPConn).RemoteAddr() != nil {
+		t.Fatal("cone-NAT UDP endpoint must remain unconnected")
+	}
+	pc.SetDeadline(time.Now().Add(3 * time.Second))
+	client := &UDPConnClient{PacketConn: pc, Dest: conn.RemoteAddr().(*net.UDPAddr)}
+	for i, target := range targets {
+		payload := []byte{byte(i)}
+		b := buf.New()
+		b.Write(payload)
+		if i != 0 {
+			dest := xnet.DestinationFromAddr(target.LocalAddr())
+			b.UDP = &dest
+		}
+		if err := client.WriteMultiBuffer(buf.MultiBuffer{b}); err != nil {
+			t.Fatal(err)
+		}
+		var read [8]byte
+		n, source, err := target.ReadFrom(read[:])
+		if err != nil || n != 1 || read[0] != byte(i) {
+			t.Fatalf("target %d read: n=%d err=%v data=%v", i, n, err, read[:n])
+		}
+		if _, err := target.WriteTo(payload, source); err != nil {
+			t.Fatal(err)
+		}
+		mb, err := client.ReadMultiBuffer()
+		if err != nil {
+			t.Fatalf("reply from target %d: %v", i, err)
+		}
+		want := xnet.DestinationFromAddr(target.LocalAddr())
+		valid := len(mb) == 1 && bytes.Equal(mb[0].Bytes(), payload) && *mb[0].UDP == want
+		buf.ReleaseMulti(mb)
+		if !valid {
+			t.Fatalf("reply from target %d lost payload or source", i)
+		}
 	}
 }
 

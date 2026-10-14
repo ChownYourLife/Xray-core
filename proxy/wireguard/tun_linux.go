@@ -236,6 +236,11 @@ func createKernelTun(localAddresses, dnsServers []netip.Addr, mtu int) (tdev tun
 			if err := syscall.BindToDevice(int(fd), n); err != nil {
 				errors.LogInfoInner(context.Background(), err, "failed to bind to device")
 			}
+			if network == "udp4" || network == "udp6" {
+				_ = unix.SetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_RCVBUF, socketBufferSize)
+				_ = unix.SetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_SNDBUF, socketBufferSize)
+				forceSocketBuffers(int(fd))
+			}
 		})
 	}
 	lc := &net.ListenConfig{}
@@ -244,6 +249,9 @@ func createKernelTun(localAddresses, dnsServers []netip.Addr, mtu int) (tdev tun
 			if err := syscall.BindToDevice(int(fd), n); err != nil {
 				errors.LogInfoInner(context.Background(), err, "failed to bind to device")
 			}
+			_ = unix.SetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_RCVBUF, socketBufferSize)
+			_ = unix.SetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_SNDBUF, socketBufferSize)
+			forceSocketBuffers(int(fd))
 		})
 	}
 	t.dialer = dialer

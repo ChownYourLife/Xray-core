@@ -278,6 +278,14 @@ type udpWorker struct {
 }
 
 func (w *udpWorker) getConnection(id connID) (*udpConn, bool) {
+	w.RLock()
+	if conn, found := w.activeConn[id]; found && !conn.done.Done() {
+		conn.updateActivity()
+		w.RUnlock()
+		return conn, true
+	}
+	w.RUnlock()
+
 	w.Lock()
 	defer w.Unlock()
 
@@ -286,7 +294,7 @@ func (w *udpWorker) getConnection(id connID) (*udpConn, bool) {
 		return conn, true
 	}
 
-	pReader, pWriter := pipe.New(pipe.DiscardOverflow(), pipe.WithSizeLimit(16*1024))
+	pReader, pWriter := pipe.New(pipe.DiscardOverflow(), pipe.WithSizeLimit(4*1024*1024))
 	conn := &udpConn{
 		reader: pReader,
 		writer: pWriter,
@@ -413,7 +421,7 @@ func (w *udpWorker) clean() error {
 func (w *udpWorker) Start() error {
 	w.activeConn = make(map[connID]*udpConn, 16)
 	ctx := context.Background()
-	h, err := udp.ListenUDP(ctx, w.address, w.port, w.stream, udp.HubCapacity(256))
+	h, err := udp.ListenUDP(ctx, w.address, w.port, w.stream)
 	if err != nil {
 		return err
 	}

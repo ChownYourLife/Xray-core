@@ -2,6 +2,7 @@ package udp
 
 import (
 	"context"
+	"net/netip"
 
 	"github.com/xtls/xray-core/common/buf"
 	"github.com/xtls/xray-core/common/errors"
@@ -34,7 +35,7 @@ type Hub struct {
 
 func ListenUDP(ctx context.Context, address net.Address, port net.Port, streamSettings *internet.MemoryStreamConfig, options ...HubOption) (*Hub, error) {
 	hub := &Hub{
-		capacity:     256,
+		capacity:     4096,
 		recvOrigDest: false,
 	}
 	for _, opt := range options {
@@ -69,6 +70,10 @@ func ListenUDP(ctx context.Context, address net.Address, port net.Port, streamSe
 
 	errors.LogInfo(ctx, "listening UDP on ", address, ":", port)
 	hub.udpConn, _ = hub.conn.(*net.UDPConn)
+	if hub.udpConn != nil {
+		_ = hub.udpConn.SetReadBuffer(7 << 20)
+		_ = hub.udpConn.SetWriteBuffer(7 << 20)
+	}
 	hub.cache = make(chan *udp.Packet, hub.capacity)
 
 	go hub.start()
@@ -82,6 +87,10 @@ func (h *Hub) Close() error {
 }
 
 func (h *Hub) WriteTo(payload []byte, dest net.Destination) (int, error) {
+	if h.udpConn != nil {
+		addr, _ := netip.AddrFromSlice(dest.Address.IP())
+		return h.udpConn.WriteToUDPAddrPort(payload, netip.AddrPortFrom(addr, uint16(dest.Port)))
+	}
 	return h.conn.WriteTo(payload, &net.UDPAddr{
 		IP:   dest.Address.IP(),
 		Port: int(dest.Port),

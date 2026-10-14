@@ -82,6 +82,14 @@ func CreateNetTUN(localAddresses, dnsServers []netip.Addr, mtu int, handleLocal 
 			return nil, nil, nil, fmt.Errorf("could not configure TCP buffers: %v", err)
 		}
 	}
+	sendBufferOpt := tcpip.SendBufferSizeOption{Min: stack.MinBufferSize, Default: 4 << 20, Max: 16 << 20}
+	receiveBufferOpt := tcpip.ReceiveBufferSizeOption{Min: stack.MinBufferSize, Default: 4 << 20, Max: 16 << 20}
+	for _, option := range []any{sendBufferOpt, receiveBufferOpt} {
+		if err := dev.stack.SetOption(option); err != nil {
+			dev.stack.Close()
+			return nil, nil, nil, fmt.Errorf("could not configure UDP buffers: %v", err)
+		}
+	}
 	dev.notifyHandle = dev.ep.AddNotify(dev)
 	tcpipErr = dev.stack.CreateNIC(1, dev.ep)
 	if tcpipErr != nil {
@@ -243,6 +251,7 @@ func (tun *netTun) DialUDPAddrPort(laddr, raddr netip.AddrPort) (net.Conn, error
 	if raddr.IsValid() || raddr.Port() > 0 {
 		_, pn = convertToFullAddr(raddr)
 	}
+	// Keep the endpoint unconnected so replies from every cone-NAT target arrive.
 	conn, err := gonet.DialUDP(tun.stack, nil, nil, pn)
 	if err != nil {
 		return nil, err

@@ -20,6 +20,9 @@ import (
 	"golang.zx2c4.com/wireguard/conn"
 )
 
+// Match wireguard-go's UDP socket buffers for high-rate bursts.
+const socketBufferSize = 7 << 20
+
 type bind struct {
 	resolveFunc  func(host string) (net.IP, error)
 	listenFunc   func() (net.PacketConn, error)
@@ -77,6 +80,9 @@ func (b *bind) Open(port uint16) (fns []conn.ReceiveFunc, actualPort uint16, err
 	}
 	s := &bindSocket{c: c}
 	if udp, ok := c.(*net.UDPConn); ok {
+		_ = udp.SetReadBuffer(socketBufferSize)
+		_ = udp.SetWriteBuffer(socketBufferSize)
+		setSocketBufferForce(udp)
 		s.udp = udp
 		if runtime.GOOS == "linux" || runtime.GOOS == "android" {
 			if udp.LocalAddr().(*net.UDPAddr).IP.To4() != nil {

@@ -3,6 +3,9 @@ package wireguard
 import (
 	"runtime"
 	"testing"
+
+	"github.com/xtls/xray-core/common/buf"
+	"github.com/xtls/xray-core/common/net"
 )
 
 const benchBatch = 64
@@ -33,6 +36,39 @@ func BenchmarkQueueBurstPacketQueue(b *testing.B) {
 		for j := 0; j < benchBatch; j++ {
 			q.pop()
 		}
+	}
+}
+
+func BenchmarkQueueBurstPacketQueueBatch(b *testing.B) {
+	q := newPacketQueue(udpQueueLimit)
+	p := &packet{}
+	var packets [benchBatch]*packet
+	b.ReportAllocs()
+	for range b.N {
+		for range benchBatch {
+			q.push(p)
+		}
+		q.popBatch(packets[:])
+	}
+}
+
+func BenchmarkUDPConnReadMultiBufferBatch(b *testing.B) {
+	q := newPacketQueue(udpQueueLimit)
+	c := &udpConn{queue: q}
+	dest := net.UDPDestination(net.LocalHostIP, 53)
+	p := &packet{p: make([]byte, throughputPacketSize), dest: &dest}
+	b.SetBytes(benchBatch * throughputPacketSize)
+	b.ReportAllocs()
+	b.ResetTimer()
+	for range b.N {
+		for range benchBatch {
+			q.push(p)
+		}
+		mb, err := c.ReadMultiBuffer()
+		if err != nil || len(mb) != benchBatch {
+			b.Fatalf("batch read: %d packets, %v", len(mb), err)
+		}
+		buf.ReleaseMulti(mb)
 	}
 }
 

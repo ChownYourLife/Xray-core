@@ -238,22 +238,27 @@ type udpConn struct {
 }
 
 func (c *udpConn) ReadMultiBuffer() (buf.MultiBuffer, error) {
+	var packets [64]*packet
 	for {
-		q, ok := c.queue.pop()
-		if !ok {
+		n := c.queue.popBatch(packets[:])
+		if n == 0 {
 			return nil, io.EOF
 		}
-
-		b := buf.New()
-		if _, err := b.Write(q.p); err != nil {
-			errors.LogErrorInner(context.Background(), err, "drop packet to ", q.dest, " with size ", len(q.p))
-			b.Release()
-			continue
+		mb := make(buf.MultiBuffer, 0, n)
+		for i, p := range packets[:n] {
+			packets[i] = nil
+			b := buf.New()
+			if _, err := b.Write(p.p); err != nil {
+				errors.LogErrorInner(context.Background(), err, "drop packet to ", p.dest, " with size ", len(p.p))
+				b.Release()
+				continue
+			}
+			b.UDP = p.dest
+			mb = append(mb, b)
 		}
-
-		b.UDP = q.dest
-
-		return buf.MultiBuffer{b}, nil
+		if len(mb) > 0 {
+			return mb, nil
+		}
 	}
 }
 
@@ -323,7 +328,7 @@ func (c *udpConn) SetWriteDeadline(t time.Time) error {
 }
 
 // udpQueueLimit bounds the packets waiting for one UDP flow; more are dropped.
-const udpQueueLimit = 1024
+const udpQueueLimit = 4096
 
 // packetQueue holds the packets waiting for one UDP flow. Unlike a buffered
 // channel of the same bound it only allocates for packets actually queued, so
@@ -357,21 +362,32 @@ func (q *packetQueue) push(p *packet) bool {
 
 // pop blocks until a packet is queued or the queue is closed and drained.
 func (q *packetQueue) pop() (*packet, bool) {
+	var packets [1]*packet
+	n := q.popBatch(packets[:])
+	return packets[0], n != 0
+}
+
+// popBatch blocks for the first packet, then drains immediately queued packets.
+// A zero count means the queue is closed and drained (or dst is empty).
+func (q *packetQueue) popBatch(dst []*packet) int {
+	if len(dst) == 0 {
+		return 0
+	}
 	for {
 		q.mu.Lock()
 		if len(q.items) > 0 {
-			p := q.items[0]
-			q.items[0] = nil
-			q.items = q.items[1:]
+			n := copy(dst, q.items)
+			clear(q.items[:n])
+			q.items = q.items[n:]
 			if len(q.items) == 0 {
 				q.items = nil
 			}
 			q.mu.Unlock()
-			return p, true
+			return n
 		}
 		if q.closed {
 			q.mu.Unlock()
-			return nil, false
+			return 0
 		}
 		q.mu.Unlock()
 		<-q.notify
