@@ -156,8 +156,8 @@ func (i *Inbound) processUDP(ctx context.Context, conn stat.Connection, dispatch
 
 		for _, b := range mb {
 			decoded, err := i.udpCodec.DecodePacket(b.Bytes())
-			b.Release()
 			if err != nil || decoded.HeaderType != HeaderTypeClient {
+				b.Release()
 				continue
 			}
 
@@ -178,14 +178,15 @@ func (i *Inbound) processUDP(ctx context.Context, conn stat.Connection, dispatch
 					return i.udpCodec.EncodeServerPacket(decoded.SessionID, dest, payload)
 				})
 				if err != nil {
+					b.Release()
 					continue
 				}
 			}
 
-			payloadBuf := buf.New()
-			payloadBuf.Write(decoded.Payload)
-			payloadBuf.UDP = &decoded.Destination
-			_ = link.Writer.WriteMultiBuffer(buf.MultiBuffer{payloadBuf})
+			start := b.Len() - AEADTagSize - int32(len(decoded.Payload))
+			b.Resize(start, start+int32(len(decoded.Payload)))
+			b.UDP = &decoded.Destination
+			_ = link.Writer.WriteMultiBuffer(buf.MultiBuffer{b})
 		}
 	}
 }

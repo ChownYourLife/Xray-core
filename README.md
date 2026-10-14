@@ -39,6 +39,17 @@
 
 [Project X Official Website](https://xtls.github.io)
 
+### Transport buffer contracts
+
+- Trojan UDP framing accepts payloads up to 8192 bytes for IPv4, IPv6, and domain destinations; framing overhead does not reduce that payload limit.
+- Native Shadowsocks 2022 UDP decoding consumes and may modify its input. The returned payload aliases that input: retain its buffer until the downstream consumer releases it, and copy ciphertext before decoding when it must be preserved.
+- Native Shadowsocks 2022 streams retain the 65535-byte wire chunk limit. Returned consumer buffers remain at most 8192 bytes for compatibility with chained Vision writers; normal chunks decrypt directly into owned buffers, while larger chunks reuse scratch and split into regular buffers.
+- Stream payloads at the 8K AEAD-tag boundary use reusable ciphertext scratch and decrypt directly into a separately owned regular 8K buffer, so queued plaintext does not require a larger pool bucket.
+- The shared buffered stream adapter preserves bytes returned alongside EOF or another source error. Deferred errors remain observable after draining those bytes, including when switching between byte reads, bounded reads, multi-buffer reads, and `WriteTo`.
+- TLS and WebSocket multi-buffer writes consume their input buffers, including on write errors; callers must not reuse the consumed payloads or rely on retained slice entries. Singleton writes avoid one temporary pointer-slice allocation while preserving TLS stream bytes and WebSocket binary-message boundaries.
+- Authenticated stream writers consume their input and seal singleton payloads directly into separately owned output, splitting oversized payloads at the existing frame limit without temporary plaintext copies or scratch allocations. Oversized singleton input is released before forwarding the complete ciphertext batch. Chunk framing, authentication, nonce progression, padding, and error handling are unchanged; multi-buffer inputs retain the existing chunk-packing path.
+- TCP stream-vector adapters consume their input on success or error, reuse the vector header and storage between writes, and count actual bytes written, including partial-error returns. Progress follows the remaining vectors rather than an int32 aggregate, so supported multi-buffer writes totaling 2 GiB or more are not silently skipped. Existing packet and non-syscall writer routing is unchanged.
+
 ## Telegram
 
 [Project X](https://t.me/projectXray)

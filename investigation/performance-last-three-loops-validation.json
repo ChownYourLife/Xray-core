@@ -1,0 +1,40 @@
+{
+  "report": "investigation/performance-last-three-loops.html",
+  "writer_role": "@task",
+  "writer_agent": "three-loop-report-builder.HtmlReportAssembler",
+  "jspace": {
+    "builder_entry_read": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md",
+    "builder_level": "medium",
+    "writer_actual_read_receipt": "history://three-loop-report-builder.HtmlReportAssembler:20: read(/Users/hosi/.omp/agent/skills/j-space/SKILL.md) ok, 178 lines",
+    "writer_level": "medium",
+    "scout_actual_read_receipt": "history://three-loop-report-builder.RawMetadataScout:16: read(skill://j-space) ok, 178 lines",
+    "scout_level": "medium"
+  },
+  "validation_executor": "three-loop-report-builder via functions.eval(language=py), Python html.parser.HTMLParser and json",
+  "exercised_checks": [
+    "DOCTYPE html; balanced non-void HTML elements; no script/iframe or external assets; all relative source links resolve",
+    "Seven table body counts exactly [3,16,4,8,48,72,28]; three details appendices",
+    "Every source-backed metric cell resolved by data-source/data-row/data-field, with object-key, sorted-unique or project-sorted-unique transformation as declared; exact displayed rendering compared to source values",
+    "48 round2 state-median percentages recomputed from baseline/final state medians",
+    "72 round3 paired percentages recomputed as (median(paired_ratios)-1)*100 using absolute tolerance 1e-10",
+    "Round4 primary unique allocation sets confirm 20 shapes with delta -1 and 8 shapes delta 0",
+    "Round2/3 canonical sequence ABBABAAB and round4 ABBAABBA confirmed from source JSON"
+  ],
+  "output": [
+    "PASS: 1120 numeric benchmark cells exact-match source JSON; 176 benchmark names exact-match; appendix rows 48/72/28; balanced HTML; all relative links resolve; no scripts/external assets.",
+    "PASS: 48 loop2 state-median percentages and 72 loop3 paired-median percentages deterministically recompute; round4 20 allocation reductions/8 controls; exact per-loop sequence confirmed.",
+    "No benchmarks, project tests, linters or formatters run."
+  ],
+  "conditions": {
+    "host": "Go 1.27.0 darwin/arm64 Apple M5 Pro",
+    "round2": "120ms, cpu2, temporaryfile overlays, ABBABAAB, 8 commands, 4 samples/state, 48 rows",
+    "round3": "150ms, cpu2, temporaryfile overlays, ABBABAAB, 8 commands, 4 samples/state, 72 rows",
+    "round4": "300ms, cpu1, ./common/buf overlay, ABBAABBA, 8 commands, 4 samples/state, 28 rows; raw argv/exit_code fields"
+  },
+  "limits": [
+    "Existing archived measurements and checks only; no code changes or test/benchmark reruns",
+    "Structural parser check, not a Nu/W3C HTML conformance validation or browser render check",
+    "Source JSON fidelity verified; historical raw benchmark measurement execution not independently rerun",
+    "No whole-repository suite, WAN/full-core/production distribution measurement or loop4 final-binary CPU gain claim"
+  ]
+}

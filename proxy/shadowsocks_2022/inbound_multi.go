@@ -324,8 +324,8 @@ func (i *MultiUserInbound) processUDP(ctx context.Context, conn stat.Connection,
 			}
 
 			decoded, err := sessionItem.DecryptAESPayload(i.method, userPSK, sessionID, packetID, rawHeader[:], packetBytes[32:])
-			b.Release()
 			if err != nil {
+				b.Release()
 				continue
 			}
 
@@ -345,14 +345,15 @@ func (i *MultiUserInbound) processUDP(ctx context.Context, conn stat.Connection,
 					return i.encodeServerUDPPacket(sessionID, userPSK, replyDest, payload)
 				})
 				if err != nil {
+					b.Release()
 					continue
 				}
 			}
 
-			pBuf := buf.New()
-			pBuf.Write(decoded.Payload)
-			pBuf.UDP = &decoded.Destination
-			_ = link.Writer.WriteMultiBuffer(buf.MultiBuffer{pBuf})
+			start := b.Len() - AEADTagSize - int32(len(decoded.Payload))
+			b.Resize(start, start+int32(len(decoded.Payload)))
+			b.UDP = &decoded.Destination
+			_ = link.Writer.WriteMultiBuffer(buf.MultiBuffer{b})
 		}
 	}
 }
