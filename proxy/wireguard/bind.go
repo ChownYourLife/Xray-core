@@ -43,11 +43,14 @@ type bindSocket struct {
 		ReadBatch([]ipv4.Message, int) (int, error)
 		WriteBatch([]ipv4.Message, int) (int, error)
 	}
+	gso atomic.Bool
 }
 
 type bindMessages struct {
 	messages [conn.IdealBatchSize]ipv4.Message
 	buffers  [conn.IdealBatchSize][1][]byte
+	control  [conn.IdealBatchSize][24]byte // Linux CmsgSpace(sizeof(uint16)).
+	used     int                           // High-water mark across send chunks, or requested receive slots.
 	addr     net.UDPAddr
 	ip       [16]byte
 }
@@ -61,11 +64,23 @@ var bindMessagePool = sync.Pool{New: func() any {
 }}
 
 func (m *bindMessages) release() {
-	for i := range m.messages {
+	for i := range m.used {
 		m.buffers[i][0] = nil
-		m.messages[i].Addr = nil
+		m.messages[i] = ipv4.Message{Buffers: m.buffers[i][:]}
 	}
+	m.used = 0
 	bindMessagePool.Put(m)
+}
+
+// packMessages keeps the ordinary batched path for sockets without UDP GSO.
+func (m *bindMessages) packMessages(bufs [][]byte) int {
+	for i := range bufs {
+		m.messages[i].Buffers = bufs[i : i+1]
+		m.messages[i].OOB = nil
+		m.messages[i].Addr = &m.addr
+	}
+	m.used = max(m.used, len(bufs))
+	return len(bufs)
 }
 
 func (b *bind) Open(port uint16) (fns []conn.ReceiveFunc, actualPort uint16, err error) {
@@ -91,6 +106,7 @@ func (b *bind) Open(port uint16) (fns []conn.ReceiveFunc, actualPort uint16, err
 				s.batch = ipv6.NewPacketConn(udp)
 			}
 		}
+		s.gso.Store(supportsGSO(udp))
 	}
 	b.socket.Store(s)
 	ch := make(chan struct{})
@@ -138,6 +154,7 @@ func (s *bindSocket) receive(bufs [][]byte, sizes []int, eps []conn.Endpoint) (i
 		m := bindMessagePool.Get().(*bindMessages)
 		defer m.release()
 		count := min(len(bufs), conn.IdealBatchSize)
+		m.used = count
 		for i := range count {
 			m.buffers[i][0] = bufs[i]
 		}
@@ -218,17 +235,29 @@ func (b *bind) Send(bufs [][]byte, ep conn.Endpoint) (err error) {
 			m.addr.IP = m.ip[12:]
 		}
 		for len(bufs) > 0 {
-			count := min(len(bufs), conn.IdealBatchSize)
-			for i := range count {
-				m.buffers[i][0] = bufs[i]
-				m.messages[i].Addr = &m.addr
-			}
+			count := s.packMessages(m, bufs[:min(len(bufs), conn.IdealBatchSize)])
 			n, writeErr := s.batch.WriteBatch(m.messages[:count], 0)
-			for _, buf := range bufs[:n] {
-				total += len(buf)
+			// x/net v0.61.0 passes sendmmsg's raw -1 count through on error.
+			// No message completed in that case; normalize before slicing.
+			if n < 0 {
+				n = 0
 			}
-			bufs = bufs[n:]
+			sent := 0
+			for _, message := range m.messages[:n] {
+				sent += len(message.Buffers)
+				for _, buf := range message.Buffers {
+					total += len(buf)
+				}
+			}
+			bufs = bufs[sent:]
 			if writeErr != nil {
+				// sendmmsg completion is in messages, not original datagrams.
+				// Retry only the unsent suffix, and only for an offload error
+				// attributed to the first unsent GSO message.
+				if n < count && len(m.messages[n].OOB) > 0 && gsoFailed(writeErr) {
+					s.gso.Store(false)
+					continue
+				}
 				return writeErr
 			}
 			if n == 0 {
