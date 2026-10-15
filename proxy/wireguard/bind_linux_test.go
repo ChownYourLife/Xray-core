@@ -10,6 +10,7 @@ import (
 	"net/netip"
 	"os"
 	"sync"
+	"syscall"
 	"testing"
 	"time"
 
@@ -103,6 +104,112 @@ func (b *gsoTestBatch) WriteBatch(messages []ipv4.Message, flags int) (int, erro
 	return n, injected
 }
 
+type gsoTestRaw struct {
+	syscall.RawConn
+	mu    sync.Mutex
+	steps []error
+	fail  error
+}
+
+func (r *gsoTestRaw) Write(f func(uintptr) bool) error {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	if len(r.steps) > 0 {
+		err := r.steps[0]
+		r.steps = r.steps[1:]
+		if err != nil {
+			return err
+		}
+	}
+	if r.fail != nil {
+		return r.fail
+	}
+	return r.RawConn.Write(f)
+}
+
+func TestBindGSOSingleMessageErrors(t *testing.T) {
+	for _, test := range []struct {
+		name string
+		err  error
+	}{
+		{"unsupported", unix.EIO},
+		{"MTU", unix.EMSGSIZE},
+		{"invalid segment", unix.EINVAL},
+		{"protocol unavailable", unix.ENOPROTOOPT},
+		{"operation unsupported", unix.EOPNOTSUPP},
+		{"unrelated", unix.EPERM},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			sender, _, _ := newGSOTestBind(t, "udp4", "127.0.0.1:0")
+			receiver := newUDPClientTestSocket(t, "udp4", "127.0.0.1:0")
+			socket := sender.socket.Load()
+			fault := &gsoTestRaw{RawConn: socket.raw, steps: []error{os.NewSyscallError("sendmsg", test.err)}}
+			socket.raw = fault
+			var sent bindTestCounter
+			sender.writeCounter = &sent
+			sender.reserved = []byte{3, 2, 1}
+			writes := [][]byte{{4, 0, 0, 0, 11}, {4, 0, 0, 0, 12}}
+			ep := &conn.StdNetEndpoint{AddrPort: receiver.LocalAddr().(*net.UDPAddr).AddrPort()}
+			err := sender.Send(writes, ep)
+			if test.err == unix.EPERM {
+				if !errors.Is(err, test.err) {
+					t.Fatalf("send error=%v, want %v", err, test.err)
+				}
+				readGSOPackets(t, receiver, nil)
+				if sent.Value() != 0 {
+					t.Fatal("failed GSO counted as delivered")
+				}
+				return
+			}
+			if err != nil {
+				t.Fatal(err)
+			}
+			want := [][]byte{{4, 3, 2, 1, 11}, {4, 3, 2, 1, 12}}
+			readGSOPackets(t, receiver, want)
+			if sent.Value() != 10 {
+				t.Fatalf("sent bytes=%d, want 10", sent.Value())
+			}
+			fault.fail = unix.EPERM
+			if err := sender.Send(writes, ep); err != nil {
+				t.Fatalf("later send after unsupported GSO: %v", err)
+			}
+			readGSOPackets(t, receiver, want)
+			if sent.Value() != 20 {
+				t.Fatalf("later sent bytes=%d, want 20", sent.Value())
+			}
+		})
+	}
+}
+
+func TestBindGSOKernelWriteErrors(t *testing.T) {
+	for _, closed := range []bool{false, true} {
+		t.Run(map[bool]string{false: "deadline", true: "closed"}[closed], func(t *testing.T) {
+			sender, _, socket := newGSOTestBind(t, "udp4", "127.0.0.1:0")
+			receiver := newUDPClientTestSocket(t, "udp4", "127.0.0.1:0")
+			wantErr := os.ErrDeadlineExceeded
+			if closed {
+				wantErr = net.ErrClosed
+				if err := socket.Close(); err != nil {
+					t.Fatal(err)
+				}
+			} else if err := socket.SetWriteDeadline(time.Now().Add(-time.Second)); err != nil {
+				t.Fatal(err)
+			}
+			var sent bindTestCounter
+			sender.writeCounter = &sent
+			writes := [][]byte{bytes.Repeat([]byte{0xa1}, 64), bytes.Repeat([]byte{0xa2}, 64)}
+			err := sender.Send(writes, &conn.StdNetEndpoint{AddrPort: receiver.LocalAddr().(*net.UDPAddr).AddrPort()})
+			if !errors.Is(err, wantErr) {
+				t.Fatalf("send error=%v, want %v", err, wantErr)
+			}
+			if sent.Value() != 0 {
+				t.Fatal("failed GSO counted as delivered")
+			}
+			readGSOPackets(t, receiver, nil)
+		})
+	}
+}
+
 func newGSOTestBind(t *testing.T, network, address string) (*bind, conn.ReceiveFunc, *net.UDPConn) {
 	t.Helper()
 	b, receive, udp := newThroughputBind(t, network, address)
@@ -110,6 +217,39 @@ func newGSOTestBind(t *testing.T, network, address string) (*bind, conn.ReceiveF
 		t.Skip("kernel UDP_SEGMENT unavailable")
 	}
 	return b, receive, udp
+}
+
+func TestBindGSODualStackIPv4(t *testing.T) {
+	for _, mapped := range []bool{false, true} {
+		t.Run(map[bool]string{false: "IPv4", true: "mapped IPv4"}[mapped], func(t *testing.T) {
+			// Server listeners use generic udp and can bind a dual-stack socket.
+			sender, _, _ := newGSOTestBind(t, "udp", "[::]:0")
+			receiver := newUDPClientTestSocket(t, "udp4", "127.0.0.1:0")
+			addr := receiver.LocalAddr().(*net.UDPAddr).AddrPort()
+			if mapped {
+				addr = netip.AddrPortFrom(netip.AddrFrom16(addr.Addr().As16()), addr.Port())
+			}
+			ep := &conn.StdNetEndpoint{AddrPort: addr}
+			var sent bindTestCounter
+			sender.writeCounter = &sent
+			sender.reserved = []byte{3, 2, 1}
+			writes := [][]byte{bytes.Repeat([]byte{0xa1}, 64), bytes.Repeat([]byte{0xa2}, 64)}
+			for _, packets := range [][][]byte{writes, {writes[0]}} {
+				want := make([][]byte, len(packets))
+				for i, packet := range packets {
+					want[i] = bytes.Clone(packet)
+					copy(want[i][1:4], []byte{3, 2, 1})
+				}
+				if err := sender.Send(packets, ep); err != nil {
+					t.Fatal(err)
+				}
+				readGSOPackets(t, receiver, want)
+			}
+			if sent.Value() != 192 {
+				t.Fatalf("dual-stack sent bytes=%d, want 192", sent.Value())
+			}
+		})
+	}
 }
 
 func TestBindGSOScatterGather(t *testing.T) {
@@ -333,7 +473,9 @@ func TestBindGSOSendReceiveReuse(t *testing.T) {
 func TestBindGSOConcurrentDisable(t *testing.T) {
 	sender, _, _ := newGSOTestBind(t, "udp4", "127.0.0.1:0")
 	receiver := newUDPClientTestSocket(t, "udp4", "127.0.0.1:0")
-	recorder := &gsoTestBatch{next: sender.socket.Load().batch, steps: []gsoTestStep{{err: unix.EIO}}}
+	raw := &gsoTestRaw{RawConn: sender.socket.Load().raw, steps: []error{unix.EIO}}
+	sender.socket.Load().raw = raw
+	recorder := &gsoTestBatch{next: sender.socket.Load().batch}
 	sender.socket.Load().batch = recorder
 	var sent bindTestCounter
 	sender.writeCounter = &sent
@@ -369,6 +511,7 @@ func TestBindGSOConcurrentDisable(t *testing.T) {
 		t.Fatalf("concurrent fallback sent bytes=%d, want %d", sent.Value(), 64*8)
 	}
 	recorder.failGSO = unix.EPERM
+	raw.fail = unix.EPERM
 	next := [][]byte{bytes.Repeat([]byte{0xe1}, 8), bytes.Repeat([]byte{0xe2}, 8)}
 	if err := sender.Send(next, ep); err != nil {
 		t.Fatal(err)

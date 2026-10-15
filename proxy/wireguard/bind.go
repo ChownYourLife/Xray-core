@@ -39,6 +39,7 @@ type bind struct {
 type bindSocket struct {
 	c     net.PacketConn
 	udp   *net.UDPConn
+	raw   syscall.RawConn
 	batch interface {
 		ReadBatch([]ipv4.Message, int) (int, error)
 		WriteBatch([]ipv4.Message, int) (int, error)
@@ -53,6 +54,7 @@ type bindMessages struct {
 	used     int                           // High-water mark across send chunks, or requested receive slots.
 	addr     net.UDPAddr
 	ip       [16]byte
+	send     bindSendmsg
 }
 
 var bindMessagePool = sync.Pool{New: func() any {
@@ -100,6 +102,7 @@ func (b *bind) Open(port uint16) (fns []conn.ReceiveFunc, actualPort uint16, err
 		setSocketBufferForce(udp)
 		s.udp = udp
 		if runtime.GOOS == "linux" || runtime.GOOS == "android" {
+			s.raw, _ = udp.SyscallConn()
 			if udp.LocalAddr().(*net.UDPAddr).IP.To4() != nil {
 				s.batch = ipv4.NewPacketConn(udp)
 			} else {
@@ -226,6 +229,11 @@ func (b *bind) Send(bufs [][]byte, ep conn.Endpoint) (err error) {
 			errors.LogErrorInner(context.Background(), err, "bind send err")
 		}
 	}()
+	// A native singleton needs neither pooled message metadata nor sendmmsg.
+	if len(bufs) == 1 && s.udp != nil {
+		total, err = s.udp.WriteToUDPAddrPort(bufs[0], addr)
+		return err
+	}
 	if s.batch != nil {
 		m := bindMessagePool.Get().(*bindMessages)
 		defer m.release()
@@ -236,7 +244,7 @@ func (b *bind) Send(bufs [][]byte, ep conn.Endpoint) (err error) {
 		}
 		for len(bufs) > 0 {
 			count := s.packMessages(m, bufs[:min(len(bufs), conn.IdealBatchSize)])
-			n, writeErr := s.batch.WriteBatch(m.messages[:count], 0)
+			n, writeErr := s.sendBatch(m, count)
 			// x/net v0.61.0 passes sendmmsg's raw -1 count through on error.
 			// No message completed in that case; normalize before slicing.
 			if n < 0 {

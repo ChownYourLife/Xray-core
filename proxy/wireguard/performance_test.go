@@ -69,6 +69,59 @@ func TestBindBatchReservedAndCounters(t *testing.T) {
 	}
 }
 
+func TestBindSingletonReservedAndCounters(t *testing.T) {
+	for _, family := range []struct{ network, address string }{{"udp4", "127.0.0.1:0"}, {"udp6", "[::1]:0"}} {
+		t.Run(family.network, func(t *testing.T) {
+			sender, _, socket := newThroughputBind(t, family.network, family.address)
+			receiver := newUDPClientTestSocket(t, family.network, family.address)
+			if err := receiver.SetReadDeadline(time.Now().Add(time.Second)); err != nil {
+				t.Fatal(err)
+			}
+			var sent bindTestCounter
+			sender.writeCounter = &sent
+			sender.reserved = []byte{3, 2, 1}
+			ep := &conn.StdNetEndpoint{AddrPort: receiver.LocalAddr().(*net.UDPAddr).AddrPort()}
+			for _, packet := range [][]byte{{}, {4}, {4, 8, 9}, {4, 8, 9, 10, 11}} {
+				want := bytes.Clone(packet)
+				if len(want) > 3 {
+					copy(want[1:4], []byte{3, 2, 1})
+				}
+				before := sent.Value()
+				if err := sender.Send([][]byte{packet}, ep); err != nil {
+					t.Fatal(err)
+				}
+				read := make([]byte, 64)
+				n, _, err := receiver.ReadFromUDP(read)
+				if err != nil || !bytes.Equal(read[:n], want) || !bytes.Equal(packet, want) {
+					t.Fatalf("singleton: n=%d err=%v got=%x input=%x want=%x", n, err, read[:n], packet, want)
+				}
+				if sent.Value() != before+int64(len(want)) {
+					t.Fatalf("sent bytes=%d, want %d", sent.Value(), before+int64(len(want)))
+				}
+			}
+			before := sent.Value()
+			if err := socket.SetWriteDeadline(time.Now().Add(-time.Second)); err != nil {
+				t.Fatal(err)
+			}
+			if err := sender.Send([][]byte{{4, 0, 0, 0}}, ep); !errors.Is(err, os.ErrDeadlineExceeded) {
+				t.Fatalf("expired singleton send: %v", err)
+			}
+			if sent.Value() != before {
+				t.Fatal("failed singleton counted as delivered")
+			}
+			if err := socket.Close(); err != nil {
+				t.Fatal(err)
+			}
+			if err := sender.Send([][]byte{{4, 0, 0, 0}}, ep); !errors.Is(err, net.ErrClosed) {
+				t.Fatalf("closed singleton send: %v", err)
+			}
+			if sent.Value() != before {
+				t.Fatal("closed singleton counted as delivered")
+			}
+		})
+	}
+}
+
 func TestBindCloseUnblocksReceive(t *testing.T) {
 	b, receive, _ := newThroughputBind(t, "udp4", "127.0.0.1:0")
 	bufs, sizes, eps := benchmarkBuffers(1, 64)

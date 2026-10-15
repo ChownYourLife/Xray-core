@@ -6,6 +6,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"net"
+	"os"
 	"unsafe"
 
 	"golang.org/x/sys/unix"
@@ -41,6 +42,76 @@ func supportsGSO(udp *net.UDPConn) bool {
 		supported = err == nil
 	})
 	return supported
+}
+
+// Keep the single-message syscall's iovecs with the existing pooled messages.
+// SendmsgBuffers allocates an iovec slice for runs longer than two datagrams.
+type bindSendmsg struct {
+	iov   [maxGSOSegments]unix.Iovec
+	hdr   unix.Msghdr
+	addr4 unix.RawSockaddrInet4
+	addr6 unix.RawSockaddrInet6
+	write func(uintptr) bool
+	err   error
+}
+
+func (m *bindSendmsg) send(fd uintptr) bool {
+	for {
+		_, _, errno := unix.Syscall(unix.SYS_SENDMSG, fd, uintptr(unsafe.Pointer(&m.hdr)), 0)
+		if errno == unix.EINTR {
+			continue
+		}
+		if errno == unix.EAGAIN || errno == unix.EWOULDBLOCK {
+			return false // RawConn.Write waits for writability and honors deadlines.
+		}
+		if errno != 0 {
+			m.err = os.NewSyscallError("sendmsg", errno)
+		}
+		return true
+	}
+}
+
+func (s *bindSocket) sendBatch(m *bindMessages, count int) (int, error) {
+	if count != 1 || len(m.messages[0].OOB) == 0 || s.raw == nil || m.addr.Zone != "" {
+		return s.batch.WriteBatch(m.messages[:count], 0)
+	}
+	message := &m.messages[0]
+	send := &m.send
+	send.err = nil
+	send.hdr = unix.Msghdr{}
+	if ip := m.addr.IP.To4(); ip != nil {
+		send.addr4 = unix.RawSockaddrInet4{Family: unix.AF_INET}
+		binary.BigEndian.PutUint16((*[2]byte)(unsafe.Pointer(&send.addr4.Port))[:], uint16(m.addr.Port))
+		copy(send.addr4.Addr[:], ip)
+		send.hdr.Name = (*byte)(unsafe.Pointer(&send.addr4))
+		send.hdr.Namelen = unix.SizeofSockaddrInet4
+	} else {
+		send.addr6 = unix.RawSockaddrInet6{Family: unix.AF_INET6}
+		binary.BigEndian.PutUint16((*[2]byte)(unsafe.Pointer(&send.addr6.Port))[:], uint16(m.addr.Port))
+		copy(send.addr6.Addr[:], m.addr.IP)
+		send.hdr.Name = (*byte)(unsafe.Pointer(&send.addr6))
+		send.hdr.Namelen = unix.SizeofSockaddrInet6
+	}
+	for i, buf := range message.Buffers {
+		send.iov[i].Base = &buf[0] // GSO groups contain only nonempty datagrams.
+		send.iov[i].SetLen(len(buf))
+	}
+	send.hdr.Iov = &send.iov[0]
+	send.hdr.SetIovlen(len(message.Buffers))
+	send.hdr.Control = &message.OOB[0]
+	send.hdr.SetControllen(len(message.OOB))
+	if send.write == nil {
+		send.write = send.send
+	}
+	err := s.raw.Write(send.write)
+	clear(send.iov[:len(message.Buffers)])
+	if err != nil {
+		return 0, err
+	}
+	if send.err != nil {
+		return 0, send.err
+	}
+	return 1, nil
 }
 
 func (s *bindSocket) packMessages(m *bindMessages, bufs [][]byte) int {
