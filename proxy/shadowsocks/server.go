@@ -132,6 +132,12 @@ func (s *Server) handleUDPPayload(ctx context.Context, conn stat.Connection, dis
 
 	inbound := session.InboundFromContext(ctx)
 	var dest *net.Destination
+	var stop func() bool
+	defer func() {
+		if stop != nil {
+			stop()
+		}
+	}()
 	reader := buf.NewPacketReader(conn)
 	for {
 		mpayload, err := reader.ReadMultiBuffer()
@@ -152,6 +158,10 @@ func (s *Server) handleUDPPayload(ctx context.Context, conn stat.Connection, dis
 				request, data, err = DecodeUDPPacket(s.validator, payload)
 				if err == nil {
 					inbound.User = request.User
+					// Authentication binds this UDP flow once, not once per packet.
+					stop = context.AfterFunc(inbound.User.Context(), func() {
+						conn.Close()
+					})
 				}
 			}
 
@@ -235,6 +245,11 @@ func (s *Server) handleConnection(ctx context.Context, conn stat.Connection, dis
 	sessionPolicy = s.policyManager.ForLevel(request.User.Level)
 	ctx, cancel := context.WithCancel(ctx)
 	timer := signal.CancelAfterInactivity(ctx, cancel, sessionPolicy.Timeouts.ConnectionIdle)
+	defer cancel()
+	defer context.AfterFunc(request.User.Context(), func() {
+		cancel()
+		conn.Close()
+	})()
 
 	ctx = policy.ContextWithBufferPolicy(ctx, sessionPolicy.Buffer)
 	link, err := dispatcher.Dispatch(ctx, dest)

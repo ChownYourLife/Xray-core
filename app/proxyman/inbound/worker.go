@@ -373,15 +373,18 @@ func (w *udpWorker) callback(b *buf.Buffer, source net.Destination, originalDest
 			// conn not removed by checker TODO may be lock worker here is better
 			if !conn.inactive {
 				conn.setInactive()
-				w.removeConn(id)
+				w.removeConn(id, conn)
 			}
 		}()
 	}
 }
 
-func (w *udpWorker) removeConn(id connID) {
+// removeConn cannot remove a replacement installed under the same flow key.
+func (w *udpWorker) removeConn(id connID, conn *udpConn) {
 	w.Lock()
-	delete(w.activeConn, id)
+	if w.activeConn[id] == conn {
+		delete(w.activeConn, id)
+	}
 	w.Unlock()
 }
 

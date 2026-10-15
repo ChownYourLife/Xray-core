@@ -15,6 +15,7 @@ import (
 	"github.com/xtls/xray-core/common/session"
 	"github.com/xtls/xray-core/testing/mocks"
 	"github.com/xtls/xray-core/transport"
+	"github.com/xtls/xray-core/transport/internet"
 	"github.com/xtls/xray-core/transport/pipe"
 )
 
@@ -42,7 +43,11 @@ func TestClientWorkerEOF(t *testing.T) {
 	worker, err := mux.NewClientWorker(transport.Link{Reader: reader, Writer: writer}, mux.ClientStrategy{})
 	common.Must(err)
 
-	time.Sleep(time.Millisecond * 500)
+	select {
+	case <-worker.WaitClosed():
+	case <-time.After(5 * time.Second):
+		t.Fatal("EOF did not close the worker")
+	}
 
 	f := worker.Dispatch(context.Background(), nil)
 	if f {
@@ -99,9 +104,10 @@ func TestClientWorkerClose(t *testing.T) {
 
 	common.Must(w1.Close())
 
-	time.Sleep(time.Millisecond * 500)
-	if !worker1.Closed() {
-		t.Error("worker1 is not finished")
+	select {
+	case <-worker1.WaitClosed():
+	case <-time.After(5 * time.Second):
+		t.Fatal("worker1 did not close")
 	}
 
 	tr2, tw2 := pipe.New(pipe.WithoutSizeLimit())
@@ -159,5 +165,59 @@ func TestClientWorkerUDPSource(t *testing.T) {
 		if b.UDP == nil || *b.UDP != srcs[i] {
 			t.Errorf("reply %d: source = %v, want %v", i, b.UDP, srcs[i])
 		}
+	}
+}
+
+// blockedOutbound deliberately blocks on the transport, not ctx.Done:
+// cancellation must interrupt the pipes as well as canceling the context.
+type blockedOutbound struct {
+	started chan struct{}
+	ended   chan struct{}
+}
+
+func (p *blockedOutbound) Process(ctx context.Context, link *transport.Link, _ internet.Dialer) error {
+	close(p.started)
+	mb, err := link.Reader.ReadMultiBuffer()
+	buf.ReleaseMulti(mb)
+	close(p.ended)
+	return err
+}
+
+func TestDialingWorkerCancellationInterruptsTransport(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	proxy := &blockedOutbound{started: make(chan struct{}), ended: make(chan struct{})}
+	factory := &mux.DialingWorkerFactory{
+		Context: ctx,
+		Proxy:   proxy,
+		Strategy: mux.ClientStrategy{
+			MaxConcurrency: 4,
+			MaxConnection:  4,
+		},
+	}
+	picker := &mux.IncrementalWorkerPicker{Factory: factory}
+	manager := &mux.ClientManager{Picker: picker}
+	defer manager.Close()
+	worker, err := picker.PickAvailable()
+	common.Must(err)
+	select {
+	case <-proxy.started:
+	case <-time.After(5 * time.Second):
+		t.Fatal("worker transport did not start")
+	}
+	cancel()
+	select {
+	case <-worker.WaitClosed():
+	case <-time.After(5 * time.Second):
+		t.Fatal("owner cancellation did not close the worker")
+	}
+	select {
+	case <-proxy.ended:
+	case <-time.After(5 * time.Second):
+		t.Fatal("canceled worker left its transport blocked")
+	}
+	common.Must(manager.Close())
+	if _, err := picker.PickAvailable(); err == nil {
+		t.Fatal("closed picker opened a new transport")
 	}
 }

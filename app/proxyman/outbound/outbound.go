@@ -133,13 +133,20 @@ func (m *Manager) RemoveHandler(ctx context.Context, tag string) error {
 		return common.ErrNoClue
 	}
 	m.access.Lock()
-	defer m.access.Unlock()
-
 	m.tagsCache = &sync.Map{}
 
+	handler := m.taggedHandler[tag]
 	delete(m.taggedHandler, tag)
 	if m.defaultHandler != nil && m.defaultHandler.Tag() == tag {
 		m.defaultHandler = nil
+	}
+	m.access.Unlock()
+
+	// Closing a device can block; do not block unrelated handler lookups.
+	if handler != nil {
+		if err := handler.Close(); err != nil {
+			errors.LogWarningInner(ctx, err, "failed to close handler ", tag)
+		}
 	}
 
 	return nil

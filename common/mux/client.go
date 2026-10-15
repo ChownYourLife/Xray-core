@@ -41,6 +41,13 @@ func (m *ClientManager) Dispatch(ctx context.Context, link *transport.Link) erro
 	return errors.New("unable to find an available mux client")
 }
 
+func (m *ClientManager) Close() error {
+	if m == nil {
+		return nil
+	}
+	return common.Close(m.Picker)
+}
+
 type WorkerPicker interface {
 	PickAvailable() (*ClientWorker, error)
 }
@@ -51,6 +58,7 @@ type IncrementalWorkerPicker struct {
 	access      sync.Mutex
 	workers     []*ClientWorker
 	cleanupTask *task.Periodic
+	closed      bool
 }
 
 func (p *IncrementalWorkerPicker) cleanupFunc() error {
@@ -88,6 +96,9 @@ func (p *IncrementalWorkerPicker) findAvailable() int {
 func (p *IncrementalWorkerPicker) pickInternal() (*ClientWorker, bool, error) {
 	p.access.Lock()
 	defer p.access.Unlock()
+	if p.closed {
+		return nil, false, errors.New("mux picker closed")
+	}
 
 	idx := p.findAvailable()
 	if idx >= 0 {
@@ -119,10 +130,26 @@ func (p *IncrementalWorkerPicker) pickInternal() (*ClientWorker, bool, error) {
 func (p *IncrementalWorkerPicker) PickAvailable() (*ClientWorker, error) {
 	worker, start, err := p.pickInternal()
 	if start {
-		common.Must(p.cleanupTask.Start())
+		if err := p.cleanupTask.Start(); err != nil {
+			return nil, err
+		}
 	}
 
 	return worker, err
+}
+
+func (p *IncrementalWorkerPicker) Close() error {
+	p.access.Lock()
+	defer p.access.Unlock()
+	p.closed = true
+	if p.cleanupTask != nil {
+		p.cleanupTask.Close()
+	}
+	for _, worker := range p.workers {
+		worker.Close()
+	}
+	p.workers = nil
+	return nil
 }
 
 type ClientWorkerFactory interface {
@@ -133,9 +160,14 @@ type DialingWorkerFactory struct {
 	Proxy    proxy.Outbound
 	Dialer   internet.Dialer
 	Strategy ClientStrategy
+	// Context owns the transport and all sessions of each worker.
+	Context context.Context
 }
 
 func (f *DialingWorkerFactory) Create() (*ClientWorker, error) {
+	if err := f.Context.Err(); err != nil {
+		return nil, err
+	}
 	opts := []pipe.Option{pipe.WithSizeLimit(64 * 1024)}
 	uplinkReader, upLinkWriter := pipe.New(opts...)
 	downlinkReader, downlinkWriter := pipe.New(opts...)
@@ -152,8 +184,14 @@ func (f *DialingWorkerFactory) Create() (*ClientWorker, error) {
 		outbounds := []*session.Outbound{{
 			Target: net.TCPDestination(muxCoolAddress, muxCoolPort),
 		}}
-		ctx := session.ContextWithOutbounds(context.Background(), outbounds)
+		ctx := session.ContextWithOutbounds(f.Context, outbounds)
 		ctx, cancel := context.WithCancel(ctx)
+		defer cancel()
+		defer context.AfterFunc(ctx, func() {
+			common.Close(c)
+			common.Interrupt(uplinkReader)
+			common.Interrupt(downlinkWriter)
+		})()
 
 		if errP := p.Process(ctx, &transport.Link{Reader: uplinkReader, Writer: downlinkWriter}, d); errP != nil {
 			errC := errors.Cause(errP)
@@ -162,7 +200,6 @@ func (f *DialingWorkerFactory) Create() (*ClientWorker, error) {
 			}
 		}
 		common.Must(c.Close())
-		cancel()
 	}(f.Proxy, f.Dialer, c.done)
 
 	return c, nil

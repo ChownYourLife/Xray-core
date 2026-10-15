@@ -154,4 +154,27 @@ func TestUDPConnectionReplacesClosed(t *testing.T) {
 	if worker.activeConn[id] != conn {
 		t.Fatal("replacement connection was not stored")
 	}
+
+	// The old Process can finish after the replacement has been installed.
+	worker.removeConn(id, closed)
+	if worker.activeConn[id] != conn {
+		t.Fatal("old connection cleanup removed its replacement")
+	}
+	packet := buf.New()
+	packet.WriteString("replacement")
+	if err := conn.writer.WriteMultiBuffer(buf.MultiBuffer{packet}); err != nil {
+		t.Fatal(err)
+	}
+	received, err := conn.ReadMultiBuffer()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer buf.ReleaseMulti(received)
+	if len(received) != 1 || received[0].String() != "replacement" {
+		t.Fatal("replacement no longer transports packets")
+	}
+	worker.removeConn(id, conn)
+	if worker.activeConn[id] != nil {
+		t.Fatal("current connection cleanup did not remove it")
+	}
 }

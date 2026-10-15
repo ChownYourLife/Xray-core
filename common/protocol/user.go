@@ -1,6 +1,10 @@
 package protocol
 
 import (
+	"context"
+	"reflect"
+	"sync"
+
 	"github.com/xtls/xray-core/common/errors"
 	"github.com/xtls/xray-core/common/serial"
 )
@@ -52,4 +56,41 @@ type MemoryUser struct {
 	Account Account
 	Email   string
 	Level   uint32
+
+	origin *MemoryUser
+	once   sync.Once
+	ctx    context.Context
+	cancel context.CancelFunc
+}
+
+// Context is canceled when the owning user is removed.
+func (u *MemoryUser) Context() context.Context {
+	if u.origin != nil {
+		return u.origin.Context()
+	}
+	u.once.Do(func() {
+		u.ctx, u.cancel = context.WithCancel(context.Background())
+	})
+	return u.ctx
+}
+
+// Cancel ends the owning user's connections. Derived users do not own them.
+func (u *MemoryUser) Cancel() {
+	if u.origin == nil {
+		u.Context()
+		u.cancel()
+	}
+}
+
+// Equal compares configuration, excluding runtime lifecycle state.
+func (u *MemoryUser) Equal(v *MemoryUser) bool {
+	if u == nil || v == nil {
+		return u == v
+	}
+	return reflect.DeepEqual(u.Account, v.Account) && u.Email == v.Email && u.Level == v.Level
+}
+
+// Derive substitutes an account while retaining the owning user's lifecycle.
+func (u *MemoryUser) Derive(account Account) *MemoryUser {
+	return &MemoryUser{Account: account, Email: u.Email, Level: u.Level, origin: u}
 }

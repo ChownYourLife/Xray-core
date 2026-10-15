@@ -39,10 +39,14 @@ type Handler struct {
 	uplinkCounter   stats.Counter
 	downlinkCounter stats.Counter
 
-	tun  tun.Device
-	tnet *Net
-	dev  *device.Device
-	mu   sync.Mutex
+	ctx    context.Context
+	cancel context.CancelFunc
+
+	tun        tun.Device
+	tnet       *Net
+	dev        *device.Device
+	configured bool
+	mu         sync.Mutex
 }
 
 func NewClient(ctx context.Context, conf *DeviceConfig) (*Handler, error) {
@@ -123,8 +127,11 @@ func NewClient(ctx context.Context, conf *DeviceConfig) (*Handler, error) {
 	if err != nil {
 		return nil, err
 	}
+	ctx, cancel := context.WithCancel(ctx)
 
 	return &Handler{
+		ctx:           ctx,
+		cancel:        cancel,
 		conf:          conf,
 		policyManager: p,
 		dns:           d,
@@ -229,6 +236,8 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 }
 
 func (h *Handler) Close() (err error) {
+	// Cancel before taking mu: init may hold it while opening a bind socket.
+	h.cancel()
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	if h.dev != nil {
@@ -249,13 +258,26 @@ func (h *Handler) init(ctx context.Context) error {
 		return errors.New("closed")
 	}
 	if h.dev != nil {
-		return h.dev.Up()
+		return h.configure()
 	}
+	// The bind belongs to the device, not the first Process request. Preserve
+	// its routing values, but let the handler lifetime cancel socket setup.
+	ctx, cancel := context.WithCancel(context.WithoutCancel(ctx))
+	context.AfterFunc(h.ctx, cancel)
 	resolveFunc := h.resolveLocal
 	listenFunc := func() (net.PacketConn, error) {
 		dest, err := net.ParseDestination("udp:" + h.conf.Peers[0].Endpoint)
 		if err != nil {
 			return nil, err
+		}
+		// Direct sockets use the same DNS as peer endpoints; proxies and
+		// finalmask continue receiving the original domain.
+		if dest.Address.Family().IsDomain() && h.streamSettings.FinalMask == nil && h.streamSettings.SocketSettings.GetDialerProxy() == "" {
+			ip, err := h.resolveLocal(dest.Address.Domain())
+			if err != nil {
+				return nil, err
+			}
+			dest.Address = net.IPAddress(ip)
 		}
 		var pktConn net.PacketConn
 		if h.streamSettings.FinalMask != nil {
@@ -303,8 +325,18 @@ func (h *Handler) init(ctx context.Context) error {
 			})
 		},
 	}
-	dev := device.NewDevice(h.tun, bind, logger)
-	bind.setDownFunc(dev.Down)
+	// The device owns the TUN even if configuration fails. Keep it so retries
+	// do not create competing readers and Close releases the owner.
+	h.dev = device.NewDevice(h.tun, bind, logger)
+	bind.setDownFunc(h.dev.Down)
+	return h.configure()
+}
+
+// configure applies the peers once and brings the device up.
+func (h *Handler) configure() error {
+	if h.configured {
+		return h.dev.Up()
+	}
 	var cfg strings.Builder
 	cfg.WriteString("private_key=" + h.conf.SecretKey + "\n")
 	for _, peer := range h.conf.Peers {
@@ -320,16 +352,11 @@ func (h *Handler) init(ctx context.Context) error {
 			cfg.WriteString("persistent_keepalive_interval=" + peer.KeepAlive + "\n")
 		}
 	}
-	err := dev.IpcSet(cfg.String())
-	if err != nil {
+	if err := h.dev.IpcSet(cfg.String()); err != nil {
 		return err
 	}
-	err = dev.Up()
-	if err != nil {
-		return err
-	}
-	h.dev = dev
-	return nil
+	h.configured = true
+	return h.dev.Up()
 }
 
 func (h *Handler) resolveLocal(host string) (net.IP, error) {

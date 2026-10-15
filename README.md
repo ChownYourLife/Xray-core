@@ -50,6 +50,14 @@
 - Authenticated stream writers consume their input and seal singleton payloads directly into separately owned output, splitting oversized payloads at the existing frame limit without temporary plaintext copies or scratch allocations. Oversized singleton input is released before forwarding the complete ciphertext batch. Chunk framing, authentication, nonce progression, padding, and error handling are unchanged; multi-buffer inputs retain the existing chunk-packing path.
 - TCP stream-vector adapters consume their input on success or error, reuse the vector header and storage between writes, and count actual bytes written, including partial-error returns. Progress follows the remaining vectors rather than an int32 aggregate, so supported multi-buffer writes totaling 2 GiB or more are not silently skipped. Existing packet and non-syscall writer routing is unchanged.
 
+### Connection lifecycle and WireGuard setup
+
+- Removing an outbound through the handler API closes its existing connections, including mux and XUDP workers. Removal also releases the outbound's owned resources; it is not a graceful drain.
+- Removing an inbound user revokes authentication and cancels that user's existing sessions. Cancellation belongs to the inbound's user instance: independently configured users on other inbounds remain active, and Hysteria's derived routing identities share their original user's lifetime.
+- UDP worker cleanup removes only the connection that still owns its map entry, so a finishing old processor cannot erase a replacement connection.
+- A WireGuard client retains the device that owns its TUN when setup fails. Later initialization attempts reuse that device; successful peer configuration is not reapplied merely because bringing the device up failed. Bind setup retains routing values but is canceled by the handler's lifetime rather than the first request, so a canceled failed request does not poison later setup attempts.
+- Direct WireGuard endpoint sockets use Xray DNS. FinalMask and dialer-proxy paths retain the original domain. Peer and socket resolution remain independent and may select different addresses from a multi-address DNS answer.
+
 ## Telegram
 
 [Project X](https://t.me/projectXray)

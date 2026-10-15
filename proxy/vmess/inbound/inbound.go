@@ -277,6 +277,11 @@ func (h *Handler) Process(ctx context.Context, network net.Network, connection s
 
 	ctx, cancel := context.WithCancel(ctx)
 	timer := signal.CancelAfterInactivity(ctx, cancel, sessionPolicy.Timeouts.ConnectionIdle)
+	defer cancel()
+	defer context.AfterFunc(request.User.Context(), func() {
+		cancel()
+		connection.Close()
+	})()
 
 	ctx = policy.ContextWithBufferPolicy(ctx, sessionPolicy.Buffer)
 	link, err := dispatcher.Dispatch(ctx, request.Destination())

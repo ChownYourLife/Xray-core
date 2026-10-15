@@ -70,6 +70,15 @@ func (h *httpHandler) AuthHTTP(w http.ResponseWriter, r *http.Request) bool {
 			h.user = user
 
 			conn := h.conn
+			if user != nil {
+				// End QUIC itself so the removed user cannot open new streams.
+				stop := context.AfterFunc(user.Context(), func() {
+					conn.CloseWithError(closeErrCodeOK, "")
+				})
+				context.AfterFunc(conn.Context(), func() {
+					stop()
+				})
+			}
 			quicParams := h.quicParams
 			switch quicParams.Congestion {
 			case "reno":

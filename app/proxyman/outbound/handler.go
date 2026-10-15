@@ -65,6 +65,10 @@ type Handler struct {
 	udp443          string
 	uplinkCounter   stats.Counter
 	downlinkCounter stats.Counter
+
+	// ctx owns direct, mux and XUDP connections independently of Dispatch.
+	ctx    context.Context
+	cancel context.CancelFunc
 }
 
 // NewHandler creates a new Handler based on the given configuration.
@@ -76,6 +80,7 @@ func NewHandler(ctx context.Context, config *core.OutboundHandlerConfig) (outbou
 		uplinkCounter:   uplinkCounter,
 		downlinkCounter: downlinkCounter,
 	}
+	h.ctx, h.cancel = context.WithCancel(context.Background())
 
 	if config.SenderSettings != nil {
 		senderSettings, err := config.SenderSettings.GetInstance()
@@ -130,8 +135,9 @@ func NewHandler(ctx context.Context, config *core.OutboundHandlerConfig) (outbou
 					Enabled: true,
 					Picker: &mux.IncrementalWorkerPicker{
 						Factory: &mux.DialingWorkerFactory{
-							Proxy:  proxyHandler,
-							Dialer: h,
+							Proxy:   proxyHandler,
+							Dialer:  h,
+							Context: h.ctx,
 							Strategy: mux.ClientStrategy{
 								MaxConcurrency: uint32(config.Concurrency),
 								MaxConnection:  128,
@@ -151,8 +157,9 @@ func NewHandler(ctx context.Context, config *core.OutboundHandlerConfig) (outbou
 					Enabled: true,
 					Picker: &mux.IncrementalWorkerPicker{
 						Factory: &mux.DialingWorkerFactory{
-							Proxy:  proxyHandler,
-							Dialer: h,
+							Proxy:   proxyHandler,
+							Dialer:  h,
+							Context: h.ctx,
 							Strategy: mux.ClientStrategy{
 								MaxConcurrency: uint32(config.XudpConcurrency),
 								MaxConnection:  128,
@@ -176,6 +183,14 @@ func (h *Handler) Tag() string {
 
 // Dispatch implements proxy.Outbound.Dispatch.
 func (h *Handler) Dispatch(ctx context.Context, link *transport.Link) {
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
+	reader, writer := link.Reader, link.Writer
+	defer context.AfterFunc(h.ctx, func() {
+		cancel()
+		common.Interrupt(reader)
+		common.Interrupt(writer)
+	})()
 	outbounds := session.OutboundsFromContext(ctx)
 	ob := outbounds[len(outbounds)-1]
 	content := session.ContentFromContext(ctx)
@@ -329,7 +344,9 @@ func (h *Handler) Start() error {
 
 // Close implements common.Closable.
 func (h *Handler) Close() error {
+	h.cancel()
 	common.Close(h.mux)
+	common.Close(h.xudp)
 	common.Close(h.proxy)
 	return nil
 }
