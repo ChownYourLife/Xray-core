@@ -1,0 +1,18 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 18:12:43.758110 [Warning] core: Xray 26.10.10 started
+2026/10/15 18:12:43.758124 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/gateway.json Format:json}
+2026/10/15 18:12:43.798734 from udp:10.77.0.2:28315 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.808895 from udp:10.77.0.2:60768 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.809752 from udp:10.77.0.2:18372 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.810493 from udp:10.77.0.2:38856 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.811265 from udp:10.77.0.2:27774 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.812100 from udp:10.77.0.2:40890 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.812792 from udp:10.77.0.2:43572 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.813523 from udp:10.77.0.2:49936 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.814377 from udp:10.77.0.2:34737 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.815141 from udp:10.77.0.2:46024 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.891626 from udp:10.77.0.2:34354 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:43.902887 from tcp:10.77.0.2:55470 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:44.305112 from udp:10.77.0.2:62318 accepted udp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 18:12:44.316599 from tcp:10.77.0.2:35489 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]

@@ -1,0 +1,128 @@
+{
+  "phase": "smoke",
+  "round": 0,
+  "case": "ssclassic-freedom",
+  "network": "tcp",
+  "variant": "batching-only",
+  "loadavg_before": "0.17 0.10 0.20 2/253 1450162\n",
+  "fixed_binary": "hybrid",
+  "candidate_role": "relay",
+  "processes": [
+    {
+      "role": "relay",
+      "pid": 1450163,
+      "argv": [
+        "taskset",
+        "-c",
+        "2,3",
+        "/tmp/xray-transport-e2e-comparison-20261015/binaries/batching-only",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-freedom-relay.json"
+      ],
+      "requested_cpus": "2,3",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\tbatching-only\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1450163\nNgid:\t0\nPid:\t1450163\nPPid:\t1450114\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1450163\nNSpid:\t1450163\nNSpgid:\t1450163\nNSsid:\t1450163\nKthread:\t0\nVmPeak:\t 1360216 kB\nVmSize:\t 1360216 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   29056 kB\nVmRSS:\t   28924 kB\nRssAnon:\t    4732 kB\nRssFile:\t   24192 kB\nRssShmem:\t       0 kB\nVmData:\t   80292 kB\nVmStk:\t     132 kB\nVmExe:\t   15684 kB\nVmLib:\t       8 kB\nVmPTE:\t     176 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t7\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\tfffffffc3bba3a00\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,0000000c\nCpus_allowed_list:\t2-3\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t262\nnonvoluntary_ctxt_switches:\t133\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        2,
+        3
+      ]
+    },
+    {
+      "role": "client",
+      "pid": 1450170,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,1",
+        "/tmp/xray-transport-e2e-comparison-20261015/binaries/hybrid",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-freedom-client.json"
+      ],
+      "requested_cpus": "0,1",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\thybrid\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1450170\nNgid:\t0\nPid:\t1450170\nPPid:\t1450114\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1450170\nNSpid:\t1450170\nNSpgid:\t1450170\nNSsid:\t1450170\nKthread:\t0\nVmPeak:\t 1294364 kB\nVmSize:\t 1294364 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   29824 kB\nVmRSS:\t   29812 kB\nRssAnon:\t    4468 kB\nRssFile:\t   25344 kB\nRssShmem:\t       0 kB\nVmData:\t   79964 kB\nVmStk:\t     132 kB\nVmExe:\t   15688 kB\nVmLib:\t       8 kB\nVmPTE:\t     172 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t7\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,00000003\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t12\nnonvoluntary_ctxt_switches:\t1\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1
+      ]
+    }
+  ],
+  "application": {
+    "argv": [
+      "taskset",
+      "-c",
+      "0,1",
+      "/tmp/xray-transport-e2e-comparison-20261015/binaries/application",
+      "-mode",
+      "client",
+      "-addr",
+      "127.0.0.1:19300",
+      "-network",
+      "tcp",
+      "-bytes",
+      "1048576",
+      "-samples",
+      "16"
+    ],
+    "started_utc": "2026-10-15T17:39:53.462179+00:00",
+    "wall_duration_ns": 41787091,
+    "exit": 0,
+    "stderr": "",
+    "stdout": "{\"established_rtt_ns\":[94461,77581,78531,77851,81362,77010,63511,85641,90751,75941,95241,100411,78912,68791,76541,77501],\"monotonic_clock\":\"Go time.Now/time.Since monotonic duration nanoseconds\",\"network\":\"tcp\",\"setup_definition\":\"fresh local application dial through first verified 64B echo; prewarmed WG association; includes lazy remote application setup; not SOCKS CONNECT\",\"setup_first_response_ns\":[704969,536627,654979,581217,479026,612468,526567,509275],\"target\":\"127.0.0.1:19300\",\"transfers\":[{\"delivered_bytes\":1048576,\"direction\":\"upload\",\"receiver_duration_ns\":1303117,\"stream_count\":1,\"verified_all_received_bytes\":true},{\"delivered_bytes\":1048576,\"direction\":\"download\",\"receiver_duration_ns\":788730,\"stream_count\":1,\"verified_all_received_bytes\":true}],\"warmup_echoes\":32}\n",
+    "sample": {
+      "established_rtt_ns": [
+        94461,
+        77581,
+        78531,
+        77851,
+        81362,
+        77010,
+        63511,
+        85641,
+        90751,
+        75941,
+        95241,
+        100411,
+        78912,
+        68791,
+        76541,
+        77501
+      ],
+      "monotonic_clock": "Go time.Now/time.Since monotonic duration nanoseconds",
+      "network": "tcp",
+      "setup_definition": "fresh local application dial through first verified 64B echo; prewarmed WG association; includes lazy remote application setup; not SOCKS CONNECT",
+      "setup_first_response_ns": [
+        704969,
+        536627,
+        654979,
+        581217,
+        479026,
+        612468,
+        526567,
+        509275
+      ],
+      "target": "127.0.0.1:19300",
+      "transfers": [
+        {
+          "delivered_bytes": 1048576,
+          "direction": "upload",
+          "receiver_duration_ns": 1303117,
+          "stream_count": 1,
+          "verified_all_received_bytes": true
+        },
+        {
+          "delivered_bytes": 1048576,
+          "direction": "download",
+          "receiver_duration_ns": 788730,
+          "stream_count": 1,
+          "verified_all_received_bytes": true
+        }
+      ],
+      "warmup_echoes": 32
+    }
+  },
+  "status": "passed",
+  "loadavg_after": "0.17 0.10 0.20 3/253 1450181\n"
+}

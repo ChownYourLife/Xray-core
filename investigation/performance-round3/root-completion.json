@@ -1,0 +1,47 @@
+{
+ "goal_items": {
+  "new_coherent_improvement":"Main selected oversized-singleton direct sliced Seal after measured public API baseline/prototype and actual multi-small SplitSize alternate; not replaying prior fitting optimization",
+  "minimal_existing_design":"Only16line new shared writer branch, meaningful existing framing extensions and oversized realcipher consumer tests, existing README bullet update; no API/cache/dependency/config/security behavior changes",
+  "exact_supported_behavior":"Baseline-overlay and final public auth ciphertext/header/frame-count/nonce/shared authenticated-length/padding/error/ownership regressions pass. Actual no-overlay VMess request+response and classicSS AES/chacha runtime confirms threshold-1/exact/+1/full/large exact/tail/multi bytes/state",
+  "arbitrary_length_and_error_boundaries":"Managed3limit+17/exact3limit and unmanaged5limit+23 framing covers arbitrary chunks; positivepayloadguard retains invalid-config fallback; ceil avoids integer addition overflow; secondrealbodySealinvalidnonce prevents prefix forwarding and releases ownedciphertext/input",
+  "borrow_isolation":"Cap-constrained frame spans protect future plaintext against realAuthenticator scratchappend. Original baseline and final regressions pass; unsafe span negative control fails plaintext test and source/raw receipt retained separately",
+  "source_lifetime":"Managed oversized source released after all successful seals and before downstream; independent callback observes released source and ciphertext survives pool churn. Fitting timing unchanged. Earlier pre-lifetime8paircampaign superseded and excluded",
+  "primary_measured_api_benefit":"8 final-source matched ABBA commands,72actualAuth/VMess/paddedVMess/SS AES/chacha rows per command,4samples/state. Full8192 all8consumers392to240B/op and10to8alloc. AESpairedCPU12.32to18.51percentlower;ChaCha0.65to4.59percentlower. Numericraw.exit0 and hashes independentlychecked;72derivedrowmatchesexact",
+  "controls_and_honesty":"Fitting160B/6alloc and multibuffer B/alloc unchanged. PrimarySS/chachamulti4x2048+7.66percentpairedCPU retained, not replaced. Separate isolated samehashABBA8command400mscontrol+0.453percent cannot prove universal regression absence. Managedlarge B/op minor poolnoise retained",
+  "actual_public_runtime":"Independent verifier actual unoverlaid go run:88successfulconsumerstdoutrows plus3adversarialsuccesses; exact rawstdout and independent assertion source inJSON. Request/response realVMess methods and publicSS methods, no historicalNoOp or fakeecho",
+  "focused_and_race":"Independent normal/racecrypto+SS suites pass; initial VMess cached result disclosed and separate actual currenthash VMessnormal/race-count1 executesandpasses. Owner final authentication regressions execute at finalsourcehash",
+  "source_freeze_and_preservation":"Independentactualincoming/final1172file manifests; onlyauth.go/auth_test.go/READMEchanged,1169otherincomingfilesbytepreserved. Independentverifier1172actualhashes/17embeddedsourcesallmatch. Fitting/multi/packet/seal/SplitSize and prior optimizations byte-preserved",
+  "documentation":"Existing authenticated-stream README bullet updated only after actualindependentruntime, obsolete fitting-only/oversizedfallback wording removed; allotherREADMEbytespreserved",
+  "cleanup":"Owner9tmpbenchmark/overlayfilesandemptydirectoryremoved; verifierown/tmpgo runsource removed aftersource/raw capture. No new runnableGo snapshots in round3evidence; oldroots leftunmodified",
+  "independent_acceptance":"Main independently read actual selected code/tests/docs/freeze/measurements/runtime source+raw/checks/limits and unconditionallyaccepted ownerround2 and repaired peerlatestround2withfullverification/source/recovery attachments. Separate Main-attributed review artifacts; owner onlyadministrative CLIexecutor",
+  "recovery":"Same verifier session actual entry reread/controllerresume/control+map refresh repairs missingpostcompactreceipt. Protocol gap honestly recorded; unchanged-source checks not rerun and earliercompliance notfabricated"
+ },
+ "execution_attribution": {
+  "writer-path-optimizer":["Candidate source/overlayAPIandSplitSize measurements","Main-selected code/tests/README edits","Baseline/final authentication regressions and unsafe-span negativecontrol","Final matched8publicAPIbenchmarks and separate8controlbenchmarks","Actualsource freezing/preservation and owntmpcleanup","Controller/rootadministration under Main independent judgments"],
+  "round3-verifier":["Own initial and recovery J-Space entry/control source/map reads","Independent no-overlay actualpublic request+responseVMess/SSruntime88rows+3adverse","Focusednormal/race plus uncachedVMessnormal/race-count1","Independent72row+exitmetadata/controlrecomputation","Independent1172actualhashesand17embeddedsnapshotchecks","Ownruntime source/rawstdoutcapture/cleanup/repairedreportrounds"],
+  "Main":["Candidate selection and source-boundary design constraints","Independent actualimplementation/test/doc/source/rawruntime/metric/check/limitreview","Unconditional owner and latest verifier final acceptance judgments"]
+ },
+ "evidence": {
+  "owner_round2":"optimizer/implementation-round2.json",
+  "peer_full_report":"verifier/final-verification.json",
+  "peer_latest_round2":"verifier/final-verification-correction.json",
+  "peer_recovery":"verifier/resume-recovery.json",
+  "source_freeze":"optimizer/final-source.json",
+  "independent_source_validation":"verifier/final-source-validation.json",
+  "preservation":"optimizer/preservation-final.json",
+  "primary_benchmark_summary":"optimizer/benchmark-summary.json",
+  "primary_raw":"optimizer/raw/final-source-paired-1..8",
+  "secondary_control":"optimizer/control-sensitivity.json",
+  "independent_recomputation":"verifier/paired-raw-recomputation-final.json",
+  "actual_runtime_raw":"verifier/runtime-smoke-raw.json",
+  "actual_runtime_assertion_source":"verifier/runtime-smoke-source.json",
+  "normal_race":"verifier/focused-race-final.json",
+  "uncached_vmess":"verifier/vmess-count1-final.json",
+  "owner_framing":"optimizer/framing-final-source.json",
+  "negative_control":"optimizer/frame-isolation-negative-control.json",
+  "parent_writer_review":"root-writer-review.json",
+  "parent_verifier_review":"root-verifier-review.json"
+ },
+ "limitations":["No production shape distribution/WAN/full-core throughput measurement","No full repository/external ECH/remote/network suites","CPUcontrols mixed and ChaChagains limited; allocations are primary stable benefit","Controllerinventory evidence-rootonly; actualproduction1172file manifest separatelyhashed with explicit reserved-directory/symlink exclusions","Original per-write scratch allocation claim corrected append-only; existing source/checkdata unchanged","No commit or PR requested or created"],
+ "next":"Final map/source views for all active registered identities, parent-attributed review registration and root report, original controller ship stdout capture"
+}

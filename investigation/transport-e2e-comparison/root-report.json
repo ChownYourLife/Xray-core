@@ -1,0 +1,17 @@
+{
+  "publisher": "ChainBench, expressly authorized mechanical root publisher",
+  "independent_acceptance": "Main/director explicit final data+HTML/native-role acceptance, not publisher self-review",
+  "result": "All requested measured behavior and finalHTML deliverable complete; two fixed140cellprotocolcohorts and40primarycomparisonrows",
+  "evidence": [
+    "director-data-acceptance.json",
+    "director-final-acceptance.json",
+    "ChainBench-round1.json",
+    "ChainBench-round2.json",
+    "audit/round1.json",
+    "audit/round2.json",
+    "writer/round1.json",
+    "writer/round2.json",
+    "root-completion.json"
+  ],
+  "next": "Single final synchronized-source publication and actual ALLOW ship receipt outside task root"
+}

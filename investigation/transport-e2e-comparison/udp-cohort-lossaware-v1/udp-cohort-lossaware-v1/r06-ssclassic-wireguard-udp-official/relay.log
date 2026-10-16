@@ -1,0 +1,22 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 18:12:53.614587 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/ssclassic-wireguard-relay.json Format:json}
+2026/10/15 18:12:53.614940 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 18:12:53.615460 [Warning] proxy/wireguard: Using gVisor TUN
+2026/10/15 18:12:53.615992 [Warning] core: Xray 26.10.10 started
+2026/10/15 18:12:53.625848 from 127.0.0.1:35122 rejected  common/drain: common/drain: unable to drain connection > EOF > proxy/shadowsocks: failed to read 50 bytes > EOF
+2026/10/15 18:12:53.647549 from 127.0.0.1:35128 rejected  common/drain: common/drain: unable to drain connection > EOF > proxy/shadowsocks: failed to read 50 bytes > EOF
+2026/10/15 18:12:53.649315 from udp:127.0.0.1:51898 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.659311 from udp:127.0.0.1:44852 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.659920 from udp:127.0.0.1:40977 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.660533 from udp:127.0.0.1:39798 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.661102 from udp:127.0.0.1:56753 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.661737 from udp:127.0.0.1:44824 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.662360 from udp:127.0.0.1:53251 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.662952 from udp:127.0.0.1:44486 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.663592 from udp:127.0.0.1:47658 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.664203 from udp:127.0.0.1:49573 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.738771 from udp:127.0.0.1:47204 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:53.748507 from 127.0.0.1:35134 accepted tcp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:54.264504 from udp:127.0.0.1:36042 accepted udp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]
+2026/10/15 18:12:54.274851 from 127.0.0.1:35142 accepted tcp:10.77.0.1:19090 [candidate-inbound-shadowsocks >> candidate-wireguard-outbound]

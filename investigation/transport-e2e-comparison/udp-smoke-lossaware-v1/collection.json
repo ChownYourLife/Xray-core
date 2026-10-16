@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "ssh",
+    "-i",
+    "/Users/hosi/.ssh/id_ed25519",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ServerAliveInterval=30",
+    "-o",
+    "ServerAliveCountMax=6",
+    "root@216.195.211.248",
+    "tar -czf /tmp/xray-transport-e2e-comparison-udp-final-20261015/udp-smoke-lossaware-v1.tar.gz -C /tmp/xray-transport-e2e-comparison-udp-final-20261015 udp-smoke-lossaware-v1"
+  ],
+  "exit": 0,
+  "output": ""
+}

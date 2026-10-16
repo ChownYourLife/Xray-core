@@ -1,0 +1,33 @@
+{
+  "external_root": "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015",
+  "files": {
+    "application.go": "a08bd068246e2c2f1592d42deea0b532a6c37652fd075cf4081cf9e3812a663c",
+    "remote_runner.py": "d76c65e5bd09b3e33bc7b6d30a734100cc826a3347322eb1bcce7394e8541467",
+    "prepare_configs.py": "945c64f302d1ee46739ea4a4a76697e9cd49a52d4a39a6ab3a5b1ce1dacfc72c",
+    "run_remote.py": "408ebe659b94a75cfbe434a72e63e15162fceb0fa62f1c6970180377a03ff779",
+    "freeze_build.py": "a6bc943f0c70b276b41c10bd3901ab34ba0d7bd130cd126f190a597e153b7bf6",
+    "summarize.py": "93006b1c535d278d6924d0a34c9ec7e0dc493508f1d048020a3096f9f9b94e5c",
+    "binaries/application": "320fcc9cda001dd139de50ad30517b19a65863bf60f0d7ad5dcb18b8242a16b8"
+  },
+  "application_build": {
+    "tool": "/Users/hosi/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.27.0.darwin-arm64/bin/go",
+    "args": [
+      "build",
+      "-trimpath",
+      "-buildvcs=false",
+      "-ldflags=-buildid=",
+      "-o",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/binaries/application",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/application.go"
+    ],
+    "env": {
+      "GOTOOLCHAIN": "local",
+      "GOOS": "linux",
+      "GOARCH": "amd64",
+      "GOAMD64": "v1",
+      "CGO_ENABLED": "0"
+    },
+    "exit": 0
+  },
+  "provenance": "Exact application build command exercised successfully before config generation and smoke launch."
+}

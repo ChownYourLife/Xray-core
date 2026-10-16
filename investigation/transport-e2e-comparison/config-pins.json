@@ -1,0 +1,69 @@
+{
+  "files": {
+    "gateway.json": "beed4308f396d8a5ea72e8f33cf82a90340d013739c227a09b534838ccdc9eb1",
+    "ss2022-freedom-client.json": "f0a8057be7321c1b3ecc4257a0ffabf9e43e63fc7128c32cb91350a6b21ef5c6",
+    "ss2022-freedom-relay.json": "0fc2b83dd9f709683e617d7d29a1b60d20d7cd5ab16940f3a41487d7d2df4b7e",
+    "ssclassic-freedom-client.json": "b3dabf30ca13d25a29475ae5779b373afbc14a05a7486da2a6e30da8e54fe2f9",
+    "ssclassic-freedom-relay.json": "9ecc66a380818b085bddef710db3b77fb729f6712c280e34507d0e9001d1b7b0",
+    "ssclassic-wireguard-client.json": "e90911efcaa2efcd49ec0394e6cf47929a27d11c85f96c01c4e7f6240f6a4fac",
+    "ssclassic-wireguard-relay.json": "91ce03e20f17b2743ec2530d26ead21c6db32616880210d4703fabeab92bebc4",
+    "vless-wireguard-client.json": "8404a36eaff3043b8f9ad0c31924037b7d83b1a4abb561894a29bbb80c9a3634",
+    "vless-wireguard-relay.json": "57de6d9cb6dfe720dcc085ccc2ccb077e88c85c4ef2cc1b1b5e84901b941d7ea",
+    "vmess-wireguard-client.json": "c8c2056f570ace05756a00d848c6c45d0554f4dc7f5823627adb45e48d14f23f",
+    "vmess-wireguard-relay.json": "6106618e6b44d8504dea3b88369113e6d2522ee196632509ff661ff003b26a04"
+  },
+  "matrix": [
+    {
+      "case": "ssclassic-freedom",
+      "networks": [
+        "tcp",
+        "udp"
+      ],
+      "route": "application->fixed-client(ssclassic outbound)->candidate-relay(ssclassic inbound)->freedom->echo"
+    },
+    {
+      "case": "ss2022-freedom",
+      "networks": [
+        "tcp",
+        "udp"
+      ],
+      "route": "application->fixed-client(ss2022 outbound)->candidate-relay(ss2022 inbound)->freedom->echo"
+    },
+    {
+      "case": "ssclassic-wireguard",
+      "networks": [
+        "tcp",
+        "udp"
+      ],
+      "route": "application->fixed-client(ssclassic outbound)->candidate-relay(ssclassic inbound)->candidate-WG-outbound->fixed-WG-gateway->echo"
+    },
+    {
+      "case": "vless-wireguard",
+      "networks": [
+        "tcp",
+        "udp"
+      ],
+      "route": "application->fixed-client(vless outbound)->candidate-relay(vless inbound)->candidate-WG-outbound->fixed-WG-gateway->echo"
+    },
+    {
+      "case": "vmess-wireguard",
+      "networks": [
+        "tcp",
+        "udp"
+      ],
+      "route": "application->fixed-client(vmess outbound)->candidate-relay(vmess inbound)->candidate-WG-outbound->fixed-WG-gateway->echo"
+    }
+  ],
+  "ports": {
+    "application_echo": 19090,
+    "wireguard_gateway_udp": 19100,
+    "candidate_inbound": 19200,
+    "common_client_entry_tcp_udp": 19300
+  },
+  "wg_virtual_destination": "10.77.0.1:19090",
+  "wg_gateway_freedom_redirect": "127.0.0.1:19090",
+  "classic_ss_method": "chacha20-ietf-poly1305",
+  "ss2022_method": "2022-blake3-aes-128-gcm",
+  "fixed_node_binary": "hybrid",
+  "candidate_node": "relay only"
+}

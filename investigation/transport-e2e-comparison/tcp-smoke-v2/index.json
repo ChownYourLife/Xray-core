@@ -1,0 +1,102 @@
+[
+  {
+    "case": "ssclassic-freedom",
+    "variant": "official",
+    "status": "passed"
+  },
+  {
+    "case": "ssclassic-freedom",
+    "variant": "original-gso",
+    "status": "passed"
+  },
+  {
+    "case": "ssclassic-freedom",
+    "variant": "batching-only",
+    "status": "passed"
+  },
+  {
+    "case": "ssclassic-freedom",
+    "variant": "hybrid",
+    "status": "passed"
+  },
+  {
+    "case": "ss2022-freedom",
+    "variant": "official",
+    "status": "passed"
+  },
+  {
+    "case": "ss2022-freedom",
+    "variant": "original-gso",
+    "status": "passed"
+  },
+  {
+    "case": "ss2022-freedom",
+    "variant": "batching-only",
+    "status": "passed"
+  },
+  {
+    "case": "ss2022-freedom",
+    "variant": "hybrid",
+    "status": "passed"
+  },
+  {
+    "case": "ssclassic-wireguard",
+    "variant": "official",
+    "status": "passed"
+  },
+  {
+    "case": "ssclassic-wireguard",
+    "variant": "original-gso",
+    "status": "passed"
+  },
+  {
+    "case": "ssclassic-wireguard",
+    "variant": "batching-only",
+    "status": "passed"
+  },
+  {
+    "case": "ssclassic-wireguard",
+    "variant": "hybrid",
+    "status": "passed"
+  },
+  {
+    "case": "vless-wireguard",
+    "variant": "official",
+    "status": "passed"
+  },
+  {
+    "case": "vless-wireguard",
+    "variant": "original-gso",
+    "status": "passed"
+  },
+  {
+    "case": "vless-wireguard",
+    "variant": "batching-only",
+    "status": "passed"
+  },
+  {
+    "case": "vless-wireguard",
+    "variant": "hybrid",
+    "status": "passed"
+  },
+  {
+    "case": "vmess-wireguard",
+    "variant": "official",
+    "status": "passed"
+  },
+  {
+    "case": "vmess-wireguard",
+    "variant": "original-gso",
+    "status": "passed"
+  },
+  {
+    "case": "vmess-wireguard",
+    "variant": "batching-only",
+    "status": "passed"
+  },
+  {
+    "case": "vmess-wireguard",
+    "variant": "hybrid",
+    "status": "passed"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "agent": "ChainBench",
+  "entry_read": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md",
+  "level": "xhigh",
+  "mode": "collaborative",
+  "implementation": "Ponytail full; external standard-library harness only; no production code edits or commits",
+  "source_observation": "2026-10-15 git ls-remote via cached GitHub SSH alias advertises official XTLS/Xray-core HEAD and main at 0888beb38a9ba45440557175e71ce21cf8ba3b13, original T3ST3ST3R0N wireguard-gso branch at 01d59a947b8e64e9d8dcd5c04f0909da4642b6ec. Full object fetch and capture will bind actual sources.",
+  "preparation_goal": "I will preserve the host service and networking while building four whole-product frozen Xray relay candidates; next I will fetch exact official/fork objects and prepare real process configurations."
+}

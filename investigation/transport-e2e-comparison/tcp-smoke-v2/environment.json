@@ -1,0 +1,40 @@
+{
+  "phase": "TCP correctness only, not timing",
+  "started_utc": "2026-10-15T17:48:13.199853+00:00",
+  "netns": "net:[4026532379]",
+  "ipv6_disable": {
+    "all": "0",
+    "default": "0",
+    "lo": "0"
+  },
+  "facts": [
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "addr"
+      ],
+      "exit": 0,
+      "output": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "route"
+      ],
+      "exit": 0,
+      "output": "[]\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "-6",
+        "route"
+      ],
+      "exit": 0,
+      "output": "[]\n"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "scope": "Independent ResultAudit raw TCP recomputation compared to execution-owner summary after both complete; original primary round estimator retained",
+  "groups": 20,
+  "numeric_comparisons": 480,
+  "maximum_absolute_float_difference": 2.2737367544323206e-13,
+  "tolerance": 1e-09,
+  "all_match": true,
+  "primary_only": "Median/Q1/Q3/min/max/MAD of seven round measurements for upload/down goodput, established per-round RTT medians and setup per-round medians. Pooled raw-sample metrics remain supplemental.",
+  "peer_counts": {
+    "index_cells": 140,
+    "raw_sample_files": 140,
+    "cases": 5,
+    "variants": 4,
+    "rounds_per_case_variant": 7,
+    "groups": 20,
+    "raw_established_rtt_samples": 35840,
+    "raw_setup_samples": 1120,
+    "transfers": 280,
+    "bytes_per_direction_per_cell": 134217728,
+    "all_application_exits_zero": true,
+    "all_receiver_bytes_verified": true
+  }
+}

@@ -1,0 +1,20 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 18:06:10.171947 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/ss2022-freedom-relay.json Format:json}
+2026/10/15 18:06:10.172339 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 18:06:10.173205 [Warning] core: Xray 26.10.10 started
+2026/10/15 18:06:10.203473 from 127.0.0.1:44178 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.205716 from 127.0.0.1:54841 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.209739 from 127.0.0.1:46328 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.210234 from 127.0.0.1:37413 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.210662 from 127.0.0.1:42824 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.211184 from 127.0.0.1:47156 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.211686 from 127.0.0.1:46976 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.212201 from 127.0.0.1:44589 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.212669 from 127.0.0.1:39834 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.213118 from 127.0.0.1:46654 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.213632 from 127.0.0.1:47567 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.219495 from 127.0.0.1:46967 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.224222 from 127.0.0.1:44188 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.327877 from 127.0.0.1:56206 accepted udp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 18:06:10.332290 from 127.0.0.1:44200 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]

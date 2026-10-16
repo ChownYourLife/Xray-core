@@ -1,0 +1,16 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:56:23.062569 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-tcp-v2-20261015/configs/ss2022-freedom-relay.json Format:json}
+2026/10/15 17:56:23.062918 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 17:56:23.063734 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:56:23.093506 from 127.0.0.1:59542 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.095642 from 127.0.0.1:59552 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.100135 from 127.0.0.1:59558 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.100782 from 127.0.0.1:59566 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.101527 from 127.0.0.1:59578 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.102312 from 127.0.0.1:59586 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.102890 from 127.0.0.1:59590 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.103482 from 127.0.0.1:59606 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.104218 from 127.0.0.1:59614 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.104836 from 127.0.0.1:59628 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:56:23.105476 from 127.0.0.1:59632 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]

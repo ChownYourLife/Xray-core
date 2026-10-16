@@ -1,0 +1,42 @@
+{
+  "scope": "Bounded passive datagram delivery diagnostic on unchanged v2 driver and official classic SS relay; not timing",
+  "application_exit": null,
+  "application_timeout_seconds": 8,
+  "observations": {
+    "application_data_to_common_client": {
+      "source_port": 36881,
+      "destination_port": 19300,
+      "datagrams": 32,
+      "sequence_range": [
+        0,
+        31
+      ]
+    },
+    "encrypted_fixed_client_to_official_relay": {
+      "destination_port": 19200,
+      "datagrams_with_1260_byte_payload": 32
+    },
+    "official_relay_to_echo": {
+      "source_port": 51737,
+      "destination_port": 19090,
+      "datagrams": 26,
+      "missing_sequences": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    "echo_aggregate_acks": 0
+  },
+  "supported_conclusion": "Failure is initial upload data delivery loss before echo, followed by ACK-all32 driver waiting forever for absent datagrams; not reverse ACK loss. 64B echo and setup completed. UDP delivery is not lossless under this real process scheduling. Exact kernel-vs-Xray internal drop location is unmeasured. Persistent receiver-key reuse is a distinct independently confirmed lifecycle hazard, not demonstrated cause here.",
+  "negative_evidence": "Echo did not panic; per-syscall traced diagnostic delivered all data, consistent with tracing perturbing scheduling; not a fix.",
+  "raw": [
+    "diagnostic-v2-passive-delivery/datagrams.json",
+    "diagnostic-v2-passive-delivery/summary.json",
+    "diagnostic-v2-passive-delivery/application.json"
+  ],
+  "next": "Do not report zero loss. Retain failed UDP workload or choose a fixed loss-aware application accounting protocol before timing; preserve window32 and do not retransmit."
+}

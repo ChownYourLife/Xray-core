@@ -1,0 +1,19 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 18:12:42.633082 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/vless-wireguard-relay.json Format:json}
+2026/10/15 18:12:42.634224 [Warning] proxy/wireguard: Using gVisor TUN
+2026/10/15 18:12:42.634737 [Warning] core: Xray 26.10.10 started
+2026/10/15 18:12:42.667609 from tcp:127.0.0.1:53624 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.683508 from tcp:127.0.0.1:53638 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.684356 from tcp:127.0.0.1:53648 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.685219 from tcp:127.0.0.1:53652 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.686003 from tcp:127.0.0.1:53654 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.686782 from tcp:127.0.0.1:53670 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.687561 from tcp:127.0.0.1:53684 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.688344 from tcp:127.0.0.1:53692 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.689125 from tcp:127.0.0.1:53694 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.690030 from tcp:127.0.0.1:53700 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.785104 from tcp:127.0.0.1:53704 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:42.797333 from 127.0.0.1:53712 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:43.280739 from tcp:127.0.0.1:38472 accepted udp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 18:12:43.290114 from 127.0.0.1:38484 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]

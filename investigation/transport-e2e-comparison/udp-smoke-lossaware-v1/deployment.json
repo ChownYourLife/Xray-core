@@ -1,0 +1,67 @@
+[
+  {
+    "argv": [
+      "ssh",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "root@216.195.211.248",
+      "mkdir /tmp/xray-transport-e2e-comparison-udp-final-20261015 && cp -R /tmp/xray-transport-e2e-comparison-tcp-v2-20261015/binaries /tmp/xray-transport-e2e-comparison-tcp-v2-20261015/configs /tmp/xray-transport-e2e-comparison-udp-final-20261015/"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "scp",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/udp-final/application.go",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/udp-final/remote_runner.py",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/udp-final/udp_cohort.py",
+      "root@216.195.211.248:/tmp/xray-transport-e2e-comparison-udp-final-20261015/"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "scp",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/udp-final/binaries/application",
+      "root@216.195.211.248:/tmp/xray-transport-e2e-comparison-udp-final-20261015/binaries/application"
+    ],
+    "exit": 0,
+    "output": ""
+  }
+]

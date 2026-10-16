@@ -1,0 +1,20 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 18:11:30.420948 [Warning] core: Xray 26.10.10 started
+2026/10/15 18:11:30.420997 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/ssclassic-freedom-client.json Format:json}
+2026/10/15 18:11:30.421001 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 18:11:30.430807 from 127.0.0.1:43176 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.432465 from 127.0.0.1:38084 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.437741 from 127.0.0.1:34602 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.438264 from 127.0.0.1:41148 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.438701 from 127.0.0.1:57664 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.439347 from 127.0.0.1:45950 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.440086 from 127.0.0.1:58637 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.440673 from 127.0.0.1:44614 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.441353 from 127.0.0.1:38745 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.442229 from 127.0.0.1:48138 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.442737 from 127.0.0.1:47496 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.490941 from 127.0.0.1:48764 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.496947 from 127.0.0.1:43184 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.825181 from 127.0.0.1:34037 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 18:11:30.831703 from 127.0.0.1:43190 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]

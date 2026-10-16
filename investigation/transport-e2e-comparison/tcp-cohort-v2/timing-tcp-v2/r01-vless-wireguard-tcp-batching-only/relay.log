@@ -1,0 +1,15 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:55:43.445571 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-tcp-v2-20261015/configs/vless-wireguard-relay.json Format:json}
+2026/10/15 17:55:43.448041 [Warning] proxy/wireguard: Using gVisor TUN
+2026/10/15 17:55:43.449222 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:55:43.474385 from 127.0.0.1:55378 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.493764 from 127.0.0.1:55390 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.495126 from 127.0.0.1:55398 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.496310 from 127.0.0.1:55414 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.497366 from 127.0.0.1:55416 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.498359 from 127.0.0.1:55424 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.499405 from 127.0.0.1:55428 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.500421 from 127.0.0.1:55440 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.501465 from 127.0.0.1:55450 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]
+2026/10/15 17:55:43.502543 from 127.0.0.1:55458 accepted tcp:10.77.0.1:19090 [candidate-inbound-vless >> candidate-wireguard-outbound]

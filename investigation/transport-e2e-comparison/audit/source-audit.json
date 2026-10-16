@@ -1,0 +1,118 @@
+{
+  "agent": "ResultAudit",
+  "round": 1,
+  "scope": "Independent read-only source provenance audit; no network fetch, build, test, timing, or service interaction performed.",
+  "bootstrap": {
+    "j_space_entry": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md",
+    "level": "xhigh",
+    "team_mode": "collaborative",
+    "controller_receipt": "control.py read --agent ResultAudit succeeded in investigation/transport-e2e-comparison",
+    "repository_map_view": "control.py repo view --agent ResultAudit succeeded; fingerprint 37a7cc2253b4e63df128a1a006d31e6c1f2d55b7038347ff9013e88c46d96cde"
+  },
+  "confirmed": [
+    {
+      "claim": "The earlier external four-candidate sender-swapped experiment is not an authentic whole-product snapshot of the original GSO fork.",
+      "evidence": "~/D/V2ray/xray-server-gso-216-195-211-248-20261015-current-fastpaths/source-variant-differences.json:variants.original-gso",
+      "observation": "Its recorded variant delta only changes proxy/wireguard/bind.go, bind_linux.go, and bind_other.go, and adds proxy/wireguard/experiment_fork_gso_linux.go; this does not establish the fork's unrelated product source, dependencies, protocol behavior, or historical base."
+    },
+    {
+      "claim": "Prior source history identifies the original GSO commit and its older base, but local clone lacks the GSO commit object.",
+      "evidence": "investigation/fork-comparison/ancestry.json:35-40; git show -s --format='%H%n%P%n%cs%n%s' 01d59a947",
+      "observation": "Historical comparison lists 01d59a947b8e64e9d8dcd5c04f0909da4642b6ec on T3ST3ST3R0N/Xray-core wireguard-gso, based on c77a4d0e4932a53f3eeafafdfef877b56fd660ad, one branch-unique commit with a WireGuard-only patch; local git show failed because that object is absent. Fresh full-tree fetch is still required."
+    },
+    {
+      "claim": "Commit 13419e49 is not a batching-only fastpath delta.",
+      "evidence": "investigation/feature-integration/commit.json:1-33",
+      "observation": "Its commit receipt lists 28 changed paths spanning lifecycle, mux, Shadowsocks and SS2022, Trojan, VLESS, VMess, Hysteria, WireGuard, scenario tests, and README. Preserve the exact requested product snapshot but explicitly treat whole-product differences as confounds; do not imply an isolated batching effect."
+    },
+    {
+      "claim": "A fresh official upstream fetch confirms the primary official product at the advertised main/HEAD tip, which happens to equal the known historical shared ancestor.",
+      "evidence": "investigation/transport-e2e-comparison/source-commands.json:14-51; sources.json:4-27",
+      "observation": "2026-10-15 ls-remote and fetch succeeded; official commit 0888beb38a9ba45440557175e71ce21cf8ba3b13, tree 6a3aac509968e3d377a4b5499ebc334c49e3d3d0, commit date 2026-10-14T11:05:45Z, subject SS2022 proxy change #7143, source archive/file manifest and Go module hashes are pinned. This satisfies the user's updated source choice; report both its current advertised-tip provenance and common-ancestor identity."
+    },
+    {
+      "claim": "The original GSO whole-product snapshot has extensive non-WireGuard source and dependency differences, including modifications to SS2022 and Reality.",
+      "evidence": "investigation/transport-e2e-comparison/sources.json:29-45",
+      "observation": "The full fork manifest pins commit/tree/archive/file manifest and records differences from official in go.mod/go.sum, ML-DSA command, six SS2022 production files, WireGuard files, and Reality. The prior sender-swapped benchmark did not capture this product."
+    },
+    {
+      "claim": "The fetched candidates share classic Shadowsocks cipher configuration source but the legacy product implementation is not identical in the 13419 snapshot.",
+      "evidence": "all four *-files.json manifests queried for infra/conf/shadowsocks.go and proxy/shadowsocks/protocol.go",
+      "observation": "infra/conf/shadowsocks.go has matching SHA-256 8f14e3b3a925ca0f16d5ed8b83e38be526c30234803bd75ade6806daeab0bad6 in official and original GSO, and grep confirmed chacha20-ietf-poly1305 maps to CHACHA20_POLY1305. The classic protocol implementation hash is b42b8476… for official/original GSO but 4ae15e21… for batching/hybrid. Thus a shared classic cipher is source-compatible, but whole-product effects are not attributable solely to batching."
+    },
+    {
+      "claim": "Candidate build artifacts are cross-compiled on the local Darwin arm64 Go toolchain to Linux amd64, not built by a native Linux Go host.",
+      "evidence": "investigation/transport-e2e-comparison/sources.json:84-99; official-build.json; original-gso-build.json",
+      "observation": "The recorded Go executable/version is go1.27.0 darwin/arm64; target environment is GOOS=linux, GOARCH=amd64, GOAMD64=v1, CGO_ENABLED=0. Build records exit 0 and binary digests are present. Describe the host/toolchain and target distinctly."
+    },
+    {
+      "claim": "The 2026-10-15 local clone tip 1a52c36f is the latest hybrid snapshot but is not the official advertised tip.",
+      "evidence": "git branch -a -vv; investigation/feature-integration/commit.json",
+      "observation": "Local main points to 1a52c36f, and the commit receipt for 13419e49 records this separate feature snapshot. Candidate labels should distinguish upstream official, original fork, integrated batching/product snapshot, and latest hybrid."
+    }
+  ],
+  "local_candidate_history": [
+    {
+      "commit": "13419e49d53e6dc01ad9cc678c696d33cce504fa",
+      "parent": "60ffd7a48987fbf754198ca5f158bd9a719838b2",
+      "date": "2026-10-15",
+      "subject": "Integrate connection teardown and WireGuard setup reliability",
+      "evidence": "git show -s; investigation/feature-integration/commit.json"
+    },
+    {
+      "commit": "1a52c36f162f75d68abf8d331dfea8c12e9f5640",
+      "parent": "0b144800686933d5a0d43f6b7449684ba7698394",
+      "date": "2026-10-15",
+      "subject": "Optimize WireGuard native UDP transmit fast paths",
+      "evidence": "git show -s; investigation/wireguard-tx-fastpaths/commit.json"
+    }
+  ],
+  "protocol_compatibility": {
+    "verified_from_frozen_candidate_sources": [
+      "infra/conf/shadowsocks.go is SHA-256 8f14e3b3a925ca0f16d5ed8b83e38be526c30234803bd75ade6806daeab0bad6 in official and original GSO, and source inspection across all four candidate trees confirms chacha20-ietf-poly1305 maps to CHACHA20_POLY1305.",
+      "All four frozen trees include infra/conf SS2022 dispatch and proxy/shadowsocks_2022 code; original GSO has code/dependency deltas in SS2022 stream and UDP paths. Source inclusion alone is not runtime compatibility proof; require common config and actual smoke.",
+      "Classic proxy/shadowsocks/protocol.go hash is b42b8476a… in official/original GSO and 4ae15e21… in batching/hybrid; 13419's product snapshot changes classic SS stream code, so cipher compatibility does not imply identical implementation or isolate batching.",
+      "VLESS and VMess inbound files and WireGuard config are present in the frozen trees; exact route acceptance and destination traversal remain to be demonstrated by pre-timing runtime evidence."
+    ],
+    "known_from_local_1a52c36f_source_only": [
+      "The repository-local 1a52c36f source has the same legacy cipher mapping, but the frozen-source evidence above supersedes a claim based only on the local checkout."
+    ],
+    "runtime_compatibility_boundary": "Static source availability and cipher-parser matches are not proof that each candidate accepts the final configurations or that traffic traverses the required inbound-to-WG path; source-pinned smoke/receiver evidence is required.",
+    "design_contract": [
+      "Separate standalone classic Shadowsocks and standalone SS2022 workloads; SS2022 inclusion depends on all candidate compatibility, and omission must be explicit if not common-supported.",
+      "Report classic SS, SS2022, SS/VLESS/VMess inbound-to-WireGuard outbound as distinct workload families; each should separate TCP from any supported UDP path.",
+      "Use one identical classic AEAD cipher/password config on every classic-capable candidate; validate SS2022 separately with its own method/key constraints.",
+      "Use common fixed client and WG gateway; relay source/build is the only varied node. Validate byte delivery to the intended WG-routed receiver per direction/case."
+    ],
+    "audit_requirements_sent_to_chainbench": [
+      "Preserve TCP upload and download separately, and each supported UDP case with explicit protocol, transport, direction, bytes, and status; retain unsupported/error cases.",
+      "Measure established-session application 64-byte request/response RTT with monotonic timing, excluding connection/setup; any setup metric must be separately labeled.",
+      "Report standalone protocol results separately from WG chains. Do not infer RTT from throughput or use a bind microbenchmark as relay E2E evidence."
+    ]
+  },
+  "candidate_contract": {
+    "official": "Verified fresh advertised upstream HEAD/main from XTLS/Xray-core at 0888beb38a9ba45440557175e71ce21cf8ba3b13 (tree 6a3aac509968e3d377a4b5499ebc334c49e3d3d0; commit date 2026-10-14T11:05:45Z; Xray 26.10.10); same hash as known common ancestor, now fetched and pinned as actual official tip.",
+    "original_gso": "Verified fetched whole-product branch T3ST3ST3R0N/Xray-core wireguard-gso at 01d59a947b8e64e9d8dcd5c04f0909da4642b6ec (tree c360b4373819efec5678f199d120416757681114; commit date 2026-10-14T08:49:57+03:30); base/merge base c77a4d0e4932a53f3eeafafdfef877b56fd660ad; source/archive/file/dependency pins in sources.json.",
+    "batching_snapshot": "Verified exact whole-product commit 13419e49d53e6dc01ad9cc678c696d33cce504fa (tree 9302dbeb1f94e9b2dfbedf2e16f9a47ef4f92239; 2026-10-15); broad lifecycle, transport, cipher and protocol changes mean not an isolated batching experiment.",
+    "latest_hybrid": "Verified exact whole-product commit 1a52c36f162f75d68abf8d331dfea8c12e9f5640 (tree a5a7eb7dac50034025faef324d607100d28426b8; 2026-10-15), source/archive/file/dependency pins in sources.json.",
+    "common_client_gateway": "ChainBench selected the hybrid binary for the fixed common client and gateway; independent audit must confirm matching binary digests and immutable configs in final plan."
+  },
+  "binary_hash_check": {
+    "method": "Independent shasum -a 256 over four frozen candidate binary files; no binary executed.",
+    "result": "All values equal the corresponding recorded binary_sha256 in build JSON.",
+    "sha256": {
+      "official": "2c7793c9320118924ded7f259cb289dd4cb9e97770db81865f2463a037e73616",
+      "original-gso": "2bf7e21ae3dcc8ad1123eb587664d6a20a9d5e7be2be0f2bb1991f3bfa4bfe2c",
+      "batching-only": "cc611fbcc5285bb3522a8896932a0e70ef464fe1e7a59bef7bfc0c61a9c58a58",
+      "hybrid": "ceb61a447998d76fee2715990f48667792b5d5078339bfc8bce871121d69108f"
+    },
+    "evidence": "shasum -a 256 over /Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/binaries/{official,original-gso,batching-only,hybrid}; corresponding *-build.json"
+  },
+  "status": "Candidate full-source provenance is pinned by sources.json and each source manifest. Protocol compatibility is source-checked, but route runtime smoke/config proof and all E2E raw measurements are still pending.",
+  "open": [
+    "Confirm the actual final common client/gateway binary digest/config, then inspect planned and observed chains and receiver verification.",
+    "Inspect any SS2022 or UDP workload only after compatibility smoke; standalone SS and each SS/VLESS/VMess-to-WG chain remain distinct.",
+    "After peer timing ends, recompute all throughput/RTT marginal and paired statistics from untouched samples, reconcile exits/case/round counts/bytes, and preserve failures without reruns."
+  ],
+  "next": "Audit ChainBench's real-transport plan and smoke evidence as soon as written, then independently parse raw results only after the timed sequence is explicitly complete."
+}

@@ -1,0 +1,23 @@
+{
+  "focused": {
+    "command": "go test ./common/crypto ./proxy/vmess/encoding ./proxy/shadowsocks",
+    "exit_code": 0,
+    "cwd": "/Users/hosi/D/V2ray/Xray-core",
+    "stdout": [
+      "ok github.com/xtls/xray-core/common/crypto 0.562s",
+      "ok github.com/xtls/xray-core/proxy/vmess/encoding (cached)",
+      "ok github.com/xtls/xray-core/proxy/shadowsocks 1.351s"
+    ]
+  },
+  "race": {
+    "command": "go test -race ./common/crypto ./proxy/vmess/encoding ./proxy/shadowsocks",
+    "exit_code": 0,
+    "cwd": "/Users/hosi/D/V2ray/Xray-core",
+    "stdout": [
+      "ok github.com/xtls/xray-core/common/crypto 1.926s",
+      "ok github.com/xtls/xray-core/proxy/vmess/encoding (cached)",
+      "ok github.com/xtls/xray-core/proxy/shadowsocks 1.576s"
+    ]
+  },
+  "scope": "Focused current-tree package tests and focused race tests only; no full-repository or external ECH/network tests claimed. VMess package results were cached in both invocations, as shown in output."
+}

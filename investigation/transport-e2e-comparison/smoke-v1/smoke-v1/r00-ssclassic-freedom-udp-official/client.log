@@ -1,0 +1,17 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:39:53.636505 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-freedom-client.json Format:json}
+2026/10/15 17:39:53.636523 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 17:39:53.636692 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:39:53.645454 from 127.0.0.1:56134 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.648044 from 127.0.0.1:47479 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.654952 from 127.0.0.1:48077 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.655537 from 127.0.0.1:35058 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.656102 from 127.0.0.1:45424 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.656563 from 127.0.0.1:38724 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.657106 from 127.0.0.1:33126 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.657722 from 127.0.0.1:54011 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.658359 from 127.0.0.1:37599 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.658919 from 127.0.0.1:35117 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.659342 from 127.0.0.1:40163 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:39:53.667448 from 127.0.0.1:59044 accepted udp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]

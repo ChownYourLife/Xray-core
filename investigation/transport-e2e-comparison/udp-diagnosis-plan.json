@@ -1,0 +1,11 @@
+{
+  "scope": "Pre-timing correctness only; untouched remote v2 fixture; no product changes, no timed samples or candidate-specific retries.",
+  "observed": "smoke-v2 completed four classic SS TCP cells then first official classic SS UDP cell timed out inside udpTransfer. Driver-only first-window reorder and duplicate checks passed; echo server had no panic. Thus this actual failure is not yet attributable to the independently identified persistent-state reuse hazard.",
+  "ranked_hypotheses": [
+    {"id": "H1", "claim": "Initial datagram burst loses a packet before newly created proxy flow is ready", "prediction": "Driver sends complete first32-packet train but receiver sees only subset and never sends its aggregate ACK; packet/control trace identifies missing hop."},
+    {"id": "H2", "claim": "Complete upload arrives but reverse aggregate ACK is lost or malformed", "prediction": "Echo receives complete unique window and sends17B ACK, but client does not receive corresponding17B ACK."},
+    {"id": "H3", "claim": "Receiver address reuse triggers stale UDP state", "prediction": "Echo panics unexpected UDP window on source reuse; existing echo.log has no panic, so this is an independently reachable lifecycle flaw rather than established cause of this timeout."},
+    {"id": "H4", "claim": "Datagram-size or protocol forwarding failure affects transfer packets while64B echoes work", "prediction": "1205B data consistently disappears or truncates at an Xray hop despite successful64B echo; trace identifies differing send/receive byte counts."}
+  ],
+  "next_experiment": "One isolated diagnostic run of existing v2 officialclassicUDP cell with syscall-level packet/control traces for application, common client, relay and echo; inspect sent/received sequence/count and ACK stage, not merely rerun success/failure. Preserve traces and diagnostic output separately from smoke/timing."
+}

@@ -1,0 +1,129 @@
+{
+  "agent": "ResultAudit",
+  "round": 1,
+  "status": "Static harness and generated-route config review recorded; smoke route proof and final timing authorization remain pending. No timing or raw-result audit has been performed.",
+  "bootstrap": {
+    "j_space_entry": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md",
+    "level": "xhigh",
+    "team_mode": "collaborative",
+    "shared_map_fingerprint_viewed": "37a7cc2253b4e63df128a1a006d31e6c1f2d55b7038347ff9013e88c46d96cde"
+  },
+  "comparison_model": {
+    "candidate_relay_varies_only": true,
+    "common_client": "one immutable source/build/config/client identity shared across every candidate; exact digest and runtime args recorded",
+    "common_wireguard_gateway": "one immutable endpoint/config/destination shared across every candidate; identity, peer routes, and receiver recorded",
+    "whole_product_interpretation": "This compares frozen product snapshots, not isolated fastpath changes; expose candidate base, source-tree changes, protocol implementation/dependency versions, and confounds."
+  },
+  "workload_separation": [
+    {
+      "family": "standalone classic Shadowsocks",
+      "minimum": "TCP; supported UDP case reported independently",
+      "cipher": "one common legacy AEAD cipher/password across all frozen candidates, only after source compatibility is established"
+    },
+    {
+      "family": "standalone Shadowsocks 2022",
+      "minimum": "separate from classic SS; test only if the exact candidate configuration/runtime supports a common SS2022 mode; preserve incompatibility as a result"
+    },
+    {
+      "family": "classic Shadowsocks inbound -> WireGuard outbound",
+      "minimum": "TCP and each explicitly supported UDP transport; route proof to common receiver"
+    },
+    {
+      "family": "VLESS inbound -> WireGuard outbound",
+      "minimum": "TCP and each explicitly supported UDP transport; exact security/transport settings pinned and kept common"
+    },
+    {
+      "family": "VMess inbound -> WireGuard outbound",
+      "minimum": "TCP and each explicitly supported UDP transport; exact security/transport settings pinned and kept common"
+    }
+  ],
+  "measurements": {
+    "goodput": {
+      "directions": ["client-to-WG-destination upload", "WG-destination-to-client download"],
+      "must_record": ["verified receiver bytes", "monotonic start/end interval", "derived bytes/s", "decimal MB/s", "Mbit/s", "expected-vs-observed payload integrity/hash", "exit status", "actual UDP byte count after complete application windows"],
+      "prohibited_inference": "Do not interpret bytes/sec or ns/op as network RTT; do not treat a rounded UDP target as an exact delivered-byte count."
+    },
+    "latency": {
+      "primary": "round-trip time for an application-level 64-byte request and 64-byte response over an already established session, with monotonic timestamps at the endpoint pair",
+      "setup": "If reported, connection/handshake setup is separately named and timed; exclude it from established-session RTT.",
+      "per_transport": "Report TCP echo separately from supported UDP request/response; do not mix protocol handshakes, DNS, key exchange, or startup into echo RTT."
+    },
+    "rounds": "Exactly seven predeclared counterbalanced matched rounds per comparable case, no candidate-specific retries or silent sample removal; retain all raw samples including failures and reasons."
+  },
+  "harness_review_preliminary": {
+    "evidence": [
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/application.go",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/prepare_configs.py",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/remote_runner.py",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/configs/gateway.json",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/configs/ssclassic-wireguard-relay.json",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/configs/vless-wireguard-relay.json",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/configs/vmess-wireguard-relay.json",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/configs/ssclassic-wireguard-client.json",
+      "config-pins.json"
+    ],
+    "observed": [
+      "Harness defines separate 64-byte established echo RTT and fresh-connection first-response setup samples; setup description excludes SOCKS CONNECT and states the WireGuard association is prewarmed.",
+      "TCP/UDP upload and download validate payloads/counts; upload timer is receiver-side and download timer covers client receipt; UDP uses complete 32-datagram windows and therefore may deliver a rounded byte total.",
+      "Candidate process affinity is CPU 2,3; fixed client, gateway, echo and measurement process affinity is CPU 0,1; GOMAXPROCS=2; runner explicitly caveats support-side bottleneck risk.",
+      "Cells stop at first failure without candidate-specific retries; no measured outputs have been accepted by this audit.",
+      "Generated configs route the fixed client to 10.77.0.1:19090; SS/VLESS/VMess candidate relays use WireGuard outbound to 127.0.0.1:19100; fixed gateway receives WireGuard traffic at 10.77.0.1/32 and redirects it to echo at 127.0.0.1:19090. Config-pin matrix separates classic SS, SS2022, and the three required inbound-to-WireGuard chains over TCP/UDP."
+    ],
+    "pending": [
+      "Smoke outcomes must establish actual traffic traverses candidate relay and WireGuard gateway, not a gVisor/loopback bypass; inspect strace and gateway-removed negative-control evidence.",
+      "Pin remote_runner.py, prepare_configs.py, application.go, compiled application harness and exact invocation alongside candidate binaries/configs.",
+      "Verify support CPU topology/affinity and smoke records, and preserve actual verified UDP byte count rather than nominal target."
+    ]
+  },
+  "udp_state_lifetime_review": {
+    "evidence": [
+      "execution-v2/application.go.txt: udpServe, udpState, udpTransfer, main",
+      "execution-v2/remote_runner.py: driver_correctness, main echo-server lifecycle",
+      "smoke-v2/raw.tar.gz: smoke-v2/driver-correctness.json, smoke-v2/closure.json, smoke-v2/index.json, smoke-v2/echo.log, smoke-v2/r00-ssclassic-freedom-udp-official/sample.json"
+    ],
+    "attribution": {
+      "user_request": "The user requested exact throughput and latency comparisons across four versions for Shadowsocks and the specified inbound-to-WireGuard chains.",
+      "director_review_criteria": "The seven-round measurement matrix, separate UDP/SS2022 treatment, source-route review, preservation of failed attempts, and stage/datagram diagnosis before repeating a failed UDP smoke are director audit criteria, not verbatim user requirements.",
+      "current_user_scope": "The user specifically authorized bounded UDP lifecycle review and said independent TCP-chain proof may continue; no global block on reachable TCP preparation."
+    },
+    "finding": "The application UDP echo server retains its states map for the process lifetime, keyed only by remote source address. State base advances after each full 32-datagram window and no completed-flow deletion, per-transfer reset, unique transfer ID, or expiry is present. If a later flow reuses that source endpoint, sequence 0 is compared against the prior nonzero base and causes unexpected UDP window.",
+    "coverage_gap": "The v2 reorder/duplicate controls each start a separate echo-server process; they do not exercise a second transfer or source-address reuse against the same server. The actual runner starts one echo server for the entire cell loop.",
+    "smoke_observation": "The v2 smoke archive records 5/40 cells then failure at ssclassic-freedom/UDP/official after about 60 seconds. Echo log contains only READY and the sample records a client UDP read timeout; evidence does not establish that stale state caused this specific failure.",
+    "required_before_udp_timing": "Apply explicit transfer-start/ack that resets state before data and starts timing at first data, or scope state by a unique transfer ID; add a bounded consecutive-transfer/source-reuse control on one server and retain reorder/duplicate controls. Before another attempt at the failed UDP smoke, capture stage/datagram evidence distinguishing first-burst data loss, ACK delivery, and route setup; timeout plus READY-only echo log proves neither stale-port reuse nor the timeout cause. Preserve both failed UDP smoke archives unchanged.",
+    "scope_note": "These UDP diagnosis/fix checks do not globally block independent TCP-chain proof or preparation. No full performance measurements were run by this auditor.",
+    "status": "Confirmed source-level lifecycle hazard; specific smoke failure cause unconfirmed; no timing run or raw performance audit."
+  },
+  "authorized_tcp_v2_cohort": {
+    "attribution": "Director authorization, not a verbatim user-specified harness design.",
+    "scope": "Exactly one fixed TCPv2 cohort: 5 workloads x 4 products x 7 rounds = 140 cells; 128 MiB in each direction, 256 established RTT samples and 8 fresh-response samples per cell.",
+    "timing_constraints": [
+      "Use immutable v2 driver/source/config/product pins.",
+      "No tracing or parallel server jobs during timing.",
+      "Audit only after all 140 cells are closed; do not repeatedly read partial timing output."
+    ]
+  },
+  "udp_acceptance_after_tcp": {
+    "attribution": "Director-directed method; UDP runtime/smoke follows TCP completion.",
+    "method_requirements": [
+      "Use a unique transfer ID or explicit transfer-start/ACK that scopes/reset state before data.",
+      "Offer fixed bytes with 32-packet windows and a declared drain interval; no data retries.",
+      "Use a reliable out-of-band final receiver counter/control and verify sequence and payload integrity.",
+      "Preserve actual loss counts/rates and offered-versus-received bytes; never report a fake zero or assume ACK-all-32 proves delivery."
+    ],
+    "reporting": "Pin and report separate protocol/workload cohorts and metrics; retain every requested family; do not calculate cross-protocol scores."
+  },
+  "independent_recalculation_acceptance": [
+    "Raw integer durations and byte counts re-derived into per-case throughput and RTT samples; independently recompute each candidate's marginal median and range/IQR or specified robust spread.",
+    "Compute paired per-round candidate differences/ratios only for same exact case and round; report paired distribution separately from marginal medians.",
+    "Never combine protocol, transport, direction, or metric families into a weighted/overall score.",
+    "Reconcile expected sample count from cases x 4 candidates x 7 rounds x metrics/directions; list exact missing/error/unsupported cases and process exit statuses.",
+    "Bind raw data to source/build/binary/config/client/gateway hashes, test command/args, environment pins, receiver integrity and actual chain route evidence.",
+    "Do not add unrequested validation layers, timing reruns, retries, or runtime changes; preserve contrary and failed cases."
+  ],
+  "open": [
+    "Final family/case matrix and transport combinations; exact cipher and VLESS/VMess security/transport settings.",
+    "How the external harness observes a 64-byte established echo and verifies destination-side byte counts in each direction.",
+    "Specified spread statistic, rounds/candidate order schedule, and outcome coding for unsupported/failing candidate cases."
+  ],
+  "next": "Await closure of the single authorized fixed TCPv2 cohort; audit its complete 140-cell corpus once. After TCP closes, inspect the final loss-aware UDP method and bounded runtime/smoke evidence, preserving loss and failed records without cross-protocol scoring."
+}

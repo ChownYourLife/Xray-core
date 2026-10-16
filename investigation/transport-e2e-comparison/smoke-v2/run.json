@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "ssh",
+    "-i",
+    "/Users/hosi/.ssh/id_ed25519",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "BatchMode=yes",
+    "root@216.195.211.248",
+    "unshare --net python3 /tmp/xray-transport-e2e-comparison-20261015/remote_runner.py --phase smoke --output /tmp/xray-transport-e2e-comparison-20261015/smoke-v2"
+  ],
+  "exit": 1,
+  "output": "r00-ssclassic-freedom-tcp-official passed\nr00-ssclassic-freedom-tcp-original-gso passed\nr00-ssclassic-freedom-tcp-batching-only passed\nr00-ssclassic-freedom-tcp-hybrid passed\nr00-ssclassic-freedom-udp-official failed\nTraceback (most recent call last):\n  File \"/tmp/xray-transport-e2e-comparison-20261015/remote_runner.py\", line 240, in <module>\n    main()\n  File \"/tmp/xray-transport-e2e-comparison-20261015/remote_runner.py\", line 232, in main\n    raise RuntimeError('Cell failed; retain raw failure and stop sequence without retries: '+label)\nRuntimeError: Cell failed; retain raw failure and stop sequence without retries: r00-ssclassic-freedom-udp-official\n"
+}

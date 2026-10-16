@@ -1,0 +1,56 @@
+{
+  "sha256": "6a9d70220abdd72dad6ac7f82a1f5e3f71dbd3ccfb1f35c5fa0f84c711845cef",
+  "commands": [
+    {
+      "argv": [
+        "ssh",
+        "-i",
+        "/Users/hosi/.ssh/id_ed25519",
+        "-o",
+        "IdentitiesOnly=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "BatchMode=yes",
+        "root@216.195.211.248",
+        "mkdir /tmp/xray-transport-e2e-comparison-20261015"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "scp",
+        "-i",
+        "/Users/hosi/.ssh/id_ed25519",
+        "-o",
+        "IdentitiesOnly=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "BatchMode=yes",
+        "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/payload.tar.gz",
+        "root@216.195.211.248:/tmp/xray-transport-e2e-comparison-20261015/payload.tar.gz"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "argv": [
+        "ssh",
+        "-i",
+        "/Users/hosi/.ssh/id_ed25519",
+        "-o",
+        "IdentitiesOnly=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "BatchMode=yes",
+        "root@216.195.211.248",
+        "tar -xzf /tmp/xray-transport-e2e-comparison-20261015/payload.tar.gz -C /tmp/xray-transport-e2e-comparison-20261015 && sha256sum /tmp/xray-transport-e2e-comparison-20261015/payload.tar.gz"
+      ],
+      "exit": 0,
+      "output": "6a9d70220abdd72dad6ac7f82a1f5e3f71dbd3ccfb1f35c5fa0f84c711845cef  /tmp/xray-transport-e2e-comparison-20261015/payload.tar.gz\n"
+    }
+  ]
+}

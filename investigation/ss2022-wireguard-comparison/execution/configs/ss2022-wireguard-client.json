@@ -1,0 +1,37 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "tag": "application-entry",
+      "listen": "127.0.0.1",
+      "port": 19300,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "10.77.0.1",
+        "port": 19090,
+        "network": "tcp,udp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "common-client-shadowsocks",
+      "protocol": "shadowsocks",
+      "settings": {
+        "servers": [
+          {
+            "address": "127.0.0.1",
+            "port": 19200,
+            "method": "2022-blake3-aes-128-gcm",
+            "password": "AAECAwQFBgcICQoLDA0ODw=="
+          }
+        ]
+      },
+      "mux": {
+        "enabled": false
+      }
+    }
+  ]
+}

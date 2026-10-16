@@ -1,0 +1,17 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:48:13.514157 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:48:13.514185 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-freedom-relay.json Format:json}
+2026/10/15 17:48:13.514200 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 17:48:13.522963 from 127.0.0.1:37872 rejected  common/drain: common/drain: unable to drain connection > EOF > proxy/shadowsocks: failed to read 50 bytes > EOF
+2026/10/15 17:48:13.544377 from 127.0.0.1:37888 rejected  common/drain: common/drain: unable to drain connection > EOF > proxy/shadowsocks: failed to read 50 bytes > EOF
+2026/10/15 17:48:13.546862 from 127.0.0.1:37896 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.551676 from 127.0.0.1:37908 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.552337 from 127.0.0.1:37910 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.552926 from 127.0.0.1:37918 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.553669 from 127.0.0.1:37922 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.554261 from 127.0.0.1:37932 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.554837 from 127.0.0.1:37942 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.555509 from 127.0.0.1:37952 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.556173 from 127.0.0.1:37958 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]
+2026/10/15 17:48:13.556778 from 127.0.0.1:37968 accepted tcp:127.0.0.1:19090 [candidate-inbound-shadowsocks >> to-echo]

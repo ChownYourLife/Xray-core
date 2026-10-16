@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "purpose": "Additional post-error cache recovery check with a multi-vector retry payload",
+  "source_evidence": "verifier/runtime-smoke-multivector-source.json",
+  "temporary_source_sha256": "b71942b9440c3290fcb10ed830f0e7b0265fdc46ab9ba585b91a1cd11d92d1c6",
+  "exit_code": 0,
+  "stdout": "positive_bytes=\"alpha|beta|gamma|\" positive_counter=17 ownership_released=true partial_error=\"injected partial write\" partial_counter=3 post_error_bytes=\"preNEXT\" final_counter=7 closed_tcp_empty=nil+managed-empty error=<nil> counter=0 empty_released=true\n",
+  "stderr": "",
+  "elapsed_seconds": 1.423,
+  "source_sha256": {
+    "common/buf/writer.go": "7e54cb71bf77ce7e05713a7107ae2ed2875e1318391e814bca28c94a587457f0",
+    "common/buf/writer_test.go": "cb6716188ab9e80b8f46c4d130898d72dd9d56f53614f0f3532bc98f733da073",
+    "common/buf/io.go": "47b92abf0d9981f51126d05eeb954b1f79f2b048db311d04d4d79e4ab519664e",
+    "README.md": "add33c0cb2390cdb481aaec98219d97f31457ba640755c9aeefb9aea52d86085"
+  },
+  "scope": "Actual process-local loopback TCP only; no tests or benchmarks rerun."
+}

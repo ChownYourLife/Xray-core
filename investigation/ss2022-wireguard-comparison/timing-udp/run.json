@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "ssh",
+    "-i",
+    "/Users/hosi/.ssh/id_ed25519",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ServerAliveInterval=30",
+    "-o",
+    "ServerAliveCountMax=6",
+    "root@216.195.211.248",
+    "unshare --net python3 /tmp/xray-ss2022-wireguard-supplement-20261015/udp/supplement.py --phase timing --network udp"
+  ],
+  "exit": 0,
+  "output": "2026-10-15T19:21:03.640629+00:00 r01-ss2022-wireguard-udp-official passed\n2026-10-15T19:21:04.656900+00:00 r01-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:21:05.770575+00:00 r01-ss2022-wireguard-udp-batching-only passed\n2026-10-15T19:21:06.819331+00:00 r01-ss2022-wireguard-udp-hybrid passed\n2026-10-15T19:21:07.930424+00:00 r02-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:21:09.039408+00:00 r02-ss2022-wireguard-udp-batching-only passed\n2026-10-15T19:21:10.139598+00:00 r02-ss2022-wireguard-udp-hybrid passed\n2026-10-15T19:21:11.253821+00:00 r02-ss2022-wireguard-udp-official passed\n2026-10-15T19:21:12.333466+00:00 r03-ss2022-wireguard-udp-batching-only passed\n2026-10-15T19:21:13.359420+00:00 r03-ss2022-wireguard-udp-hybrid passed\n2026-10-15T19:21:14.362283+00:00 r03-ss2022-wireguard-udp-official passed\n2026-10-15T19:21:15.440330+00:00 r03-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:21:16.536368+00:00 r04-ss2022-wireguard-udp-hybrid passed\n2026-10-15T19:21:17.700749+00:00 r04-ss2022-wireguard-udp-official passed\n2026-10-15T19:21:18.841381+00:00 r04-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:21:19.982369+00:00 r04-ss2022-wireguard-udp-batching-only passed\n2026-10-15T19:21:21.114008+00:00 r05-ss2022-wireguard-udp-hybrid passed\n2026-10-15T19:21:22.250407+00:00 r05-ss2022-wireguard-udp-batching-only passed\n2026-10-15T19:21:23.373231+00:00 r05-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:21:24.461232+00:00 r05-ss2022-wireguard-udp-official passed\n2026-10-15T19:21:25.579361+00:00 r06-ss2022-wireguard-udp-official passed\n2026-10-15T19:21:26.578576+00:00 r06-ss2022-wireguard-udp-hybrid passed\n2026-10-15T19:21:27.579138+00:00 r06-ss2022-wireguard-udp-batching-only passed\n2026-10-15T19:21:28.653616+00:00 r06-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:21:29.700415+00:00 r07-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:21:30.832650+00:00 r07-ss2022-wireguard-udp-official passed\n2026-10-15T19:21:31.892572+00:00 r07-ss2022-wireguard-udp-hybrid passed\n2026-10-15T19:21:32.945390+00:00 r07-ss2022-wireguard-udp-batching-only passed\n"
+}

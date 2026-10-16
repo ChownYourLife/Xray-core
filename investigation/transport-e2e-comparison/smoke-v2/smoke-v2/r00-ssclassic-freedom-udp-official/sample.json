@@ -1,0 +1,77 @@
+{
+  "phase": "smoke",
+  "round": 0,
+  "case": "ssclassic-freedom",
+  "network": "udp",
+  "variant": "official",
+  "loadavg_before": "0.07 0.08 0.17 3/253 1450744\n",
+  "fixed_binary": "hybrid",
+  "candidate_role": "relay",
+  "processes": [
+    {
+      "role": "relay",
+      "pid": 1450745,
+      "argv": [
+        "taskset",
+        "-c",
+        "2,3",
+        "/tmp/xray-transport-e2e-comparison-20261015/binaries/official",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-freedom-relay.json"
+      ],
+      "requested_cpus": "2,3",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\tofficial\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1450745\nNgid:\t0\nPid:\t1450745\nPPid:\t1450652\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1450745\nNSpid:\t1450745\nNSpgid:\t1450745\nNSsid:\t1450745\nKthread:\t0\nVmPeak:\t 1294568 kB\nVmSize:\t 1294568 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   29696 kB\nVmRSS:\t   29696 kB\nRssAnon:\t    4608 kB\nRssFile:\t   25088 kB\nRssShmem:\t       0 kB\nVmData:\t   80212 kB\nVmStk:\t     132 kB\nVmExe:\t   15668 kB\nVmLib:\t       8 kB\nVmPTE:\t     168 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t7\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,0000000c\nCpus_allowed_list:\t2-3\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t13\nnonvoluntary_ctxt_switches:\t4\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        2,
+        3
+      ]
+    },
+    {
+      "role": "client",
+      "pid": 1450752,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,1",
+        "/tmp/xray-transport-e2e-comparison-20261015/binaries/hybrid",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-freedom-client.json"
+      ],
+      "requested_cpus": "0,1",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\thybrid\nUmask:\t0022\nState:\tR (running)\nTgid:\t1450752\nNgid:\t0\nPid:\t1450752\nPPid:\t1450652\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1450752\nNSpid:\t1450752\nNSpgid:\t1450752\nNSsid:\t1450752\nKthread:\t0\nVmPeak:\t 1294364 kB\nVmSize:\t 1294364 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   29952 kB\nVmRSS:\t   29924 kB\nRssAnon:\t    4580 kB\nRssFile:\t   25344 kB\nRssShmem:\t       0 kB\nVmData:\t   79964 kB\nVmStk:\t     132 kB\nVmExe:\t   15688 kB\nVmLib:\t       8 kB\nVmPTE:\t     172 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t8\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,00000003\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t9\nnonvoluntary_ctxt_switches:\t2\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1
+      ]
+    }
+  ],
+  "application": {
+    "argv": [
+      "taskset",
+      "-c",
+      "0,1",
+      "/tmp/xray-transport-e2e-comparison-20261015/binaries/application",
+      "-mode",
+      "client",
+      "-addr",
+      "127.0.0.1:19300",
+      "-network",
+      "udp",
+      "-bytes",
+      "307200",
+      "-samples",
+      "16"
+    ],
+    "started_utc": "2026-10-15T17:42:59.210197+00:00",
+    "wall_duration_ns": 60035304047,
+    "exit": 2,
+    "stderr": "panic: read udp 127.0.0.1:50732->127.0.0.1:19300: i/o timeout\n\ngoroutine 1 [running]:\nmain.must(...)\n\t./application.go:17\nmain.udpTransfer({0x6fd390?, 0x1bb0f040a078}, {0x56a455, 0x6}, 0x4085b5?)\n\t./application.go:34 +0x89a\nmain.client({0x7fff8b8f6dd3, 0x3}, {0x7fff8b8f6dba, 0xf}, 0x4b000, 0x10)\n\t./application.go:35 +0x8d4\nmain.main()\n\t./application.go:36 +0x1c5\n",
+    "stdout": ""
+  },
+  "status": "failed",
+  "loadavg_after": "0.02 0.07 0.16 2/253 1450765\n"
+}

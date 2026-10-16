@@ -1,0 +1,215 @@
+{
+  "phase": "smoke",
+  "round": 0,
+  "case": "ss2022-wireguard",
+  "network": "tcp",
+  "variant": "batching-only",
+  "loadavg_before": "0.18 0.10 0.09 3/253 1464593\n",
+  "fixed_binary": "hybrid",
+  "candidate_role": "relay",
+  "processes": [
+    {
+      "role": "gateway",
+      "pid": 1464594,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,1",
+        "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/binaries/hybrid",
+        "run",
+        "-c",
+        "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/configs/gateway.json"
+      ],
+      "requested_cpus": "0,1",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\thybrid\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1464594\nNgid:\t0\nPid:\t1464594\nPPid:\t1464514\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1464594\nNSpid:\t1464594\nNSpgid:\t1464594\nNSsid:\t1464594\nKthread:\t0\nVmPeak:\t 1294620 kB\nVmSize:\t 1294620 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   30464 kB\nVmRSS:\t   30328 kB\nRssAnon:\t    4856 kB\nRssFile:\t   25472 kB\nRssShmem:\t       0 kB\nVmData:\t   96604 kB\nVmStk:\t     132 kB\nVmExe:\t   15688 kB\nVmLib:\t       8 kB\nVmPTE:\t     204 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t7\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,00000003\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t13\nnonvoluntary_ctxt_switches:\t6\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1
+      ]
+    },
+    {
+      "role": "relay",
+      "pid": 1464595,
+      "argv": [
+        "strace",
+        "-f",
+        "-qq",
+        "-s",
+        "32",
+        "-e",
+        "trace=sendmsg,sendmmsg,sendto,connect",
+        "-o",
+        "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/smoke-tcp/r00-ss2022-wireguard-tcp-batching-only/relay-network.strace",
+        "taskset",
+        "-c",
+        "2,3",
+        "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/binaries/batching-only",
+        "run",
+        "-c",
+        "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/configs/ss2022-wireguard-relay.json"
+      ],
+      "requested_cpus": "2,3",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\tstrace\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1464595\nNgid:\t0\nPid:\t1464595\nPPid:\t1464514\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1464595\nNSpid:\t1464595\nNSpgid:\t1464595\nNSsid:\t1464595\nKthread:\t0\nVmPeak:\t    8300 kB\nVmSize:\t    8300 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    3840 kB\nVmRSS:\t    3840 kB\nRssAnon:\t     512 kB\nRssFile:\t    3328 kB\nRssShmem:\t       0 kB\nVmData:\t     484 kB\nVmStk:\t     132 kB\nVmExe:\t     676 kB\nVmLib:\t    1984 kB\nVmPTE:\t      56 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000002000\nSigIgn:\t0000000000305007\nSigCgt:\t0000000000002000\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\tffffffff,ffffffff,ffffffff,ffffffff\nCpus_allowed_list:\t0-127\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t1363\nnonvoluntary_ctxt_switches:\t119\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "role": "client",
+      "pid": 1464610,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,1",
+        "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/binaries/hybrid",
+        "run",
+        "-c",
+        "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/configs/ss2022-wireguard-client.json"
+      ],
+      "requested_cpus": "0,1",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\thybrid\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1464610\nNgid:\t0\nPid:\t1464610\nPPid:\t1464514\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1464610\nNSpid:\t1464610\nNSpgid:\t1464610\nNSsid:\t1464610\nKthread:\t0\nVmPeak:\t 1294364 kB\nVmSize:\t 1294364 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   29812 kB\nVmRSS:\t   29812 kB\nRssAnon:\t    4468 kB\nRssFile:\t   25344 kB\nRssShmem:\t       0 kB\nVmData:\t   79964 kB\nVmStk:\t     132 kB\nVmExe:\t   15688 kB\nVmLib:\t       8 kB\nVmPTE:\t     172 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t7\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\tfffffffc3bba3a00\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,00000003\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t20\nnonvoluntary_ctxt_switches:\t4\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1
+      ]
+    }
+  ],
+  "application": {
+    "argv": [
+      "taskset",
+      "-c",
+      "0,1",
+      "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/binaries/application",
+      "-mode",
+      "client",
+      "-addr",
+      "127.0.0.1:19300",
+      "-network",
+      "tcp",
+      "-bytes",
+      "1048576",
+      "-samples",
+      "16"
+    ],
+    "started_utc": "2026-10-15T19:18:11.962563+00:00",
+    "wall_duration_ns": 432993948,
+    "exit": 0,
+    "stderr": "",
+    "stdout": "{\"established_rtt_ns\":[859005,1508835,894754,924466,996046,992836,1186859,1101399,1123738,966126,891444,1180910,1182679,969646,992207,842583],\"monotonic_clock\":\"Go time.Now/time.Since monotonic duration nanoseconds\",\"network\":\"tcp\",\"setup_definition\":\"fresh local application dial through first verified 64B echo; prewarmed WG association; includes lazy remote application setup; not SOCKS CONNECT\",\"setup_first_response_ns\":[2515622,2263557,2512172,2219287,2664754,2242876,2246896,2113956],\"target\":\"127.0.0.1:19300\",\"transfers\":[{\"delivered_bytes\":1048576,\"direction\":\"upload\",\"receiver_duration_ns\":27582913,\"stream_count\":1,\"verified_all_received_bytes\":true},{\"delivered_bytes\":1048576,\"direction\":\"download\",\"receiver_duration_ns\":14600280,\"stream_count\":1,\"verified_all_received_bytes\":true}],\"warmup_echoes\":32}\n",
+    "sample": {
+      "established_rtt_ns": [
+        859005,
+        1508835,
+        894754,
+        924466,
+        996046,
+        992836,
+        1186859,
+        1101399,
+        1123738,
+        966126,
+        891444,
+        1180910,
+        1182679,
+        969646,
+        992207,
+        842583
+      ],
+      "monotonic_clock": "Go time.Now/time.Since monotonic duration nanoseconds",
+      "network": "tcp",
+      "setup_definition": "fresh local application dial through first verified 64B echo; prewarmed WG association; includes lazy remote application setup; not SOCKS CONNECT",
+      "setup_first_response_ns": [
+        2515622,
+        2263557,
+        2512172,
+        2219287,
+        2664754,
+        2242876,
+        2246896,
+        2113956
+      ],
+      "target": "127.0.0.1:19300",
+      "transfers": [
+        {
+          "delivered_bytes": 1048576,
+          "direction": "upload",
+          "receiver_duration_ns": 27582913,
+          "stream_count": 1,
+          "verified_all_received_bytes": true
+        },
+        {
+          "delivered_bytes": 1048576,
+          "direction": "download",
+          "receiver_duration_ns": 14600280,
+          "stream_count": 1,
+          "verified_all_received_bytes": true
+        }
+      ],
+      "warmup_echoes": 32
+    }
+  },
+  "status": "passed",
+  "gateway_removed_negative_control": {
+    "argv": [
+      "taskset",
+      "-c",
+      "0,1",
+      "/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/binaries/application",
+      "-mode",
+      "client",
+      "-addr",
+      "127.0.0.1:19300",
+      "-network",
+      "tcp",
+      "-bytes",
+      "65536",
+      "-samples",
+      "1"
+    ],
+    "started_utc": "2026-10-15T19:18:12.398041+00:00",
+    "wall_duration_ns": 3003357192,
+    "exit": null,
+    "timeout": 3,
+    "stdout": "None",
+    "stderr": "None"
+  },
+  "gateway_required": true,
+  "loadavg_after": "0.17 0.10 0.09 1/253 1464627\n",
+  "candidate_wireguard_outer_udp_proof": {
+    "destination": "127.0.0.1:19100",
+    "trace_sha256": "9fc6b40fd9d3bfda376d52aab2431471088e20042b0768a4758f2876b8464061",
+    "matching_lines": [
+      "1464608 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\1\\0\\0\\0\\214l\\305\\372y\\214\\217\\1~A\\240\\207\\31\\356\\334)j\\22\\3313as\\237\\23\\16b\\265\\357\"..., iov_len=148}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=148}], 1, 0) = 1",
+      "1464607 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\0\\0\\0\\0\\0\\0\\0\\0\\234\\274\\241\\250lv\\177\\245%EN-\\356\\340\\367&\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}, {msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\1\\0\\0\\0\\0\\0\\0\\0\\344\\313\\22\\350\\0026V\\49\\235\\177\\307|\\214/*\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 2, 0) = 2",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\2\\0\\0\\0\\0\\0\\0\\0\\222ZB$\\254\\356\\224\\30\\355\\32\\24\\2\\21\\371\\216\\333\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}, {msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\3\\0\\0\\0\\0\\0\\0\\0\\236\\200\\264X8'\\242i|\\343/0\\346\\377<V\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 2, 0) = 2",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\4\\0\\0\\0\\0\\0\\0\\0\\306\\25\\347\\273\\202\\346\\325\\373\\231\\235?\\313*\\376%\\266\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464607 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\5\\0\\0\\0\\0\\0\\0\\0\\273\\265\\215\\330\\372^\\253\\200\\3310L\\320=S!\\210\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464607 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\6\\0\\0\\0\\0\\0\\0\\0\\0\\n\\2409\\222f\\356e+\\323\\374\\274\\212\\276#t\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464608 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\7\\0\\0\\0\\0\\0\\0\\0\\2O\\376\\5\\315\\3506\\202\\2605\\226\\22j\\3316\\253\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464608 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\10\\0\\0\\0\\0\\0\\0\\0<\\2\\314\\31\\201F9\\6cI\\233\\23\\3cx\\271\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464608 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\t\\0\\0\\0\\0\\0\\0\\0\\376\\r\\10\\344w\\246a\\\\,9\\243\\37\\205\\311\\256\\313\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\n\\0\\0\\0\\0\\0\\0\\0\\321\\271\\260\\201O\\32\\\\\\327\\366\\237\\354\\230\\350%q\\310\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\v\\0\\0\\0\\0\\0\\0\\0W\\244\\353\\7O\\230\\330\\326\\3664\\3573\\207T\\250C\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464608 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\f\\0\\0\\0\\0\\0\\0\\0\\301)\\330\\354\\275\\275Gw\\366j1\\312%g\\216\\202\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\r\\0\\0\\0\\0\\0\\0\\0Hp\\302\\355\\265\\271\\255\\231\\344\\374\\30=\\1R\\347\\202\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\16\\0\\0\\0\\0\\0\\0\\0\\244\\346\\3244\\373\\314\\\\\\31\\233\\304\\211\\257\\r\\10,<\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\17\\0\\0\\0\\0\\0\\0\\0\\1\\265E)\\215\\244-\\26\\30\\252\\37F\\223\\21\\363\\302\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\20\\0\\0\\0\\0\\0\\0\\0\\346\\371L\\366\\312\\313o;'\\265}\\270\\254\\370\\240a\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464608 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\21\\0\\0\\0\\0\\0\\0\\0\\4V\\232F\\234\\\\\\336#\\321\\373!p\\376/x\\233\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\22\\0\\0\\0\\0\\0\\0\\0\\243\\230kH4sA\\r\\\\\\344:\\v\\256\\345\\344~\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464608 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\23\\0\\0\\0\\0\\0\\0\\0\\3028f\\305\\252\\207\\213\\375S\\nu\\241\\332\\257kK\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464607 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\24\\0\\0\\0\\0\\0\\0\\0\\f\\f6\\212fdk2\\257\\204\\217\\377_0\\227I\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464607 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\25\\0\\0\\0\\0\\0\\0\\0\\244\\\"\\264\\243\\3710\\252\\367\\264\\314\\246\\237\\333]\\4\\7\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464607 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\26\\0\\0\\0\\0\\0\\0\\0\\314?\\v\\336,\\260\\23\\355O\\230\\179\\240[\\30\\22\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1",
+      "1464607 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\27\\0\\0\\0\\0\\0\\0\\0g\\276\\242J\\303Y\\32\\252\\313\\224\\3210Qou~\"..., iov_len=96}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=96}], 1, 0) = 1",
+      "1464619 sendmmsg(9, [{msg_hdr={msg_name={sa_family=AF_INET, sin_port=htons(19100), sin_addr=inet_addr(\"127.0.0.1\")}, msg_namelen=16, msg_iov=[{iov_base=\"\\4\\0\\0\\0\\223\\2068z\\30\\0\\0\\0\\0\\0\\0\\0~\\221\\365\\32\\326\\317\\211E\\31\\247\\206q\\177X\\200\\361\"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, msg_len=160}], 1, 0) = 1"
+    ],
+    "matching_line_count": 544
+  }
+}

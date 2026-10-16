@@ -1,0 +1,42 @@
+{
+  "agent": "ResultAudit",
+  "round": 2,
+  "scope": "Focused second consideration of estimator distinctions, UDP loss presentation, route/provenance links, and preservation limitations after round-one row-by-row comparison.",
+  "challenged": [
+    {
+      "question": "Could UDP median loss be presented as aggregate loss?",
+      "evidence": "report.html explicitly labels loss as median of seven per-round loss rates. Independently summing the seven official SS2022/freedom upload round counters in summary-udp.json gives 12,390 lost of 97,664 offered datagrams = 12.686353211009175% aggregate; the median of the seven listed rates is 12.413990825688073%. The report labels these as different statistics. The 3,906,560 / 3,807,198 / 99,362 cohort aggregate counters are separately labeled non-median totals.",
+      "disposition": "Estimator distinction is accurate; no change warranted."
+    },
+    {
+      "question": "Could pooled RTT/setup or connection/setup response substitute for established RTT?",
+      "evidence": "The report identifies established RTT as median of seven round medians over 256 verified 64-byte samples per round, lists fresh first response separately from eight fresh-flow samples per round, and says pooled 1,792 RTT / 56 setup samples do not replace primary estimators. Separate TCP/UDP tables expose upload, download, RTT and first-response columns.",
+      "disposition": "No estimator/unit conflation found."
+    },
+    {
+      "question": "Could UDP appear to represent unpaced capacity or silently omit its drain/control overhead?",
+      "evidence": "The report labels UDP as a separate loss-aware application workload, names reliable same-route control and exact 100 ms receiver drain/cutoff, includes drain/control/barrier overhead in goodput, and explicitly disclaims raw capacity and comparison against TCP capacity.",
+      "disposition": "Workload boundary is explicit."
+    },
+    {
+      "question": "Does the report overstate preservation or isolate batching causally?",
+      "evidence": "The report calls the comparison whole-product with source/dependency/lifecycle/SS2022 confounds, discloses fixed support CPU contention, distinguishes TCP fwupd.service disappearance (cause unknown) from unchanged UDP service snapshots, and states contemporaneous manual/container Xray PID/command identity was not captured.",
+      "disposition": "No causal or host-preservation overclaim found."
+    }
+  ],
+  "independent_html_and_link_check": {
+    "report_sha256": "e9d8550dac4304221c5e01521896d0ecbe9d444f4265ad84e2a403c5a939d197",
+    "self_contained_static_rendering": "One inline style block; zero script, image, or SVG tags.",
+    "relative_local_links_checked": 312,
+    "broken_links": 0,
+    "each_row_links_all_seven_raw_round_samples": true,
+    "mismatches": []
+  },
+  "remaining_limits": [
+    "The report remains a same-host isolated whole-product benchmark, not WAN performance or causal attribution to batching/GSO.",
+    "CPU sharing can bottleneck fixed support processes.",
+    "Cause of the observed fwupd disappearance and contemporaneous manual/container Xray PID identity remain unobserved, explicitly disclosed limitations."
+  ],
+  "changes_from_round_one": "No report, summary, or measurement values changed. This round challenged primary-vs-aggregate UDP loss and established-vs-pooled/setup latency interpretation; review evidence was extended without replacing round-one evidence.",
+  "result": "Accepted. No numeric, statistical-label, route-link, or reviewed limitation-disclosure discrepancy found."
+}

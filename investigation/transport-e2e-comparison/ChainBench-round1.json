@@ -1,0 +1,19 @@
+{
+  "agent": "ChainBench",
+  "round": 1,
+  "role": "Execution owner; acceptance is independently supplied by Main/director and ResultAudit",
+  "bootstrap": {"entry_read": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md", "level": "xhigh", "mode": "collaborative", "receipt": "Own controller resume/checkpoint reads and semantic map views in this task's controller; native report child bootstrap also observed in history://ChainBench.TransportReport:16"},
+  "goal_and_snapshot": "Whole-product frozen real-transport comparison for official0888beb3, originalGSO01d59a947, batching-era13419e49 and hybrid1a52c36f; fixed hybrid client/gateway, relay only varies.",
+  "result": {"protocol_cohorts": 2, "timed_cells_per_cohort": 140, "timed_cells_total": 280, "workloads_per_cohort": 5, "products": 4, "matched_rounds": 7, "all_application_exits_zero": true, "established_rtt_integer_samples_total": 71680, "fresh_first_response_samples_total": 2240, "production_source_edits_or_commits": false, "timed_retries_or_retunes": false},
+  "exercised_checks": [
+    "Live official/fork advertisement and exact whole-Git-tree fetch/archive; four actual Xray go builds succeeded with pinned Go1.27.0 cross-compiler/flags and binary hashes",
+    "20 TCP and20 final loss-aware UDP correctness smoke cells, including all12 per-protocol SS/VLESS/VMess-to-WG real UDP-route and gateway-removal controls",
+    "UDP driver same-bound-source identity/reordering/duplicate/corruption/missing-data/zero-delivery controls passed",
+    "One authorized fixed140-cell TCPv2 timing sequence and one later authorized fixed140-cell loss-aware UDP sequence, no tracing or parallel server work",
+    "All raw receiver byte/duration/sample identities retained; TCP480-value and UDP2720-value independent numerical reconciliations passed",
+    "Actual native task report writer produced report.html; existing independent ResultAudit validated40 rows,200 numerical cells,280 raw sample links and312 relative links without mismatch"
+  ],
+  "evidence": ["sources.json", "config-pins.json", "plan.json", "harness-pins-v2.json", "harness-pins-udp-lossaware-v1.json", "tcp-smoke-v2-finding.json", "udp-smoke-lossaware-v1-acceptance.json", "tcp-cohort-v2/timing-tcp-v2/closure.json", "udp-cohort-lossaware-v1/udp-cohort-lossaware-v1/closure.json", "summary-tcp.json", "summary-udp.json", "tcp-statistics-reconciliation.json", "audit/independent-udp-reconciliation.json", "audit/report-audit.json", "director-data-acceptance.json"],
+  "limitations": ["Same-host private IPv4 loopback, not WAN performance", "Fixed support CPU0,1 may bottleneck candidate relayCPU2,3", "Whole-product and dependency differences are not isolated GSO/batching causality", "UDP goodput includes100ms drain and reliable per32-datagram TCP control/barrier overhead, not raw UDP capacity or a TCP-comparable capacity score", "TCP fwupd service disappearance has unobserved cause; no claim all services unchanged and no contemporaneous manual/container Xray PID preservation proof"],
+  "next": "Independent review of this receipt and the focused second consideration; final director HTML acceptance and one shared root shipment publication"
+}

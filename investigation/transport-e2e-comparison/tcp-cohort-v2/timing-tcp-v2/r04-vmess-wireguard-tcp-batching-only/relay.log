@@ -1,0 +1,16 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:56:56.183775 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-tcp-v2-20261015/configs/vmess-wireguard-relay.json Format:json}
+2026/10/15 17:56:56.184323 [Warning] common/errors: The feature VMess (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 17:56:56.185351 [Warning] proxy/wireguard: Using gVisor TUN
+2026/10/15 17:56:56.185850 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:56:56.215615 from 127.0.0.1:51780 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.236739 from 127.0.0.1:51784 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.238482 from 127.0.0.1:51800 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.240262 from 127.0.0.1:51802 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.241854 from 127.0.0.1:51810 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.243324 from 127.0.0.1:51816 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.244797 from 127.0.0.1:51826 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.246489 from 127.0.0.1:51840 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.248200 from 127.0.0.1:51856 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]
+2026/10/15 17:56:56.249983 from 127.0.0.1:51866 accepted tcp:10.77.0.1:19090 [candidate-inbound-vmess >> candidate-wireguard-outbound]

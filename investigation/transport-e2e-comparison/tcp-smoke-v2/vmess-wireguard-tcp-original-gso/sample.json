@@ -1,0 +1,215 @@
+{
+  "phase": "smoke",
+  "round": 0,
+  "case": "vmess-wireguard",
+  "network": "tcp",
+  "variant": "original-gso",
+  "loadavg_before": "0.14 0.07 0.12 2/257 1451772\n",
+  "fixed_binary": "hybrid",
+  "candidate_role": "relay",
+  "processes": [
+    {
+      "role": "gateway",
+      "pid": 1451773,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,1",
+        "/tmp/xray-transport-e2e-comparison-20261015/binaries/hybrid",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-20261015/configs/gateway.json"
+      ],
+      "requested_cpus": "0,1",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\thybrid\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1451773\nNgid:\t0\nPid:\t1451773\nPPid:\t1451300\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1451773\nNSpid:\t1451773\nNSpgid:\t1451773\nNSsid:\t1451773\nKthread:\t0\nVmPeak:\t 1294620 kB\nVmSize:\t 1294620 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   30976 kB\nVmRSS:\t   30976 kB\nRssAnon:\t    4992 kB\nRssFile:\t   25984 kB\nRssShmem:\t       0 kB\nVmData:\t   96604 kB\nVmStk:\t     132 kB\nVmExe:\t   15688 kB\nVmLib:\t       8 kB\nVmPTE:\t     200 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t7\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\tfffffffc3bba3a00\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,00000003\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t27\nnonvoluntary_ctxt_switches:\t87\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1
+      ]
+    },
+    {
+      "role": "relay",
+      "pid": 1451774,
+      "argv": [
+        "strace",
+        "-f",
+        "-qq",
+        "-s",
+        "32",
+        "-e",
+        "trace=sendmsg,sendmmsg,sendto,connect",
+        "-o",
+        "/tmp/xray-transport-e2e-comparison-20261015/tcp-smoke-v2/vmess-wireguard-tcp-original-gso/relay-network.strace",
+        "taskset",
+        "-c",
+        "2,3",
+        "/tmp/xray-transport-e2e-comparison-20261015/binaries/original-gso",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-20261015/configs/vmess-wireguard-relay.json"
+      ],
+      "requested_cpus": "2,3",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\tstrace\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1451774\nNgid:\t0\nPid:\t1451774\nPPid:\t1451300\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1451774\nNSpid:\t1451774\nNSpgid:\t1451774\nNSsid:\t1451774\nKthread:\t0\nVmPeak:\t    8300 kB\nVmSize:\t    8300 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t    3712 kB\nVmRSS:\t    3712 kB\nRssAnon:\t     512 kB\nRssFile:\t    3200 kB\nRssShmem:\t       0 kB\nVmData:\t     484 kB\nVmStk:\t     132 kB\nVmExe:\t     676 kB\nVmLib:\t    1984 kB\nVmPTE:\t      56 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t1\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000002000\nSigIgn:\t0000000000305007\nSigCgt:\t0000000000002000\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\tffffffff,ffffffff,ffffffff,ffffffff\nCpus_allowed_list:\t0-127\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t1249\nnonvoluntary_ctxt_switches:\t83\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "role": "client",
+      "pid": 1451838,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,1",
+        "/tmp/xray-transport-e2e-comparison-20261015/binaries/hybrid",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-20261015/configs/vmess-wireguard-client.json"
+      ],
+      "requested_cpus": "0,1",
+      "GOMAXPROCS": 2,
+      "proc_status": "Name:\thybrid\nUmask:\t0022\nState:\tS (sleeping)\nTgid:\t1451838\nNgid:\t0\nPid:\t1451838\nPPid:\t1451300\nTracerPid:\t0\nUid:\t0\t0\t0\t0\nGid:\t0\t0\t0\t0\nFDSize:\t64\nGroups:\t0 \nNStgid:\t1451838\nNSpid:\t1451838\nNSpgid:\t1451838\nNSsid:\t1451838\nKthread:\t0\nVmPeak:\t 1294620 kB\nVmSize:\t 1294620 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   29568 kB\nVmRSS:\t   29428 kB\nRssAnon:\t    4468 kB\nRssFile:\t   24960 kB\nRssShmem:\t       0 kB\nVmData:\t   80220 kB\nVmStk:\t     132 kB\nVmExe:\t   15688 kB\nVmLib:\t       8 kB\nVmPTE:\t     168 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t8\nSigQ:\t0/15187\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000000000\nSigIgn:\t0000000000000000\nSigCgt:\tfffffffd7fc1feff\nCapInh:\t0000000000000000\nCapPrm:\t000001ffffffffff\nCapEff:\t000001ffffffffff\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t00000000,00000000,00000000,00000003\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t35\nnonvoluntary_ctxt_switches:\t4\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+      "observed_affinity": [
+        0,
+        1
+      ]
+    }
+  ],
+  "application": {
+    "argv": [
+      "taskset",
+      "-c",
+      "0,1",
+      "/tmp/xray-transport-e2e-comparison-20261015/binaries/application",
+      "-mode",
+      "client",
+      "-addr",
+      "127.0.0.1:19300",
+      "-network",
+      "tcp",
+      "-bytes",
+      "1048576",
+      "-samples",
+      "16"
+    ],
+    "started_utc": "2026-10-15T17:48:48.868161+00:00",
+    "wall_duration_ns": 901997376,
+    "exit": 0,
+    "stderr": "",
+    "stdout": "{\"established_rtt_ns\":[665750,539468,562019,571937,606139,619379,509638,572208,492368,493476,486838,516638,472617,562307,671080,663800],\"monotonic_clock\":\"Go time.Now/time.Since monotonic duration nanoseconds\",\"network\":\"tcp\",\"setup_definition\":\"fresh local application dial through first verified 64B echo; prewarmed WG association; includes lazy remote application setup; not SOCKS CONNECT\",\"setup_first_response_ns\":[2780340,2237413,2540107,2081120,1705636,1754345,2108861,1688325],\"target\":\"127.0.0.1:19300\",\"transfers\":[{\"delivered_bytes\":1048576,\"direction\":\"upload\",\"receiver_duration_ns\":70650874,\"stream_count\":1,\"verified_all_received_bytes\":true},{\"delivered_bytes\":1048576,\"direction\":\"download\",\"receiver_duration_ns\":29882738,\"stream_count\":1,\"verified_all_received_bytes\":true}],\"warmup_echoes\":32}\n",
+    "sample": {
+      "established_rtt_ns": [
+        665750,
+        539468,
+        562019,
+        571937,
+        606139,
+        619379,
+        509638,
+        572208,
+        492368,
+        493476,
+        486838,
+        516638,
+        472617,
+        562307,
+        671080,
+        663800
+      ],
+      "monotonic_clock": "Go time.Now/time.Since monotonic duration nanoseconds",
+      "network": "tcp",
+      "setup_definition": "fresh local application dial through first verified 64B echo; prewarmed WG association; includes lazy remote application setup; not SOCKS CONNECT",
+      "setup_first_response_ns": [
+        2780340,
+        2237413,
+        2540107,
+        2081120,
+        1705636,
+        1754345,
+        2108861,
+        1688325
+      ],
+      "target": "127.0.0.1:19300",
+      "transfers": [
+        {
+          "delivered_bytes": 1048576,
+          "direction": "upload",
+          "receiver_duration_ns": 70650874,
+          "stream_count": 1,
+          "verified_all_received_bytes": true
+        },
+        {
+          "delivered_bytes": 1048576,
+          "direction": "download",
+          "receiver_duration_ns": 29882738,
+          "stream_count": 1,
+          "verified_all_received_bytes": true
+        }
+      ],
+      "warmup_echoes": 32
+    }
+  },
+  "status": "passed",
+  "gateway_removed_negative_control": {
+    "argv": [
+      "taskset",
+      "-c",
+      "0,1",
+      "/tmp/xray-transport-e2e-comparison-20261015/binaries/application",
+      "-mode",
+      "client",
+      "-addr",
+      "127.0.0.1:19300",
+      "-network",
+      "tcp",
+      "-bytes",
+      "65536",
+      "-samples",
+      "1"
+    ],
+    "started_utc": "2026-10-15T17:48:49.773402+00:00",
+    "wall_duration_ns": 3003983052,
+    "exit": null,
+    "timeout": 3,
+    "stdout": "None",
+    "stderr": "None"
+  },
+  "gateway_required": true,
+  "loadavg_after": "0.13 0.07 0.12 1/258 1451855\n",
+  "candidate_wireguard_outer_udp_proof": {
+    "destination": "127.0.0.1:19100",
+    "trace_sha256": "b85bfe2e8fe7ceb673936234cc2aaadca5da93bf61ad929755d4f32e40f691b9",
+    "matching_lines": [
+      "1451805 sendto(8, \"\\1\\0\\0\\0\\355\\216m\\6L;\\0l\\1777[+\\324}\\316\\267\\23\\6\\1E'\\t\\253\\234\\205\\322\\211!\"..., 148, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 148",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\0\\0\\0\\0\\0\\0\\0\\0\\5\\243Jgl;9FV\\214\\222\\277h\\316\\v\\275\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\1\\0\\0\\0\\0\\0\\0\\0\\363\\253\\310\\36\\226o4\\177\\10o\\344\\321X1\\r\\345\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\2\\0\\0\\0\\0\\0\\0\\0H\\241\\203\\233(\\253J\\22nT\\211c\\324@:\\371\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\3\\0\\0\\0\\0\\0\\0\\0\\313P\\367\\353=\\277\\317\\30\\305\\25_\\375x\\251v\\311\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451787 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\4\\0\\0\\0\\0\\0\\0\\0\\245\\217B\\370\\0027\\36\\325!\\246.\\223+\\300x\\27\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451783 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\5\\0\\0\\0\\0\\0\\0\\0\\210\\353\\347\\257?\\250\\232R\\34\\246&\\255'\\347\\302\\330\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451783 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\6\\0\\0\\0\\0\\0\\0\\0\\246\\336\\34\\216)\\367\\f\\233aS\\2158&\\6\\374=\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451783 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\7\\0\\0\\0\\0\\0\\0\\0]\\226Iy\\234a~De\\301+\\r\\333)\\324w\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451787 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\10\\0\\0\\0\\0\\0\\0\\0\\336y\\373a\\35\\226\\355\\2775\\243\\267\\344\\v\\320\\10\\0\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\t\\0\\0\\0\\0\\0\\0\\0\\373\\271\\34\\215\\303\\241\\236Mnp;\\273/I\\246\\\\\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\n\\0\\0\\0\\0\\0\\0\\0\\346\\372\\300\\242\\tdL9\\344\\333\\2068~`]v\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451787 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\v\\0\\0\\0\\0\\0\\0\\0\\32L\\352?1\\331\\351\\275\\220M\\353v(,A\\375\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451787 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\f\\0\\0\\0\\0\\0\\0\\0%\\223\\f\\337\\347.\\304\\376y\\367\\2246>r\\351\\365\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\r\\0\\0\\0\\0\\0\\0\\0\\332\\327\\37524\\206~\\211\\205\\367\\371?\\207a\\343\\22\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\16\\0\\0\\0\\0\\0\\0\\0'\\376\\231\\374\\33\\26\\10\\224\\234<a[R\\334U\\33\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\17\\0\\0\\0\\0\\0\\0\\0\\341\\225\\300\\1\\344#\\232\\37\\254\\303\\330\\212\\272\\356p\\364\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\20\\0\\0\\0\\0\\0\\0\\0eF\\230\\310\\26\\246\\273\\213a\\303\\377\\323p3JK\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451783 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\21\\0\\0\\0\\0\\0\\0\\0\\361\\22\\307\\177\\306c\\217\\200?\\350\\361i\\3164\\311.\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451783 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\22\\0\\0\\0\\0\\0\\0\\0003\\210E\\235\\206Z\\27\\26\\10\\376TuU\\\"\\313~\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\23\\0\\0\\0\\0\\0\\0\\0\\322\\255\\360+\\242\\255\\230\\21?\\377\\210\\3057\\325\\4V\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451783 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\24\\0\\0\\0\\0\\0\\0\\0\\177\\r\\235M\\260\\357h\\30]w\\265Uz\\272\\253v\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160",
+      "1451805 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\25\\0\\0\\0\\0\\0\\0\\0f\\21Z\\22\\264O\\323'\\2\\3742u0\\343-r\"..., 96, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 96",
+      "1451783 sendto(8, \"\\4\\0\\0\\0\\367\\5#\\332\\26\\0\\0\\0\\0\\0\\0\\0P\\237\\1\\34o\\266\\223\\320e\\314\\321\\34\\254\\314dq\"..., 160, 0, {sa_family=AF_INET6, sin6_port=htons(19100), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, \"::ffff:127.0.0.1\", &sin6_addr), sin6_scope_id=0}, 28) = 160"
+    ],
+    "matching_line_count": 9504
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "go",
+    "test",
+    "-overlay",
+    "/tmp/xray-round3-benchmark/auth-unbounded-overlay.json",
+    "-run",
+    "^TestAuthenticationOversizedOwnershipAndSealError/scratch-append$",
+    "-count",
+    "1",
+    "-v",
+    "./common/crypto"
+  ],
+  "cwd": "/Users/hosi/D/V2ray/Xray-core",
+  "exit": 1,
+  "seconds": 0.8817970752716064,
+  "stdout": "=== RUN   TestAuthenticationOversizedOwnershipAndSealError\n=== RUN   TestAuthenticationOversizedOwnershipAndSealError/scratch-append\n    auth_test.go:405: retained output changed: calls=4, frames=4, plaintext=24539\n--- FAIL: TestAuthenticationOversizedOwnershipAndSealError (0.00s)\n    --- FAIL: TestAuthenticationOversizedOwnershipAndSealError/scratch-append (0.00s)\nFAIL\nFAIL\tgithub.com/xtls/xray-core/common/crypto\t0.585s\nFAIL\n",
+  "stderr": "",
+  "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+  "actual_auth_sha256": "a368f936ec9bdcdb1400c74b6b586d3ebf34db6d592de88633711610ab2a86c0"
+}

@@ -1,0 +1,37 @@
+{
+  "goal": "New complete 48-primary-row HTML preserving original40 rows and immutable original artifacts",
+  "agent": "SS2022Writer",
+  "native_role": "configured task writer",
+  "level": "xhigh collaborative",
+  "entry_read_path": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md",
+  "entry_sha256": "949128c52eb16fc997ce08384d4be4abfdf8a326596dc4fb75457975fbae98bc",
+  "controller_root": "/Users/hosi/D/V2ray/Xray-core/investigation/ss2022-wireguard-comparison",
+  "controller_receipts": "Actual read --agent SS2022Writer, repo view --agent SS2022Writer, pulse tool and ALLOW work observed in own tool transcript",
+  "report": "report.html",
+  "anchor": "report.html#ss2022-wireguard-supplement",
+  "sources": ["../transport-e2e-comparison/report.html", "summary-tcp.json", "summary-udp.json", "audit/reconciliation.json", "audit/independent-results.json", "execution/plan-pins.json", "execution/completion-receipts.json", "audit/smoke-review.json", "smoke-reconciliation.json", "execution/writer-contract.json"],
+  "checks": {
+    "primary_rows": 48,
+    "original_rows_exact_except_rebased_hrefs": 40,
+    "new_groups": 8,
+    "supplement_numeric_attribute_comparisons": 120,
+    "supplement_raw_round_links": 56,
+    "hrefs_checked": 420,
+    "missing_local_links": [],
+    "balanced_explicit_html_tags": true,
+    "unique_ids": true,
+    "external_rendering_assets": false,
+    "combined_supplement_anchor": true,
+    "original_style_byte_exact": true,
+    "immutable_original_sha256_match": {
+      "report.html": true,
+      "summary-tcp.json": true,
+      "summary-udp.json": true
+    }
+  },
+  "report_sha256": "6ae8e6bdfebf7facae3960da8b8f560377e49e6e5eaabcf48dd7eff036efb2eb",
+  "interpretation": "Original280 and supplement56 separately collected, not jointly interleaved336. Whole-build attribution and private-loopback/supportCPU limits retained. Actual UDP upload median loss official19.703268348623855%, originalGSO20.0759747706422%, batching/hybrid0; all download0. Historical fwupd/PID caveat preserved.",
+  "verification_scope": "Requested offline document checks only: HTMLParser tag nesting, local href/anchor existence, exact old-row preservation, summary primary attributes, raw-link counts and original artifact SHA256 receipts. Not a browser rendering or standards-validator claim.",
+  "limitations": ["Independent HTML audit pending", "Same-writer focused second consideration intentionally not performed before round1 handoff", "No server commands, measurements, builds, tests or lint executed"],
+  "next": "Receive focused second consideration from parent; independent auditor validates HTML"
+}

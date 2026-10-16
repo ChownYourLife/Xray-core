@@ -1,0 +1,16 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 19:20:20.263475 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/configs/ss2022-wireguard-client.json Format:json}
+2026/10/15 19:20:20.263667 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 19:20:20.263705 [Warning] core: Xray 26.10.10 started
+2026/10/15 19:20:20.273114 from 127.0.0.1:57084 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.275691 from 127.0.0.1:57100 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.294906 from 127.0.0.1:57108 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.296722 from 127.0.0.1:57120 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.298079 from 127.0.0.1:57124 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.299552 from 127.0.0.1:57138 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.300780 from 127.0.0.1:57146 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.302259 from 127.0.0.1:57150 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.303488 from 127.0.0.1:57158 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.304812 from 127.0.0.1:57174 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 19:20:20.306192 from 127.0.0.1:57184 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]

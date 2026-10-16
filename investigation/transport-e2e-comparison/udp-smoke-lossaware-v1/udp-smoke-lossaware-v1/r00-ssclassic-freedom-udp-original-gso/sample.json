@@ -1,0 +1,153 @@
+{
+  "cohort": "loss-aware-UDP-final",
+  "phase": "smoke",
+  "round": 0,
+  "case": "ssclassic-freedom",
+  "network": "udp",
+  "variant": "original-gso",
+  "fixed_binary": "hybrid",
+  "candidate_role": "relay",
+  "loadavg_before": "0.02 0.48 0.54 3/250 1457410\n",
+  "processes": [
+    {
+      "role": "relay",
+      "pid": 1457411,
+      "argv": [
+        "taskset",
+        "-c",
+        "2,3",
+        "/tmp/xray-transport-e2e-comparison-udp-final-20261015/binaries/original-gso",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/ssclassic-freedom-relay.json"
+      ],
+      "requested_cpus": "2,3",
+      "GOMAXPROCS": 2,
+      "observed_affinity": [
+        2,
+        3
+      ]
+    },
+    {
+      "role": "client",
+      "pid": 1457418,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,1",
+        "/tmp/xray-transport-e2e-comparison-udp-final-20261015/binaries/hybrid",
+        "run",
+        "-c",
+        "/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/ssclassic-freedom-client.json"
+      ],
+      "requested_cpus": "0,1",
+      "GOMAXPROCS": 2,
+      "observed_affinity": [
+        0,
+        1
+      ]
+    }
+  ],
+  "application": {
+    "argv": [
+      "taskset",
+      "-c",
+      "0,1",
+      "/tmp/xray-transport-e2e-comparison-udp-final-20261015/binaries/application",
+      "-mode",
+      "client",
+      "-addr",
+      "127.0.0.1:19300",
+      "-bytes",
+      "307200",
+      "-samples",
+      "16"
+    ],
+    "exit": 0,
+    "stdout": "{\"cohort\":\"loss-aware-UDP-final\",\"established_rtt_ns\":[142432,140462,128982,147143,147222,159902,130852,125462,152313,154582,170373,152012,137523,202922,152833,171862],\"goodput_definition\":\"Actual unique verified delivered bytes divided by receiver first-data-to-fixed-drain-cutoff duration, includes declared100ms receiver drain and control/barrier overhead; not raw unpaced UDP capacity; zero received uses begin-to-cutoff duration\",\"loss_definition\":\"Offered unique datagrams minus unique verified received datagrams within fixed drain bound; no DATA retransmission\",\"network\":\"udp\",\"rtt_definition\":\"Established64B request/verified64B response on actual proxied UDP flow, preallocated buffers,32 warmups excluded\",\"setup_definition\":\"Fresh UDP application flow through first verified64B response, proxy/WG association prewarmed\",\"setup_first_response_ns\":[566388,538578,512768,409107,480867,467277,537268,445777],\"transfers\":[{\"application_window_datagrams\":32,\"control_path\":\"Separate TCP application connection through the same fixed-client/candidate-relay/gateway route; one progress barrier per32 offered UDP datagrams, no all-data-arrived ACK assumption\",\"corrupt_datagrams\":0,\"delivered_bytes\":276000,\"direction\":\"upload\",\"drain_bound_ns\":100000000,\"drain_definition\":\"Upload: exactly100ms from final reliable Q receipt at receiver; download: exactly100ms from final D response at client. Counter observations serialized under receiver lock; data observed at/after cutoff is excluded; final snapshot uses same lock.\",\"duplicate_datagrams\":0,\"final_receiver_counters_via_reliable_control\":true,\"lost_datagrams\":26,\"offered_bytes\":307200,\"offered_datagrams\":256,\"offered_duration_ns\":8813176,\"payload_bytes_per_datagram\":1200,\"receiver_duration_ns\":108171825,\"retransmissions\":0,\"transfer_id\":1386950961126299109,\"unique_verified_datagrams\":230,\"verified_all_counted_bytes\":true},{\"application_window_datagrams\":32,\"control_path\":\"Separate TCP application connection through the same fixed-client/candidate-relay/gateway route; one progress barrier per32 offered UDP datagrams, no all-data-arrived ACK assumption\",\"corrupt_datagrams\":0,\"delivered_bytes\":307200,\"direction\":\"download\",\"drain_bound_ns\":100000000,\"drain_definition\":\"Upload: exactly100ms from final reliable Q receipt at receiver; download: exactly100ms from final D response at client. Counter observations serialized under receiver lock; data observed at/after cutoff is excluded; final snapshot uses same lock.\",\"duplicate_datagrams\":0,\"final_receiver_counters_via_reliable_control\":true,\"lost_datagrams\":0,\"offered_bytes\":307200,\"offered_datagrams\":256,\"offered_duration_ns\":7609267,\"payload_bytes_per_datagram\":1200,\"receiver_duration_ns\":106683823,\"retransmissions\":0,\"transfer_id\":9308476422889281141,\"unique_verified_datagrams\":256,\"verified_all_counted_bytes\":true}]}\n",
+    "stderr": "",
+    "wall_duration_ns": 252461723,
+    "sample": {
+      "cohort": "loss-aware-UDP-final",
+      "established_rtt_ns": [
+        142432,
+        140462,
+        128982,
+        147143,
+        147222,
+        159902,
+        130852,
+        125462,
+        152313,
+        154582,
+        170373,
+        152012,
+        137523,
+        202922,
+        152833,
+        171862
+      ],
+      "goodput_definition": "Actual unique verified delivered bytes divided by receiver first-data-to-fixed-drain-cutoff duration, includes declared100ms receiver drain and control/barrier overhead; not raw unpaced UDP capacity; zero received uses begin-to-cutoff duration",
+      "loss_definition": "Offered unique datagrams minus unique verified received datagrams within fixed drain bound; no DATA retransmission",
+      "network": "udp",
+      "rtt_definition": "Established64B request/verified64B response on actual proxied UDP flow, preallocated buffers,32 warmups excluded",
+      "setup_definition": "Fresh UDP application flow through first verified64B response, proxy/WG association prewarmed",
+      "setup_first_response_ns": [
+        566388,
+        538578,
+        512768,
+        409107,
+        480867,
+        467277,
+        537268,
+        445777
+      ],
+      "transfers": [
+        {
+          "application_window_datagrams": 32,
+          "control_path": "Separate TCP application connection through the same fixed-client/candidate-relay/gateway route; one progress barrier per32 offered UDP datagrams, no all-data-arrived ACK assumption",
+          "corrupt_datagrams": 0,
+          "delivered_bytes": 276000,
+          "direction": "upload",
+          "drain_bound_ns": 100000000,
+          "drain_definition": "Upload: exactly100ms from final reliable Q receipt at receiver; download: exactly100ms from final D response at client. Counter observations serialized under receiver lock; data observed at/after cutoff is excluded; final snapshot uses same lock.",
+          "duplicate_datagrams": 0,
+          "final_receiver_counters_via_reliable_control": true,
+          "lost_datagrams": 26,
+          "offered_bytes": 307200,
+          "offered_datagrams": 256,
+          "offered_duration_ns": 8813176,
+          "payload_bytes_per_datagram": 1200,
+          "receiver_duration_ns": 108171825,
+          "retransmissions": 0,
+          "transfer_id": 1386950961126299109,
+          "unique_verified_datagrams": 230,
+          "verified_all_counted_bytes": true
+        },
+        {
+          "application_window_datagrams": 32,
+          "control_path": "Separate TCP application connection through the same fixed-client/candidate-relay/gateway route; one progress barrier per32 offered UDP datagrams, no all-data-arrived ACK assumption",
+          "corrupt_datagrams": 0,
+          "delivered_bytes": 307200,
+          "direction": "download",
+          "drain_bound_ns": 100000000,
+          "drain_definition": "Upload: exactly100ms from final reliable Q receipt at receiver; download: exactly100ms from final D response at client. Counter observations serialized under receiver lock; data observed at/after cutoff is excluded; final snapshot uses same lock.",
+          "duplicate_datagrams": 0,
+          "final_receiver_counters_via_reliable_control": true,
+          "lost_datagrams": 0,
+          "offered_bytes": 307200,
+          "offered_datagrams": 256,
+          "offered_duration_ns": 7609267,
+          "payload_bytes_per_datagram": 1200,
+          "receiver_duration_ns": 106683823,
+          "retransmissions": 0,
+          "transfer_id": 9308476422889281141,
+          "unique_verified_datagrams": 256,
+          "verified_all_counted_bytes": true
+        }
+      ]
+    }
+  },
+  "status": "passed",
+  "loadavg_after": "0.02 0.48 0.54 1/250 1457428\n"
+}

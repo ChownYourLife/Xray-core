@@ -1,0 +1,59 @@
+{
+  "goal_items": {
+    "selected_material_hot_path": "Auth singleton direct seal selected by Main after real public API overlay comparison; no speculative cache/API/dependency/config changes",
+    "measured_allocations": "Four matched baseline/final samples across48public API cases; fitting singleton320\u2192160B/op,8\u21926allocs; actual APIthreshold+1/full/multi controls unchanged",
+    "mechanical_assurance": "Owner recomputation, not independent: all8original raw paired receipts exit0/sameharness/48unique rows each; all48summary per-state medians and unique B/alloc values exact with4samples/state; no test/benchmark rerun",
+    "CPU_boundary": "Independent adjacent AB/BA medians64/1024/2048 show18.51\u201342.69% lower local CPU ns; no WAN/whole-core/provider claim",
+    "protocol_semantics": "Same final real AES/chacha ciphertext/framing/nonce/size-parser/padding/error/ownership regressions pass original baseline overlay and actual final; padding randomness/security checks unchanged",
+    "consumer_boundaries": "Actual final crypto/VMess client/server encoding/SS package suites with race; real no-overlay Auth/VMess AES/chacha public go run by verifier and SS AES/chacha public go run by optimizer",
+    "incoming_preservation": "Only auth.go/auth_test.go/README intentionally changed;1173other original production/test/docs files byte-identical including all incoming optimizations and transport_writer_test; historical investigation/controller files untouched",
+    "docs_after_smoke": "One concise README bullet added after Main observed original independent final no-overlay Auth/VMess smoke; old README contents byte-preserved around bullet",
+    "cleanup": "Own /tmp benchmark and SS smoke removed; verifier original source REM tool receipts show its two smoke programs removed; no new runnableGo in performance-round2 evidence",
+    "independent_acceptance": "Main unconditionally accepted actual sources/permanent regressions/preservation/measurements and original independent execution tool receipts; root-review.json records independent Main decision",
+    "retired_verifier": "Main stopped stalled peer after successful checks; controller retirement preserves actual historical reports/reads/receipts. Missing final peer doc/map/report explicitly not claimed; root+Main cover final docs and evidence assembly. No behavioral verification lost",
+    "source_freshness": "Actual1176file production manifest +18selected embedded source bundles independently rehashed and match final freeze; scoped controller hashes evidence only"
+  },
+  "execution_attribution": {
+    "optimizer": [
+      "Paired8publicAPIbenchmarkruns",
+      "Original baseline-overlay/final authentication regression checks",
+      "Final race crypto/VMessencoding/SS suites count1",
+      "Actual public SS AES/chacha go run roundtrip25597bytes each"
+    ],
+    "perf-round2-verifier": [
+      "Original normal crypto/VMess package checks",
+      "Original race crypto/VMess package checks",
+      "Original actual no-overlay Auth and VMess AES/chacha runtime smoke",
+      "Original10production/testsource hashes matching final code/test; README observed pre-doc",
+      "Independent paired raw recomputation"
+    ],
+    "Main": [
+      "Independent actual implementation/test/README/preservation/raw measurement and original independent execution result reads; unconditional integration acceptance"
+    ],
+    "root_administration": [
+      "Retirements, final-doc/evidence assembly, controller review/completion/report/fresh source/map receipts and shipment gate performed by optimizer under Main instruction"
+    ]
+  },
+  "evidence": {
+    "worker_round2": "optimizer/implementation-round2.json",
+    "source_freeze": "optimizer/final-source.json",
+    "actual_hash_validation": "optimizer/freeze-validation.json",
+    "preservation": "optimizer/preservation-final.json",
+    "benchmarks": "optimizer/benchmark-summary.json",
+    "raw_pairing": "verifier/paired-raw-recomputation.json",
+    "owner_mechanical_assurance": "optimizer/summary-mechanical-assurance.json",
+    "baseline_final_regressions": "optimizer/framing-tests.json",
+    "race": "optimizer/focused-race.json",
+    "SS_runtime": "optimizer/ss-public-runtime.json",
+    "original_independent_execution": "optimizer/independent-execution-receipts.json",
+    "original_independent_smoke_sources": "optimizer/independent-smoke-source-receipts.json",
+    "parent_review": "root-review.json"
+  },
+  "limitations": [
+    "No full repository suite, external ECH/network tests or remote/server operations",
+    "No production singleton frequency, WAN or whole-core throughput measurement",
+    "No NoOpAEAD current consumer; parent agrees no historical resurrection/no fake coverage",
+    "No final peer doc/map/report exists; root and Main explicitly took evidence assembly after retirement",
+    "Successful original verifier tool results omit numeric exitCode; isError=false/raw stdout preserved honestly"
+  ]
+}

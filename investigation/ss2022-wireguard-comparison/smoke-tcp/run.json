@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "ssh",
+    "-i",
+    "/Users/hosi/.ssh/id_ed25519",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ServerAliveInterval=30",
+    "-o",
+    "ServerAliveCountMax=6",
+    "root@216.195.211.248",
+    "unshare --net python3 /tmp/xray-ss2022-wireguard-supplement-20261015/tcp/supplement.py --phase smoke --network tcp"
+  ],
+  "exit": 0,
+  "output": "2026-10-15T19:18:07.934674+00:00 r00-ss2022-wireguard-tcp-official passed\n2026-10-15T19:18:11.797407+00:00 r00-ss2022-wireguard-tcp-original-gso passed\n2026-10-15T19:18:15.416483+00:00 r00-ss2022-wireguard-tcp-batching-only passed\n2026-10-15T19:18:18.902597+00:00 r00-ss2022-wireguard-tcp-hybrid passed\n"
+}

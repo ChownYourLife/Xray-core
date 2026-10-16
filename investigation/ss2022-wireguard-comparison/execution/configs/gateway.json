@@ -1,0 +1,44 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "tag": "from-wireguard",
+      "listen": "127.0.0.1",
+      "port": 19100,
+      "protocol": "wireguard",
+      "settings": {
+        "secretKey": "EGs4lTSJPmgELx6YiJAmPR2meWi6bY+e9rTdCipSj10=",
+        "address": [
+          "10.77.0.1/32"
+        ],
+        "mtu": 1420,
+        "noKernelTun": true,
+        "peers": [
+          {
+            "publicKey": "osAMIyil18HeZXGGBDC9KpZoM+L2iGyXWVSYivuM9B0=",
+            "allowedIPs": [
+              "0.0.0.0/0",
+              "::/0"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "to-echo",
+      "protocol": "freedom",
+      "settings": {
+        "finalRules": [
+          {
+            "action": "allow"
+          }
+        ],
+        "redirect": "127.0.0.1:19090"
+      }
+    }
+  ]
+}

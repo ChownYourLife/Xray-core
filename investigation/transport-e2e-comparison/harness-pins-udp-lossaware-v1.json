@@ -1,0 +1,35 @@
+{
+  "cohort": "loss-aware-UDP-final-v1",
+  "external_root": "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/udp-final",
+  "source_snapshot": "execution-udp-lossaware-v1",
+  "product_and_config_pins": "Unchanged sources.json/config-pins.json; candidate relay only varies, fixed hybrid client/gateway",
+  "build": {
+    "go": "go1.27.0 darwin/arm64 crosscompile",
+    "target": "linux/amd64 GOAMD64=v1 CGO_ENABLED=0",
+    "flags": [
+      "-trimpath",
+      "-buildvcs=false",
+      "-ldflags=-buildid="
+    ],
+    "exit": 0
+  },
+  "files": {
+    "application.go": "0544d3a1a04738d4f94067f2768b21f0b1d1243398cd61313a6846b6d9244b23",
+    "remote_runner.py": "bddc71c8e25ad91d284c1021d2d0d51cfc18e43b324df6db4f4a7bf288a97f31",
+    "udp_cohort.py": "aeb0f82a465f1af0438c81faad537fb36557176d6c13bae8f356db3ce92a6107",
+    "binaries/application": "2e019359aebb56a18c6d90eabe46e0413a0a8f67b9839ac96b8286b701741de3"
+  },
+  "method": {
+    "offered_payload_bytes": 16742400,
+    "payload_bytes_per_datagram": 1200,
+    "window_datagrams": 32,
+    "receiver_drain_bound_ns": 100000000,
+    "retransmissions": 0,
+    "upload_cutoff": "Receiver-local fixed100ms after final reliable Q control request arrives",
+    "download_cutoff": "Client-local fixed100ms after final reliable D control response",
+    "counting": "Unique ID+sequence+byte-verified datagrams under receiver lock; fixed cutoff excludes later counter observations, loss/duplicates/corrupt explicit",
+    "control": "Separate reliable TCP application connection through same actual Xray chain; per-window progress/pull response does not assert UDP data arrival; final counters reliably round-tripped",
+    "warmup": "32 real64B echo requests before each flow registration; no unreported warm DATA transfers"
+  },
+  "independent_static_review": "ResultAudit reviewed transfer identity/lifetime/locked fixed cutoff/reliable counters and found no remaining source blocker; runtime smoke pending."
+}

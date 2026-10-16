@@ -1,0 +1,18 @@
+{
+  "reviewer": "Main/director",
+  "recorded_by": "ChainBench as a mechanical evidence recorder on explicit director instruction; not execution-owner self-review",
+  "verdict": "accepted",
+  "scope": "Execution work and ResultAudit numeric findings; HTML delivery has separate pending acceptance",
+  "accepted": [
+    "All four whole-product source/build pins and all five real workload chains",
+    "Exactly one complete TCP140/140 and one separate loss-aware UDP140/140 fixed cohort",
+    "Independent TCP480-value and UDP2720-value primary-statistic reconciliations",
+    "All40 primary comparison rows and exact median-of-seven-round estimator definitions",
+    "Actual timed TCP receiver bytes/durations, established RTT, setup and CPU-affinity sample",
+    "Actual loss-bearing timed UDP sample with13952 offered,11566 unique,2386 missing,100ms drain and zero DATA retransmits",
+    "Real WG UDP routing and gateway-removal negative-control smoke evidence",
+    "Host-preservation boundary, including unexplained TCP fwupd service disappearance and no all-services-unchanged claim"
+  ],
+  "director_instruction": "No further measurements, source edits or re-audits requested. Remaining work is actual native task HTML assembly, independent numeric/link validation, director HTML/role-receipt acceptance, goal-by-goal root completion and final controller shipment.",
+  "evidence": ["sources.json", "summary-tcp.json", "summary-udp.json", "tcp-statistics-reconciliation.json", "audit/independent-udp-reconciliation.json", "tcp-smoke-v2-finding.json", "udp-smoke-lossaware-v1-acceptance.json", "tcp-preservation-explanation.json"]
+}

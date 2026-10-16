@@ -1,0 +1,20 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 18:13:06.201851 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/vmess-wireguard-client.json Format:json}
+2026/10/15 18:13:06.202410 [Warning] common/errors: The feature VMess (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 18:13:06.203005 [Warning] core: Xray 26.10.10 started
+2026/10/15 18:13:06.213175 from 127.0.0.1:59206 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.215062 from 127.0.0.1:33880 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.227951 from 127.0.0.1:38194 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.228948 from 127.0.0.1:37030 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.229963 from 127.0.0.1:35783 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.230965 from 127.0.0.1:42390 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.232163 from 127.0.0.1:32792 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.233304 from 127.0.0.1:43611 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.234188 from 127.0.0.1:47382 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.234995 from 127.0.0.1:49453 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.235975 from 127.0.0.1:36995 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.318228 from 127.0.0.1:52605 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.333341 from 127.0.0.1:59210 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.777989 from 127.0.0.1:33263 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 18:13:06.788437 from 127.0.0.1:59220 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]

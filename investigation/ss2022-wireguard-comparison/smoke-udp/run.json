@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "ssh",
+    "-i",
+    "/Users/hosi/.ssh/id_ed25519",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ServerAliveInterval=30",
+    "-o",
+    "ServerAliveCountMax=6",
+    "root@216.195.211.248",
+    "unshare --net python3 /tmp/xray-ss2022-wireguard-supplement-20261015/udp/supplement.py --phase smoke --network udp"
+  ],
+  "exit": 0,
+  "output": "2026-10-15T19:18:54.457667+00:00 r00-ss2022-wireguard-udp-official passed\n2026-10-15T19:18:57.919761+00:00 r00-ss2022-wireguard-udp-original-gso passed\n2026-10-15T19:19:01.356389+00:00 r00-ss2022-wireguard-udp-batching-only passed\n2026-10-15T19:19:04.746400+00:00 r00-ss2022-wireguard-udp-hybrid passed\n"
+}

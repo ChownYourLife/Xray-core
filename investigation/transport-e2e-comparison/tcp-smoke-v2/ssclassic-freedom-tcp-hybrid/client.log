@@ -1,0 +1,16 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:48:13.534643 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-freedom-client.json Format:json}
+2026/10/15 17:48:13.534664 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 17:48:13.534792 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:48:13.543882 from 127.0.0.1:54800 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.546419 from 127.0.0.1:54806 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.551349 from 127.0.0.1:54818 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.552009 from 127.0.0.1:54830 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.552704 from 127.0.0.1:54838 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.553313 from 127.0.0.1:54842 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.554022 from 127.0.0.1:54848 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.554583 from 127.0.0.1:54854 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.555232 from 127.0.0.1:54870 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.555833 from 127.0.0.1:54886 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.556589 from 127.0.0.1:54892 accepted tcp:127.0.0.1:19090 [application-entry >> common-client-shadowsocks]

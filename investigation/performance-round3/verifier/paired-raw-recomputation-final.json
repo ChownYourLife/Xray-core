@@ -1,0 +1,1280 @@
+{
+  "raw_samples": [
+    {
+      "sequence_index": 1,
+      "raw_file": "final-source-paired-1-baseline.json",
+      "state": "baseline",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "52f0aa0d276482a9257263a0ddf050e2bc47c3fd81a89226b738ad457e176d0e",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    },
+    {
+      "sequence_index": 2,
+      "raw_file": "final-source-paired-2-final.json",
+      "state": "final",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    },
+    {
+      "sequence_index": 3,
+      "raw_file": "final-source-paired-3-final.json",
+      "state": "final",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    },
+    {
+      "sequence_index": 4,
+      "raw_file": "final-source-paired-4-baseline.json",
+      "state": "baseline",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "52f0aa0d276482a9257263a0ddf050e2bc47c3fd81a89226b738ad457e176d0e",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    },
+    {
+      "sequence_index": 5,
+      "raw_file": "final-source-paired-5-final.json",
+      "state": "final",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    },
+    {
+      "sequence_index": 6,
+      "raw_file": "final-source-paired-6-baseline.json",
+      "state": "baseline",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "52f0aa0d276482a9257263a0ddf050e2bc47c3fd81a89226b738ad457e176d0e",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    },
+    {
+      "sequence_index": 7,
+      "raw_file": "final-source-paired-7-baseline.json",
+      "state": "baseline",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "52f0aa0d276482a9257263a0ddf050e2bc47c3fd81a89226b738ad457e176d0e",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    },
+    {
+      "sequence_index": 8,
+      "raw_file": "final-source-paired-8-final.json",
+      "state": "final",
+      "stdout_pass": true,
+      "stderr_empty": true,
+      "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+      "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "effective_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+      "row_count": 72,
+      "exit_field": "exit",
+      "exit": 0
+    }
+  ],
+  "raw_sample_count": 8,
+  "row_count_per_sample": [
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72
+  ],
+  "unique_rows": 72,
+  "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+  "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+  "published_summary_sha256": "0b6ebfd0bea9d297cfe7ebabf0175aac794db1abf0baf2b3b5d3a587e8fb9db1",
+  "comparison": "independently parsed all raw stdout; recomputed baseline/final medians, paired adjacent ABBA ratio medians, and allocation/byte sets; exact agreement within 1e-9 percentage points",
+  "mismatch_count": 0,
+  "selected_shape_controls": [
+    {
+      "shape": "fitting1024",
+      "cases": 8,
+      "paired_percent_min": -0.9529638048609956,
+      "paired_percent_max": 1.9262089531700388,
+      "alloc_deltas": [
+        0
+      ],
+      "bytes_deltas": [
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "shape": "full8192",
+      "cases": 8,
+      "paired_percent_min": -18.508184523809522,
+      "paired_percent_max": -0.6519578197150988,
+      "alloc_deltas": [
+        -2
+      ],
+      "bytes_deltas": [
+        [
+          -152
+        ]
+      ]
+    },
+    {
+      "shape": "large24576",
+      "cases": 8,
+      "paired_percent_min": -12.667261314501467,
+      "paired_percent_max": -0.5796949298852772,
+      "alloc_deltas": [
+        -2
+      ],
+      "bytes_deltas": [
+        [
+          -137
+        ],
+        [
+          -136
+        ],
+        [
+          -136,
+          -136
+        ],
+        [
+          -132,
+          -135
+        ],
+        [
+          -132,
+          -131
+        ]
+      ]
+    },
+    {
+      "shape": "unmanaged24576",
+      "cases": 8,
+      "paired_percent_min": -11.860062857834585,
+      "paired_percent_max": -0.21389964012914486,
+      "alloc_deltas": [
+        -2
+      ],
+      "bytes_deltas": [
+        [
+          -136
+        ]
+      ]
+    },
+    {
+      "shape": "multi4x512",
+      "cases": 8,
+      "paired_percent_min": -3.36153154204053,
+      "paired_percent_max": 0.8646510662438489,
+      "alloc_deltas": [
+        0
+      ],
+      "bytes_deltas": [
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "shape": "multi4x2048",
+      "cases": 8,
+      "paired_percent_min": -1.4481360510504526,
+      "paired_percent_max": 7.660144117257417,
+      "alloc_deltas": [
+        0
+      ],
+      "bytes_deltas": [
+        [
+          0
+        ]
+      ]
+    }
+  ],
+  "selected_rows": [
+    {
+      "key": "BenchmarkSharedWriter/Auth/AES/fitting1024-2",
+      "baseline_ns_median": 235.65,
+      "final_ns_median": 239.05,
+      "paired_median_percent_change": 1.2404641369898162,
+      "median_state_percent_change": 1.4428177381710094,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/AES/full8192-2",
+      "baseline_ns_median": 1377.0,
+      "final_ns_median": 1132.0,
+      "paired_median_percent_change": -18.508184523809522,
+      "median_state_percent_change": -17.79230210602759,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/AES/large24576-2",
+      "baseline_ns_median": 3603.5,
+      "final_ns_median": 3215.0,
+      "paired_median_percent_change": -12.667261314501467,
+      "median_state_percent_change": -10.78118495906757,
+      "baseline_bytes": [
+        537
+      ],
+      "final_bytes": [
+        400,
+        401
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/AES/multi4x2048-2",
+      "baseline_ns_median": 1457.5,
+      "final_ns_median": 1427.5,
+      "paired_median_percent_change": -1.3293071415859115,
+      "median_state_percent_change": -2.0583190394511175,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/AES/multi4x512-2",
+      "baseline_ns_median": 595.25,
+      "final_ns_median": 587.8,
+      "paired_median_percent_change": -1.802424704321559,
+      "median_state_percent_change": -1.251574968500635,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/AES/unmanaged24576-2",
+      "baseline_ns_median": 3351.5,
+      "final_ns_median": 2991.0,
+      "paired_median_percent_change": -11.82676655313366,
+      "median_state_percent_change": -10.756377741309864,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/ChaCha/fitting1024-2",
+      "baseline_ns_median": 1028.0,
+      "final_ns_median": 1023.0,
+      "paired_median_percent_change": 0.46826658928955656,
+      "median_state_percent_change": -0.4863813229571967,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/ChaCha/full8192-2",
+      "baseline_ns_median": 6453.5,
+      "final_ns_median": 6245.0,
+      "paired_median_percent_change": -3.597706220351493,
+      "median_state_percent_change": -3.230804989540559,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/ChaCha/large24576-2",
+      "baseline_ns_median": 18514.5,
+      "final_ns_median": 18407.5,
+      "paired_median_percent_change": -0.5796949298852772,
+      "median_state_percent_change": -0.5779254098139286,
+      "baseline_bytes": [
+        536,
+        540
+      ],
+      "final_bytes": [
+        400,
+        404,
+        405
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/ChaCha/multi4x2048-2",
+      "baseline_ns_median": 6609.0,
+      "final_ns_median": 6502.0,
+      "paired_median_percent_change": -1.4481360510504526,
+      "median_state_percent_change": -1.6190043879558136,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/ChaCha/multi4x512-2",
+      "baseline_ns_median": 2020.0,
+      "final_ns_median": 2000.5,
+      "paired_median_percent_change": -1.0882759259572383,
+      "median_state_percent_change": -0.9653465346534662,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Auth/ChaCha/unmanaged24576-2",
+      "baseline_ns_median": 18529.5,
+      "final_ns_median": 17945.5,
+      "paired_median_percent_change": -2.2813181319994214,
+      "median_state_percent_change": -3.151731023503068,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/AES/fitting1024-2",
+      "baseline_ns_median": 270.0,
+      "final_ns_median": 275.25,
+      "paired_median_percent_change": 1.7557548461862638,
+      "median_state_percent_change": 1.9444444444444375,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/AES/full8192-2",
+      "baseline_ns_median": 1406.5,
+      "final_ns_median": 1209.0,
+      "paired_median_percent_change": -15.037240135433372,
+      "median_state_percent_change": -14.041948098115887,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/AES/large24576-2",
+      "baseline_ns_median": 3697.0,
+      "final_ns_median": 3322.0,
+      "paired_median_percent_change": -10.5600091034178,
+      "median_state_percent_change": -10.143359480659997,
+      "baseline_bytes": [
+        536,
+        537,
+        538
+      ],
+      "final_bytes": [
+        400
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/AES/multi4x2048-2",
+      "baseline_ns_median": 1494.5,
+      "final_ns_median": 1497.5,
+      "paired_median_percent_change": 0.7357782579593852,
+      "median_state_percent_change": 0.20073603211776536,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/AES/multi4x512-2",
+      "baseline_ns_median": 623.3,
+      "final_ns_median": 615.75,
+      "paired_median_percent_change": -1.1587234101491428,
+      "median_state_percent_change": -1.2112947216428638,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/AES/unmanaged24576-2",
+      "baseline_ns_median": 3480.5,
+      "final_ns_median": 3130.0,
+      "paired_median_percent_change": -11.593446489537529,
+      "median_state_percent_change": -10.070392185030885,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/ChaCha/fitting1024-2",
+      "baseline_ns_median": 1175.5,
+      "final_ns_median": 1178.0,
+      "paired_median_percent_change": 0.43481421178113155,
+      "median_state_percent_change": 0.21267545725223158,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/ChaCha/full8192-2",
+      "baseline_ns_median": 6704.0,
+      "final_ns_median": 6652.0,
+      "paired_median_percent_change": -0.6519578197150988,
+      "median_state_percent_change": -0.7756563245823411,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/ChaCha/large24576-2",
+      "baseline_ns_median": 19204.0,
+      "final_ns_median": 18943.0,
+      "paired_median_percent_change": -1.4114492047516691,
+      "median_state_percent_change": -1.3590918558633591,
+      "baseline_bytes": [
+        536,
+        540
+      ],
+      "final_bytes": [
+        404,
+        405
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/ChaCha/multi4x2048-2",
+      "baseline_ns_median": 6796.5,
+      "final_ns_median": 7314.0,
+      "paired_median_percent_change": 7.660144117257417,
+      "median_state_percent_change": 7.614213197969533,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/ChaCha/multi4x512-2",
+      "baseline_ns_median": 2137.5,
+      "final_ns_median": 2193.5,
+      "paired_median_percent_change": 0.7986438649342231,
+      "median_state_percent_change": 2.6198830409356777,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/Shadowsocks/ChaCha/unmanaged24576-2",
+      "baseline_ns_median": 19137.5,
+      "final_ns_median": 19006.5,
+      "paired_median_percent_change": -0.21389964012914486,
+      "median_state_percent_change": -0.6845199216198528,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376,
+        377
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/AES/fitting1024-2",
+      "baseline_ns_median": 238.0,
+      "final_ns_median": 238.95,
+      "paired_median_percent_change": 1.2718991620065623,
+      "median_state_percent_change": 0.3991596638655448,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/AES/full8192-2",
+      "baseline_ns_median": 1366.0,
+      "final_ns_median": 1128.5,
+      "paired_median_percent_change": -16.039924363093604,
+      "median_state_percent_change": -17.386530014641288,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/AES/large24576-2",
+      "baseline_ns_median": 3576.0,
+      "final_ns_median": 3154.0,
+      "paired_median_percent_change": -10.98736169688097,
+      "median_state_percent_change": -11.80089485458613,
+      "baseline_bytes": [
+        536,
+        537
+      ],
+      "final_bytes": [
+        400,
+        401
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/AES/multi4x2048-2",
+      "baseline_ns_median": 1409.5,
+      "final_ns_median": 1433.0,
+      "paired_median_percent_change": 1.8121703137225165,
+      "median_state_percent_change": 1.6672578928698112,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/AES/multi4x512-2",
+      "baseline_ns_median": 585.1500000000001,
+      "final_ns_median": 581.8,
+      "paired_median_percent_change": -1.4240483315284935,
+      "median_state_percent_change": -0.5725027770657309,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/AES/unmanaged24576-2",
+      "baseline_ns_median": 3340.5,
+      "final_ns_median": 2943.5,
+      "paired_median_percent_change": -11.860062857834585,
+      "median_state_percent_change": -11.884448435862893,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/ChaCha/fitting1024-2",
+      "baseline_ns_median": 1010.5,
+      "final_ns_median": 1001.5,
+      "paired_median_percent_change": -0.27384012016353765,
+      "median_state_percent_change": -0.8906481939633837,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/ChaCha/full8192-2",
+      "baseline_ns_median": 6460.0,
+      "final_ns_median": 6221.5,
+      "paired_median_percent_change": -2.3627219040482483,
+      "median_state_percent_change": -3.6919504643962875,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/ChaCha/large24576-2",
+      "baseline_ns_median": 18611.0,
+      "final_ns_median": 18199.0,
+      "paired_median_percent_change": -2.0921286977474196,
+      "median_state_percent_change": -2.2137445596690175,
+      "baseline_bytes": [
+        536,
+        539,
+        540
+      ],
+      "final_bytes": [
+        404,
+        408
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/ChaCha/multi4x2048-2",
+      "baseline_ns_median": 6574.5,
+      "final_ns_median": 6543.0,
+      "paired_median_percent_change": -0.053890259329292256,
+      "median_state_percent_change": -0.479123887748123,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/ChaCha/multi4x512-2",
+      "baseline_ns_median": 1976.0,
+      "final_ns_median": 2009.5,
+      "paired_median_percent_change": 0.8646510662438489,
+      "median_state_percent_change": 1.6953441295546545,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMess/ChaCha/unmanaged24576-2",
+      "baseline_ns_median": 18210.0,
+      "final_ns_median": 17970.0,
+      "paired_median_percent_change": -1.518913992817339,
+      "median_state_percent_change": -1.317957166392092,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376,
+        377
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/AES/fitting1024-2",
+      "baseline_ns_median": 426.1,
+      "final_ns_median": 428.5,
+      "paired_median_percent_change": 1.9262089531700388,
+      "median_state_percent_change": 0.5632480638347648,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/AES/full8192-2",
+      "baseline_ns_median": 1722.5,
+      "final_ns_median": 1510.5,
+      "paired_median_percent_change": -12.3237027748633,
+      "median_state_percent_change": -12.307692307692308,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/AES/large24576-2",
+      "baseline_ns_median": 4309.5,
+      "final_ns_median": 3998.5,
+      "paired_median_percent_change": -7.656008584786777,
+      "median_state_percent_change": -7.216614456433456,
+      "baseline_bytes": [
+        536,
+        537
+      ],
+      "final_bytes": [
+        400
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/AES/multi4x2048-2",
+      "baseline_ns_median": 1842.0,
+      "final_ns_median": 1831.5,
+      "paired_median_percent_change": -0.23396670236230932,
+      "median_state_percent_change": -0.5700325732899025,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/AES/multi4x512-2",
+      "baseline_ns_median": 790.3499999999999,
+      "final_ns_median": 776.1500000000001,
+      "paired_median_percent_change": -1.470150640332335,
+      "median_state_percent_change": -1.7966723603466628,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/AES/unmanaged24576-2",
+      "baseline_ns_median": 4038.5,
+      "final_ns_median": 3766.0,
+      "paired_median_percent_change": -7.065612738569815,
+      "median_state_percent_change": -6.747554785192522,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/ChaCha/fitting1024-2",
+      "baseline_ns_median": 1188.0,
+      "final_ns_median": 1174.5,
+      "paired_median_percent_change": -0.9529638048609956,
+      "median_state_percent_change": -1.1363636363636354,
+      "baseline_bytes": [
+        160
+      ],
+      "final_bytes": [
+        160
+      ],
+      "baseline_allocs": [
+        6
+      ],
+      "final_allocs": [
+        6
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/ChaCha/full8192-2",
+      "baseline_ns_median": 6872.5,
+      "final_ns_median": 6459.0,
+      "paired_median_percent_change": -4.591647732818183,
+      "median_state_percent_change": -6.016733357584581,
+      "baseline_bytes": [
+        392
+      ],
+      "final_bytes": [
+        240
+      ],
+      "baseline_allocs": [
+        10
+      ],
+      "final_allocs": [
+        8
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/ChaCha/large24576-2",
+      "baseline_ns_median": 19289.5,
+      "final_ns_median": 18790.5,
+      "paired_median_percent_change": -1.7881938952470477,
+      "median_state_percent_change": -2.58689960859535,
+      "baseline_bytes": [
+        536,
+        540
+      ],
+      "final_bytes": [
+        400,
+        404
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        12
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/ChaCha/multi4x2048-2",
+      "baseline_ns_median": 6750.0,
+      "final_ns_median": 6739.0,
+      "paired_median_percent_change": 0.41742603487233687,
+      "median_state_percent_change": -0.16296296296296475,
+      "baseline_bytes": [
+        648
+      ],
+      "final_bytes": [
+        648
+      ],
+      "baseline_allocs": [
+        16
+      ],
+      "final_allocs": [
+        16
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/ChaCha/multi4x512-2",
+      "baseline_ns_median": 2218.0,
+      "final_ns_median": 2159.5,
+      "paired_median_percent_change": -3.36153154204053,
+      "median_state_percent_change": -2.6375112714156934,
+      "baseline_bytes": [
+        576
+      ],
+      "final_bytes": [
+        576
+      ],
+      "baseline_allocs": [
+        14
+      ],
+      "final_allocs": [
+        14
+      ]
+    },
+    {
+      "key": "BenchmarkSharedWriter/VMessPadding/ChaCha/unmanaged24576-2",
+      "baseline_ns_median": 19253.5,
+      "final_ns_median": 18494.0,
+      "paired_median_percent_change": -1.7469580049425337,
+      "median_state_percent_change": -3.9447373204871794,
+      "baseline_bytes": [
+        512
+      ],
+      "final_bytes": [
+        376
+      ],
+      "baseline_allocs": [
+        13
+      ],
+      "final_allocs": [
+        11
+      ]
+    }
+  ],
+  "targeted_control_recomputation": {
+    "row": "BenchmarkSharedWriter/Shadowsocks/ChaCha/multi4x2048-2",
+    "sample_records": [
+      {
+        "sequence_index": 1,
+        "file": "control-paired-1-baseline.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      },
+      {
+        "sequence_index": 2,
+        "file": "control-paired-2-final.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      },
+      {
+        "sequence_index": 3,
+        "file": "control-paired-3-final.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      },
+      {
+        "sequence_index": 4,
+        "file": "control-paired-4-baseline.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      },
+      {
+        "sequence_index": 5,
+        "file": "control-paired-5-final.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      },
+      {
+        "sequence_index": 6,
+        "file": "control-paired-6-baseline.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      },
+      {
+        "sequence_index": 7,
+        "file": "control-paired-7-baseline.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      },
+      {
+        "sequence_index": 8,
+        "file": "control-paired-8-final.json",
+        "stdout_pass": true,
+        "stderr_empty": true,
+        "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+        "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+        "exit_field": "exit",
+        "exit": 0
+      }
+    ],
+    "raw_sample_count": 8,
+    "rows_per_sample": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "baseline_ns": [
+      7030.0,
+      6798.0,
+      6870.0,
+      6791.0
+    ],
+    "final_ns": [
+      6915.0,
+      6971.0,
+      6824.0,
+      6898.0
+    ],
+    "paired_ratios": [
+      0.9836415362731152,
+      1.0254486613709914,
+      0.9933042212518195,
+      1.015756147842733
+    ],
+    "paired_median_percent_change": 0.45301845472762725,
+    "bytes_allocs_unchanged": true,
+    "harness_sha256": "c194cf275efd6b4a2bd85c5711b4c0545f5892bb05daa98d469c184f6023affc",
+    "actual_auth_sha256": "5f6e9cacca603e888922d3c0c0077c0217bd32aca5447f3db419c076409f0e20",
+    "matches_published_control_sensitivity": true
+  },
+  "all_primary_exits_zero": true,
+  "all_targeted_control_exits_zero": true,
+  "exit_metadata_note": "Independent parse confirms the correct raw JSON field is exit; all 8 primary and all 8 isolated-control commands recorded exit=0."
+}

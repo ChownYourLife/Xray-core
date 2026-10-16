@@ -1,0 +1,142 @@
+{
+  "scope": "Publication candidate content inspection only; not a new benchmark, security certification or full repository test",
+  "signature_patterns": [
+    "private_key_pem",
+    "github_token",
+    "aws_access_key",
+    "slack_token",
+    "openai_secret"
+  ],
+  "candidate_file_count": 1794,
+  "signature_hits": [],
+  "fixture_classification": [
+    {
+      "path": "investigation/ss2022-wireguard-comparison/execution/configs/gateway.json",
+      "all_credential_fields_equal_explicit_private_loopback_fixture_constants": true,
+      "fixture_generator": "investigation/transport-e2e-comparison/execution/prepare_configs.py",
+      "bind_addresses": [
+        "127.0.0.1"
+      ],
+      "credential_fields": [
+        "/inbounds/0/settings/secretKey"
+      ]
+    },
+    {
+      "path": "investigation/ss2022-wireguard-comparison/execution/configs/ss2022-wireguard-client.json",
+      "all_credential_fields_equal_explicit_private_loopback_fixture_constants": true,
+      "fixture_generator": "investigation/transport-e2e-comparison/execution/prepare_configs.py",
+      "bind_addresses": [
+        "127.0.0.1"
+      ],
+      "credential_fields": [
+        "/outbounds/0/settings/servers/0/password"
+      ]
+    },
+    {
+      "path": "investigation/ss2022-wireguard-comparison/execution/configs/ss2022-wireguard-relay.json",
+      "all_credential_fields_equal_explicit_private_loopback_fixture_constants": true,
+      "fixture_generator": "investigation/transport-e2e-comparison/execution/prepare_configs.py",
+      "bind_addresses": [
+        "127.0.0.1"
+      ],
+      "credential_fields": [
+        "/inbounds/0/settings/password",
+        "/outbounds/0/settings/secretKey"
+      ]
+    }
+  ],
+  "archives_scanned": [
+    {
+      "path": "investigation/ss2022-wireguard-comparison/smoke-tcp/raw.tar.gz",
+      "members": 29,
+      "uncompressed_bytes": 8148761,
+      "largest_member": 2674074,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/ss2022-wireguard-comparison/smoke-udp/raw.tar.gz",
+      "members": 30,
+      "uncompressed_bytes": 859913,
+      "largest_member": 230715,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/ss2022-wireguard-comparison/timing-tcp/raw.tar.gz",
+      "members": 145,
+      "uncompressed_bytes": 585381,
+      "largest_member": 14835,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/ss2022-wireguard-comparison/timing-udp/raw.tar.gz",
+      "members": 145,
+      "uncompressed_bytes": 612383,
+      "largest_member": 14297,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/diagnostic-v2-packet-stage.tar.gz",
+      "members": 11,
+      "uncompressed_bytes": 2913939,
+      "largest_member": 1090248,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/diagnostic-v2-passive-delivery.tar.gz",
+      "members": 7,
+      "uncompressed_bytes": 128841,
+      "largest_member": 112469,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/smoke-v1/raw.tar.gz",
+      "members": 25,
+      "uncompressed_bytes": 62316,
+      "largest_member": 7114,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/smoke-v2/raw.tar.gz",
+      "members": 26,
+      "uncompressed_bytes": 63246,
+      "largest_member": 7128,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/tcp-cohort-v2/raw.tar.gz",
+      "members": 649,
+      "uncompressed_bytes": 2637762,
+      "largest_member": 18308,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/tcp-smoke-v2.tar.gz",
+      "members": 109,
+      "uncompressed_bytes": 23834669,
+      "largest_member": 2691464,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/udp-cohort-lossaware-v1/raw.tar.gz",
+      "members": 649,
+      "uncompressed_bytes": 2858597,
+      "largest_member": 18308,
+      "executable_members": []
+    },
+    {
+      "path": "investigation/transport-e2e-comparison/udp-smoke-lossaware-v1/raw.tar.gz",
+      "members": 110,
+      "uncompressed_bytes": 2041896,
+      "largest_member": 228178,
+      "executable_members": []
+    }
+  ],
+  "raw_go_files_in_evidence": [],
+  "excluded": [
+    "All .jspace private controller directories",
+    "All __pycache__ directories",
+    "Latest sustained/recovery evidence root",
+    "Unrelated investigations except exact17 direct dependencies of already committed performance-last-three-loops.html"
+  ],
+  "test_policy": "No production source changed since frozen measured hybrid1a52; no new code test/build or old benchmark rerun. Publication-specific JSON/body/link/scope/auth checks are exercised; previous implementation receipts are historical only."
+}

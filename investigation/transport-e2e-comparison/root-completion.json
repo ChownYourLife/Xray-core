@@ -1,0 +1,121 @@
+{
+  "goal_readback": "Compare four pinned actual Xray relay products for real standaloneSSclassic/SS2022 and SSclassic/VLESS/VMess-to-WG chains, separately measured TCP and truthful loss-aware UDP with seven matched rounds, verified goodput/RTT and reproducible evidence.",
+  "criteria": [
+    {
+      "criterion": "Four actual whole-product pinned sources, not sender-swapped fixtures",
+      "satisfied": true,
+      "evidence": [
+        "sources.json",
+        "source-commands.json"
+      ]
+    },
+    {
+      "criterion": "Five workloads with classicSS andSS2022 separately, all three requested inbound-to-WG chains",
+      "satisfied": true,
+      "evidence": [
+        "config-pins.json",
+        "plan.json"
+      ]
+    },
+    {
+      "criterion": "Real Xray processes and candidate-relay placement with fixed hybrid client/gateway",
+      "satisfied": true,
+      "evidence": [
+        "tcp-smoke-v2-finding.json",
+        "udp-smoke-lossaware-v1-acceptance.json"
+      ]
+    },
+    {
+      "criterion": "Upload/download receiver goodput, verified application bytes, real established64B echo and separate fresh response",
+      "satisfied": true,
+      "evidence": [
+        "summary-tcp.json",
+        "summary-udp.json"
+      ]
+    },
+    {
+      "criterion": "Exactly seven counterbalanced rounds in each separate protocol cohort, no timedretry/retune",
+      "satisfied": true,
+      "evidence": [
+        "tcp-cohort-v2/timing-tcp-v2/closure.json",
+        "udp-cohort-lossaware-v1/udp-cohort-lossaware-v1/closure.json"
+      ]
+    },
+    {
+      "criterion": "Source/binary/config/Go/CPU pins and complete raw integer durations/bytes retained",
+      "satisfied": true,
+      "evidence": [
+        "sources.json",
+        "harness-pins-v2.json",
+        "harness-pins-udp-lossaware-v1.json"
+      ]
+    },
+    {
+      "criterion": "Truthful loss-aware UDP identity/cutoff/counters, no DATAretries or all32ACKdeadlock",
+      "satisfied": true,
+      "evidence": [
+        "udp-smoke-lossaware-v1-acceptance.json",
+        "audit/independent-udp-reconciliation.json"
+      ]
+    },
+    {
+      "criterion": "Primary absolute medians and Q1/Q3/MAD dispersion independently reconciled",
+      "satisfied": true,
+      "evidence": [
+        "tcp-statistics-reconciliation.json",
+        "audit/independent-udp-reconciliation.json"
+      ]
+    },
+    {
+      "criterion": "Host networking/sysctls/routes untouched and preservation limitations explicitly accepted",
+      "satisfied": true,
+      "evidence": [
+        "tcp-preservation-explanation.json",
+        "udp-cohort-lossaware-v1/preservation.json",
+        "director-final-acceptance.json"
+      ]
+    },
+    {
+      "criterion": "No production code edits or commits; isolated actual scripts/configs/binaries external",
+      "satisfied": true,
+      "evidence": [
+        "sources.json",
+        "plan.json"
+      ]
+    },
+    {
+      "criterion": "Actual native task-generated self-contained report with all40primaryrows, no assets/scripts/charts, correct links/units",
+      "satisfied": true,
+      "evidence": [
+        "writer/round1.json",
+        "writer/round2.json",
+        "audit/report-audit.json"
+      ]
+    },
+    {
+      "criterion": "Independent director data and finalHTML/native-role acceptance, no self-review",
+      "satisfied": true,
+      "evidence": [
+        "director-data-acceptance.json",
+        "director-final-acceptance.json"
+      ]
+    }
+  ],
+  "exercised_checks": "Four actual XrayCLI builds, real-chain TCP20/UDP20smokes and route/removal controls, oneTCP140 and oneUDP140timing sequence, independent raw-stat and full static HTML/link validation; no production unit/race/lint suite claimed.",
+  "delivery": [
+    "report.html",
+    "summary-tcp.json",
+    "summary-udp.json",
+    "sources.json",
+    "config-pins.json",
+    "audit/report-audit.json"
+  ],
+  "limitations": [
+    "Whole-product/dependency differences are not isolated causal GSO/batching effects",
+    "Same-host IPv4 private loopback with supportCPU0,1 contention, not WAN capacity",
+    "UDP goodput includes100ms receiver drain and per32 reliable TCPcontrol; no cross-protocol capacity score",
+    "TCPfwupd disappeared, causeunobserved; no allservicesunchanged or contemporarymanual/containerXrayPID proof"
+  ],
+  "remaining_requested_behavior": [],
+  "ship_gate": "To be exercised after final map/read/report/review publication; stdout outside task root"
+}

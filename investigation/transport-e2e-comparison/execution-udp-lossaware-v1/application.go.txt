@@ -1,0 +1,264 @@
+// External-only UDP cohort application. Data is never retransmitted; final counters use TCP.
+package main
+
+import (
+    "bytes"
+    "crypto/rand"
+    "encoding/binary"
+    "encoding/json"
+    "flag"
+    "fmt"
+    "io"
+    "net"
+    "net/netip"
+    "os"
+    "sync"
+    "time"
+)
+
+const payloadSize = 1200
+const windowSize = 32
+const drainInterval = 100 * time.Millisecond
+const packetSize = 13 + payloadSize
+
+var pattern = func() []byte {
+    p := make([]byte, payloadSize)
+    x := uint32(0x98abcdef)
+    for i := range p { x ^= x << 13; x ^= x >> 17; x ^= x << 5; p[i] = byte(x) }
+    return p
+}()
+var echoPayload = func() []byte { p := make([]byte, 64); copy(p, pattern); p[0] = 'E'; return p }()
+var echoReceived [64]byte
+
+func must(err error) { if err != nil { panic(err) } }
+func writeAll(w io.Writer, p []byte) {
+    for len(p) > 0 { n, err := w.Write(p); must(err); if n == 0 { panic("short write") }; p = p[n:] }
+}
+func readExact(r io.Reader, p []byte) { _, err := io.ReadFull(r, p); must(err) }
+func dial(network, address string) net.Conn {
+    c, err := net.DialTimeout(network, address, 5*time.Second); must(err)
+    must(c.SetDeadline(time.Now().Add(60*time.Second))); return c
+}
+func echo(c net.Conn) int64 {
+    began := time.Now(); writeAll(c, echoPayload); readExact(c, echoReceived[:])
+    if !bytes.Equal(echoReceived[:], echoPayload) { panic("echo payload mismatch") }
+    return time.Since(began).Nanoseconds()
+}
+func makePacket(id uint64) []byte {
+    p := make([]byte, packetSize); p[0] = 'P'; binary.BigEndian.PutUint64(p[1:9], id)
+    copy(p[13:], pattern); return p
+}
+
+type counters struct {
+    Offered uint64 `json:"offered_datagrams"`
+    Unique uint64 `json:"unique_verified_datagrams"`
+    Duplicates uint64 `json:"duplicate_datagrams"`
+    Corrupt uint64 `json:"corrupt_datagrams"`
+    DurationNS uint64 `json:"receiver_duration_ns"`
+}
+func (r counters) encode() [40]byte {
+    var b [40]byte
+    for i, v := range []uint64{r.Offered, r.Unique, r.Duplicates, r.Corrupt, r.DurationNS} {
+        binary.BigEndian.PutUint64(b[i*8:], v)
+    }
+    return b
+}
+func decode(b []byte) counters {
+    return counters{binary.BigEndian.Uint64(b), binary.BigEndian.Uint64(b[8:]),
+        binary.BigEndian.Uint64(b[16:]), binary.BigEndian.Uint64(b[24:]), binary.BigEndian.Uint64(b[32:])}
+}
+type receiver struct {
+    mu sync.Mutex
+    seen []uint64
+    report counters
+    begun time.Time
+    first time.Time
+    cutoff time.Time
+    closed bool
+}
+func newReceiver(packets uint32) *receiver {
+    return &receiver{seen: make([]uint64, (packets+63)/64), report: counters{Offered:uint64(packets)}, begun:time.Now()}
+}
+func (r *receiver) receive(p []byte, id uint64) {
+    r.mu.Lock(); defer r.mu.Unlock()
+    observed := time.Now()
+    if r.closed || (!r.cutoff.IsZero() && !observed.Before(r.cutoff)) { return }
+    if len(p) != packetSize || p[0] != 'P' || binary.BigEndian.Uint64(p[1:9]) != id || !bytes.Equal(p[13:], pattern) {
+        r.report.Corrupt++; return
+    }
+    seq := binary.BigEndian.Uint32(p[9:13])
+    if uint64(seq) >= r.report.Offered { r.report.Corrupt++; return }
+    bit := uint64(1) << (seq%64)
+    if r.seen[seq/64]&bit != 0 { r.report.Duplicates++; return }
+    if r.first.IsZero() { r.first = observed }
+    r.seen[seq/64] |= bit; r.report.Unique++
+}
+func (r *receiver) beginDrain() time.Time {
+    r.mu.Lock(); defer r.mu.Unlock()
+    r.cutoff = time.Now().Add(drainInterval); return r.cutoff
+}
+func (r *receiver) finish() counters {
+    r.mu.Lock(); defer r.mu.Unlock()
+    if r.cutoff.IsZero() || time.Now().Before(r.cutoff) { panic("receiver finalized before drain cutoff") }
+    r.closed = true
+    began := r.first; if began.IsZero() { began = r.begun }
+    r.report.DurationNS = uint64(r.cutoff.Sub(began).Nanoseconds()); return r.report
+}
+type transfer struct { address netip.AddrPort; receiver *receiver; direction byte }
+type server struct { mu sync.Mutex; flows map[uint64]*transfer; udp *net.UDPConn }
+func (s *server) lookup(id uint64) *transfer {
+    s.mu.Lock(); defer s.mu.Unlock(); return s.flows[id]
+}
+func (s *server) remove(id uint64) { s.mu.Lock(); delete(s.flows,id); s.mu.Unlock() }
+func (s *server) serveUDP() {
+    buf := make([]byte, 65535)
+    var ack [9]byte; ack[0] = 'K'
+    for {
+        n, address, err := s.udp.ReadFromUDPAddrPort(buf); must(err)
+        p := buf[:n]
+        if n == 64 && p[0] == 'E' { _, err = s.udp.WriteToUDPAddrPort(p,address); must(err); continue }
+        if n == 14 && p[0] == 'B' {
+            id := binary.BigEndian.Uint64(p[1:9]); packets := binary.BigEndian.Uint32(p[9:13]); direction := p[13]
+            if packets == 0 || packets > 1<<20 || (direction!='U' && direction!='D') { panic("invalid transfer begin") }
+            s.mu.Lock()
+            if s.flows[id] != nil { s.mu.Unlock(); panic("duplicate active transfer ID") }
+            s.flows[id] = &transfer{address,newReceiver(packets),direction}; s.mu.Unlock()
+            binary.BigEndian.PutUint64(ack[1:],id); _, err=s.udp.WriteToUDPAddrPort(ack[:],address); must(err); continue
+        }
+        if n >= 9 && p[0] == 'P' {
+            id := binary.BigEndian.Uint64(p[1:9]); flow := s.lookup(id)
+            if flow != nil && flow.direction=='U' && flow.address==address { flow.receiver.receive(p,id) }
+        }
+        // Packets outside the explicit registered transfer/drain interval are not counted.
+    }
+}
+func (s *server) serveControl(c net.Conn) {
+    defer c.Close()
+    defer func() { if e:=recover(); e!=nil { fmt.Fprintln(os.Stderr,"control session:",e) } }()
+    var op [1]byte; var idbuf [8]byte; var args [8]byte; var encoded [40]byte
+    packet := makePacket(0)
+    for {
+        must(c.SetDeadline(time.Now().Add(60*time.Second)))
+        _, err:=io.ReadFull(c,op[:]); if err==io.EOF { return }; must(err)
+        readExact(c,idbuf[:]); id:=binary.BigEndian.Uint64(idbuf[:]); flow:=s.lookup(id)
+        if flow==nil { panic("unknown control transfer") }
+        switch op[0] {
+        case 'W':
+            // A reliable progress barrier, NOT a claim that all offered UDP data arrived.
+            writeAll(c,[]byte{'K'})
+        case 'Q':
+            if flow.direction!='U' { panic("upload report for download") }
+            cutoff:=flow.receiver.beginDrain(); time.Sleep(time.Until(cutoff))
+            report:=flow.receiver.finish(); s.remove(id); b:=report.encode(); writeAll(c,b[:])
+        case 'D':
+            if flow.direction!='D' { panic("download request for upload") }
+            readExact(c,args[:]); base:=binary.BigEndian.Uint32(args[:4]); count:=binary.BigEndian.Uint32(args[4:])
+            if count>windowSize || uint64(base)+uint64(count)>flow.receiver.report.Offered { panic("invalid download window") }
+            binary.BigEndian.PutUint64(packet[1:9],id)
+            for seq:=base; seq<base+count; seq++ {
+                binary.BigEndian.PutUint32(packet[9:13],seq)
+                _,err:=s.udp.WriteToUDPAddrPort(packet,flow.address); must(err)
+            }
+            writeAll(c,[]byte{'K'})
+        case 'F':
+            if flow.direction!='D' { panic("download final report for upload") }
+            readExact(c,encoded[:]); report:=decode(encoded[:])
+            if report.Offered!=flow.receiver.report.Offered || report.Unique>report.Offered { panic("invalid final receiver count") }
+            s.remove(id); writeAll(c,encoded[:])
+        default: panic("unknown control operation")
+        }
+    }
+}
+func serve(address string) {
+    tcp,err:=net.Listen("tcp",address); must(err)
+    udpAddress,err:=net.ResolveUDPAddr("udp",address); must(err)
+    udp,err:=net.ListenUDP("udp",udpAddress); must(err)
+    s:=&server{flows:make(map[uint64]*transfer),udp:udp}; go s.serveUDP()
+    fmt.Println("READY",address)
+    for { c,err:=tcp.Accept(); must(err); go s.serveControl(c) }
+}
+func controlRequest(c net.Conn, op byte, id uint64) {
+    var b [9]byte; b[0]=op; binary.BigEndian.PutUint64(b[1:],id); writeAll(c,b[:])
+}
+func controlAck(c net.Conn) { var ack [1]byte; readExact(c,ack[:]); if ack[0]!='K' { panic("control ACK mismatch") } }
+func newTransfer(c net.Conn, packets uint32, direction byte) uint64 {
+    for range 32 { echo(c) } // Fresh actual proxy flow warmup, outside throughput measurement.
+    var random [8]byte; _,err:=rand.Read(random[:]); must(err); id:=binary.BigEndian.Uint64(random[:])
+    var b [14]byte; b[0]='B'; binary.BigEndian.PutUint64(b[1:9],id); binary.BigEndian.PutUint32(b[9:13],packets); b[13]=direction
+    writeAll(c,b[:]); var ack [9]byte; readExact(c,ack[:])
+    if ack[0]!='K' || binary.BigEndian.Uint64(ack[1:])!=id { panic("begin identity ACK mismatch") }
+    return id
+}
+func transferUDP(address,direction string, offered uint64) map[string]any {
+    packets:=uint32(offered/payloadSize/windowSize)*windowSize
+    if packets==0 { panic("empty offered transfer") }
+    data:=dial("udp",address); defer data.Close()
+    op:=byte('U'); if direction=="download" { op='D' }
+    id:=newTransfer(data,packets,op)
+    control:=dial("tcp",address); defer control.Close()
+    packet:=makePacket(id); var window [8]byte; var report counters
+    var receiverDone chan error
+    var local *receiver
+    if direction=="download" {
+        local=newReceiver(packets); receiverDone=make(chan error,1)
+        go func() {
+            buffer:=make([]byte,65535)
+            for { n,err:=data.Read(buffer); if err!=nil { receiverDone<-err; return }; local.receive(buffer[:n],id) }
+        }()
+    }
+    offeredStart:=time.Now()
+    for base:=uint32(0); base<packets; base+=windowSize {
+        if direction=="upload" {
+            for seq:=base; seq<base+windowSize; seq++ { binary.BigEndian.PutUint32(packet[9:13],seq); writeAll(data,packet) }
+            controlRequest(control,'W',id); controlAck(control)
+        } else {
+            controlRequest(control,'D',id); binary.BigEndian.PutUint32(window[:4],base); binary.BigEndian.PutUint32(window[4:],windowSize)
+            writeAll(control,window[:]); controlAck(control)
+        }
+    }
+    offeredDuration:=time.Since(offeredStart).Nanoseconds()
+    var encoded [40]byte
+    if direction=="upload" {
+        controlRequest(control,'Q',id); readExact(control,encoded[:]); report=decode(encoded[:])
+    } else {
+        cutoff:=local.beginDrain(); must(data.SetReadDeadline(cutoff))
+        err:=<-receiverDone
+        if timeout,ok:=err.(net.Error); !ok || !timeout.Timeout() { panic(err) }
+        report=local.finish(); encoded=report.encode(); controlRequest(control,'F',id); writeAll(control,encoded[:])
+        var confirmed [40]byte; readExact(control,confirmed[:]); if confirmed!=encoded { panic("reliable receiver report mismatch") }
+    }
+    if report.Unique>uint64(packets) || report.Offered!=uint64(packets) { panic("receiver accounting exceeds offer") }
+    return map[string]any{"direction":direction,"transfer_id":id,"offered_datagrams":packets,
+        "offered_bytes":uint64(packets)*payloadSize,"delivered_bytes":report.Unique*payloadSize,
+        "unique_verified_datagrams":report.Unique,"lost_datagrams":uint64(packets)-report.Unique,
+        "duplicate_datagrams":report.Duplicates,"corrupt_datagrams":report.Corrupt,
+        "receiver_duration_ns":report.DurationNS,"offered_duration_ns":offeredDuration,
+        "drain_bound_ns":drainInterval.Nanoseconds(),"payload_bytes_per_datagram":payloadSize,
+        "drain_definition":"Upload: exactly100ms from final reliable Q receipt at receiver; download: exactly100ms from final D response at client. Counter observations serialized under receiver lock; data observed at/after cutoff is excluded; final snapshot uses same lock.",
+        "application_window_datagrams":windowSize,"retransmissions":0,
+        "verified_all_counted_bytes":true,"final_receiver_counters_via_reliable_control":true,
+        "control_path":"Separate TCP application connection through the same fixed-client/candidate-relay/gateway route; one progress barrier per32 offered UDP datagrams, no all-data-arrived ACK assumption"}
+}
+func client(address string,offered uint64,samples int) {
+    probe:=dial("udp",address); for range 32 { echo(probe) }; probe.Close()
+    setup:=make([]int64,8)
+    for i:=range setup { began:=time.Now(); c:=dial("udp",address); echo(c); setup[i]=time.Since(began).Nanoseconds(); c.Close() }
+    flow:=dial("udp",address); for range 32 { echo(flow) }
+    rtt:=make([]int64,samples)
+    for i:=range rtt { rtt[i]=echo(flow) }; flow.Close()
+    transfers:=make([]map[string]any,0,2)
+    for _,direction:=range []string{"upload","download"} {
+        transfers=append(transfers,transferUDP(address,direction,offered))
+    }
+    must(json.NewEncoder(os.Stdout).Encode(map[string]any{"network":"udp","cohort":"loss-aware-UDP-final",
+        "established_rtt_ns":rtt,"setup_first_response_ns":setup,"transfers":transfers,
+        "rtt_definition":"Established64B request/verified64B response on actual proxied UDP flow, preallocated buffers,32 warmups excluded",
+        "setup_definition":"Fresh UDP application flow through first verified64B response, proxy/WG association prewarmed",
+        "goodput_definition":"Actual unique verified delivered bytes divided by receiver first-data-to-fixed-drain-cutoff duration, includes declared100ms receiver drain and control/barrier overhead; not raw unpaced UDP capacity; zero received uses begin-to-cutoff duration",
+        "loss_definition":"Offered unique datagrams minus unique verified received datagrams within fixed drain bound; no DATA retransmission"}))
+}
+func main() {
+    mode:=flag.String("mode","client","client or server"); address:=flag.String("addr","127.0.0.1:19090","address")
+    offered:=flag.Uint64("bytes",16*1024*1024,"offered UDP bytes rounded to32x1200B windows"); samples:=flag.Int("samples",256,"RTT samples")
+    flag.Parse(); if *mode=="server" { serve(*address) } else { client(*address,*offered,*samples) }
+}

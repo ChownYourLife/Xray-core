@@ -1,0 +1,30 @@
+[
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "tcp",
+    "variant": "official",
+    "status": "passed"
+  },
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "tcp",
+    "variant": "original-gso",
+    "status": "passed"
+  },
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "tcp",
+    "variant": "batching-only",
+    "status": "passed"
+  },
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "tcp",
+    "variant": "hybrid",
+    "status": "passed"
+  }
+]

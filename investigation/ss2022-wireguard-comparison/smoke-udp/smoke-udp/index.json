@@ -1,0 +1,30 @@
+[
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "udp",
+    "variant": "official",
+    "status": "passed"
+  },
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "udp",
+    "variant": "original-gso",
+    "status": "passed"
+  },
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "udp",
+    "variant": "batching-only",
+    "status": "passed"
+  },
+  {
+    "round": 0,
+    "case": "ss2022-wireguard",
+    "network": "udp",
+    "variant": "hybrid",
+    "status": "passed"
+  }
+]

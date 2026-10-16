@@ -1,0 +1,90 @@
+{
+  "scope": "Independent raw recomputation then numeric comparison against executor summaries",
+  "raw_cells": {
+    "tcp": 28,
+    "udp": 28,
+    "total": 56
+  },
+  "groups": {
+    "tcp": 4,
+    "udp": 4,
+    "total": 8
+  },
+  "compared_numeric_values": 1400,
+  "producer_summary_omissions": [
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "official"
+      ],
+      "field": "upload_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    },
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "official"
+      ],
+      "field": "download_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    },
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "original-gso"
+      ],
+      "field": "upload_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    },
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "original-gso"
+      ],
+      "field": "download_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    },
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "batching-only"
+      ],
+      "field": "upload_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    },
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "batching-only"
+      ],
+      "field": "download_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    },
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "hybrid"
+      ],
+      "field": "upload_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    },
+    {
+      "key": [
+        "ss2022-wireguard",
+        "udp",
+        "hybrid"
+      ],
+      "field": "download_corrupt_datagrams",
+      "omitted_but_all_raw_values_zero": true
+    }
+  ],
+  "result": "match",
+  "independent_result": "audit/independent-results.json"
+}

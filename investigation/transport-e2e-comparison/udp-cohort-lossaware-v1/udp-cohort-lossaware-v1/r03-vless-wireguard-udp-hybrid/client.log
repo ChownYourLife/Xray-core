@@ -1,0 +1,19 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 18:11:54.517152 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-udp-final-20261015/configs/vless-wireguard-client.json Format:json}
+2026/10/15 18:11:54.518342 [Warning] core: Xray 26.10.10 started
+2026/10/15 18:11:54.527841 from 127.0.0.1:59036 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.529811 from 127.0.0.1:39826 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.544134 from 127.0.0.1:46022 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.544965 from 127.0.0.1:60157 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.545793 from 127.0.0.1:54299 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.546563 from 127.0.0.1:58907 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.547273 from 127.0.0.1:52124 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.548058 from 127.0.0.1:42434 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.548889 from 127.0.0.1:47956 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.549630 from 127.0.0.1:43115 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.550427 from 127.0.0.1:46693 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.620298 from 127.0.0.1:47046 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:54.628565 from 127.0.0.1:59050 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:55.016228 from 127.0.0.1:54294 accepted udp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 18:11:55.025511 from 127.0.0.1:59058 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]

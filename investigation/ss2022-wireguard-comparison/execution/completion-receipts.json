@@ -1,0 +1,66 @@
+{
+  "timing": {
+    "tcp": {
+      "closure": {
+        "finished_utc": "2026-10-15T19:20:32.915468+00:00",
+        "completed_cells": 28,
+        "expected_cells": 28,
+        "all_passed": true
+      },
+      "same_pins_as_accepted_smoke": true,
+      "direct_taskset_affinity_all_cells": true,
+      "index_sha256": "19f5bb95b1c61ccfa728fdb9fc90f3a387100980f310dd19951f5efcd59bc99c"
+    },
+    "udp": {
+      "closure": {
+        "finished_utc": "2026-10-15T19:21:32.946559+00:00",
+        "completed_cells": 28,
+        "expected_cells": 28,
+        "all_passed": true
+      },
+      "same_pins_as_accepted_smoke": true,
+      "direct_taskset_affinity_all_cells": true,
+      "index_sha256": "0244bc61170ed05fb10710695dcef1bf55013bcd150425121e1e0a85957f8e3f"
+    }
+  },
+  "host_preservation": {
+    "tcp": {
+      "host_netns_unchanged": true,
+      "ipv6_sysctls_unchanged": true,
+      "v4_routes_unchanged": true,
+      "v6_routes_unchanged": true,
+      "running_services_unchanged": true
+    },
+    "udp": {
+      "host_netns_unchanged": true,
+      "ipv6_sysctls_unchanged": true,
+      "v4_routes_unchanged": true,
+      "v6_routes_unchanged": true,
+      "running_services_unchanged": true
+    }
+  },
+  "baseline_artifacts": {
+    "report.html": {
+      "unchanged": true,
+      "sha256": "e9d8550dac4304221c5e01521896d0ecbe9d444f4265ad84e2a403c5a939d197"
+    },
+    "summary-tcp.json": {
+      "unchanged": true,
+      "sha256": "e6492610f214a7f12b742c76eccac6b4951f820af0845829ad17f3274f74183d"
+    },
+    "summary-udp.json": {
+      "unchanged": true,
+      "sha256": "9b5db15d82e6334edc23d3ca4cab5988dc8a002112b7353470229feec45f6d3f"
+    }
+  },
+  "source_snapshot_rename": {
+    "tcp": {
+      "snapshot": "execution/tcp/application.go.txt",
+      "same_bytes_as_external": true
+    },
+    "udp": {
+      "snapshot": "execution/udp/application.go.txt",
+      "same_bytes_as_external": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "ssh",
+    "-i",
+    "/Users/hosi/.ssh/id_ed25519",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ServerAliveInterval=30",
+    "-o",
+    "ServerAliveCountMax=6",
+    "root@216.195.211.248",
+    "unshare --net python3 /tmp/xray-transport-e2e-comparison-udp-final-20261015/udp_cohort.py --phase smoke --output /tmp/xray-transport-e2e-comparison-udp-final-20261015/udp-smoke-lossaware-v1"
+  ],
+  "exit": 0,
+  "output": "2026-10-15T18:06:08.660278+00:00 r00-ssclassic-freedom-udp-official passed\n2026-10-15T18:06:08.962335+00:00 r00-ssclassic-freedom-udp-original-gso passed\n2026-10-15T18:06:09.266233+00:00 r00-ssclassic-freedom-udp-batching-only passed\n2026-10-15T18:06:09.582952+00:00 r00-ssclassic-freedom-udp-hybrid passed\n2026-10-15T18:06:09.877300+00:00 r00-ss2022-freedom-udp-official passed\n2026-10-15T18:06:10.160870+00:00 r00-ss2022-freedom-udp-original-gso passed\n2026-10-15T18:06:10.441860+00:00 r00-ss2022-freedom-udp-batching-only passed\n2026-10-15T18:06:10.733008+00:00 r00-ss2022-freedom-udp-hybrid passed\n2026-10-15T18:06:14.176924+00:00 r00-ssclassic-wireguard-udp-official passed\n2026-10-15T18:06:17.659052+00:00 r00-ssclassic-wireguard-udp-original-gso passed\n2026-10-15T18:06:21.122283+00:00 r00-ssclassic-wireguard-udp-batching-only passed\n2026-10-15T18:06:24.662032+00:00 r00-ssclassic-wireguard-udp-hybrid passed\n2026-10-15T18:06:28.104328+00:00 r00-vless-wireguard-udp-official passed\n2026-10-15T18:06:31.552928+00:00 r00-vless-wireguard-udp-original-gso passed\n2026-10-15T18:06:34.948948+00:00 r00-vless-wireguard-udp-batching-only passed\n2026-10-15T18:06:38.389896+00:00 r00-vless-wireguard-udp-hybrid passed\n2026-10-15T18:06:41.859123+00:00 r00-vmess-wireguard-udp-official passed\n2026-10-15T18:06:45.310781+00:00 r00-vmess-wireguard-udp-original-gso passed\n2026-10-15T18:06:48.738635+00:00 r00-vmess-wireguard-udp-batching-only passed\n2026-10-15T18:06:52.155673+00:00 r00-vmess-wireguard-udp-hybrid passed\n"
+}

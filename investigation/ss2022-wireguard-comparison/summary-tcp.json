@@ -1,0 +1,924 @@
+{
+  "network": "tcp",
+  "cells": 28,
+  "matched_rounds": 7,
+  "primary_summary": "Median of seven matched round measurements. Established RTT first reduces256 raw64B echo durations to one median per round, then takes median of seven; not pooled request median. Setup first reduces8 fresh-flow first-response samples per round.",
+  "units": "Decimal MB/s (bytes*1000/ns), Mbit/s=MB/s*8, latency us=ns/1000; raw integer durations retained in source files.",
+  "dispersion": "Inclusive linear Q1/Q3; median absolute deviation over seven round values.",
+  "groups": [
+    {
+      "case": "ss2022-wireguard",
+      "network": "tcp",
+      "variant": "batching-only",
+      "rounds": [
+        {
+          "round": 1,
+          "source": "r01-ss2022-wireguard-tcp-batching-only/sample.json",
+          "established_rtt_round_median_ns": 284789.0,
+          "setup_first_response_round_median_ns": 1064141.5,
+          "upload_MB_s": 186.11379345812614,
+          "upload_Mbit_s": 1488.910347665009,
+          "download_MB_s": 203.40897141073825,
+          "download_Mbit_s": 1627.271771285906
+        },
+        {
+          "round": 2,
+          "source": "r02-ss2022-wireguard-tcp-batching-only/sample.json",
+          "established_rtt_round_median_ns": 281945.0,
+          "setup_first_response_round_median_ns": 1165394.5,
+          "upload_MB_s": 196.89215855108765,
+          "upload_Mbit_s": 1575.1372684087012,
+          "download_MB_s": 216.57545319208955,
+          "download_Mbit_s": 1732.6036255367164
+        },
+        {
+          "round": 3,
+          "source": "r03-ss2022-wireguard-tcp-batching-only/sample.json",
+          "established_rtt_round_median_ns": 347485.0,
+          "setup_first_response_round_median_ns": 1184930.0,
+          "upload_MB_s": 189.24564045928784,
+          "upload_Mbit_s": 1513.9651236743027,
+          "download_MB_s": 236.5617186012266,
+          "download_Mbit_s": 1892.4937488098128
+        },
+        {
+          "round": 4,
+          "source": "r04-ss2022-wireguard-tcp-batching-only/sample.json",
+          "established_rtt_round_median_ns": 264893.5,
+          "setup_first_response_round_median_ns": 1099229.5,
+          "upload_MB_s": 211.34680293253865,
+          "upload_Mbit_s": 1690.7744234603092,
+          "download_MB_s": 230.69334154772744,
+          "download_Mbit_s": 1845.5467323818195
+        },
+        {
+          "round": 5,
+          "source": "r05-ss2022-wireguard-tcp-batching-only/sample.json",
+          "established_rtt_round_median_ns": 267769.0,
+          "setup_first_response_round_median_ns": 1225466.5,
+          "upload_MB_s": 183.04892542270153,
+          "upload_Mbit_s": 1464.3914033816122,
+          "download_MB_s": 206.12875294447207,
+          "download_Mbit_s": 1649.0300235557766
+        },
+        {
+          "round": 6,
+          "source": "r06-ss2022-wireguard-tcp-batching-only/sample.json",
+          "established_rtt_round_median_ns": 253593.5,
+          "setup_first_response_round_median_ns": 1049679.0,
+          "upload_MB_s": 187.33925951049252,
+          "upload_Mbit_s": 1498.7140760839402,
+          "download_MB_s": 250.9294347469777,
+          "download_Mbit_s": 2007.4354779758216
+        },
+        {
+          "round": 7,
+          "source": "r07-ss2022-wireguard-tcp-batching-only/sample.json",
+          "established_rtt_round_median_ns": 365625.5,
+          "setup_first_response_round_median_ns": 1346478.0,
+          "upload_MB_s": 175.3831102241516,
+          "upload_Mbit_s": 1403.0648817932129,
+          "download_MB_s": 197.83222269437906,
+          "download_Mbit_s": 1582.6577815550324
+        }
+      ],
+      "established_rtt_round_median_ns": {
+        "n": 7,
+        "median": 281945.0,
+        "q1": 266331.25,
+        "q3": 316137.0,
+        "min": 253593.5,
+        "max": 365625.5,
+        "mad": 17051.5,
+        "round_values": [
+          284789.0,
+          281945.0,
+          347485.0,
+          264893.5,
+          267769.0,
+          253593.5,
+          365625.5
+        ]
+      },
+      "setup_first_response_round_median_ns": {
+        "n": 7,
+        "median": 1165394.5,
+        "q1": 1081685.5,
+        "q3": 1205198.25,
+        "min": 1049679.0,
+        "max": 1346478.0,
+        "mad": 66165.0,
+        "round_values": [
+          1064141.5,
+          1165394.5,
+          1184930.0,
+          1099229.5,
+          1225466.5,
+          1049679.0,
+          1346478.0
+        ]
+      },
+      "upload_MB_s": {
+        "n": 7,
+        "median": 187.33925951049252,
+        "q1": 184.58135944041385,
+        "q3": 193.06889950518774,
+        "min": 175.3831102241516,
+        "max": 211.34680293253865,
+        "mad": 4.2903340877909955,
+        "round_values": [
+          186.11379345812614,
+          196.89215855108765,
+          189.24564045928784,
+          211.34680293253865,
+          183.04892542270153,
+          187.33925951049252,
+          175.3831102241516
+        ]
+      },
+      "upload_Mbit_s": {
+        "n": 7,
+        "median": 1498.7140760839402,
+        "q1": 1476.6508755233108,
+        "q3": 1544.551196041502,
+        "min": 1403.0648817932129,
+        "max": 1690.7744234603092,
+        "mad": 34.322672702327964,
+        "round_values": [
+          1488.910347665009,
+          1575.1372684087012,
+          1513.9651236743027,
+          1690.7744234603092,
+          1464.3914033816122,
+          1498.7140760839402,
+          1403.0648817932129
+        ]
+      },
+      "download_MB_s": {
+        "n": 7,
+        "median": 216.57545319208955,
+        "q1": 204.76886217760517,
+        "q3": 233.62753007447702,
+        "min": 197.83222269437906,
+        "max": 250.9294347469777,
+        "mad": 14.117888355637888,
+        "round_values": [
+          203.40897141073825,
+          216.57545319208955,
+          236.5617186012266,
+          230.69334154772744,
+          206.12875294447207,
+          250.9294347469777,
+          197.83222269437906
+        ]
+      },
+      "download_Mbit_s": {
+        "n": 7,
+        "median": 1732.6036255367164,
+        "q1": 1638.1508974208414,
+        "q3": 1869.0202405958162,
+        "min": 1582.6577815550324,
+        "max": 2007.4354779758216,
+        "mad": 112.9431068451031,
+        "round_values": [
+          1627.271771285906,
+          1732.6036255367164,
+          1892.4937488098128,
+          1845.5467323818195,
+          1649.0300235557766,
+          2007.4354779758216,
+          1582.6577815550324
+        ]
+      },
+      "established_rtt_us": {
+        "n": 7,
+        "median": 281.945,
+        "q1": 266.33125,
+        "q3": 316.137,
+        "min": 253.5935,
+        "max": 365.6255,
+        "mad": 17.051499999999976,
+        "round_values": [
+          284.789,
+          281.945,
+          347.485,
+          264.8935,
+          267.769,
+          253.5935,
+          365.6255
+        ]
+      },
+      "setup_first_response_us": {
+        "n": 7,
+        "median": 1165.3945,
+        "q1": 1081.6855,
+        "q3": 1205.19825,
+        "min": 1049.679,
+        "max": 1346.478,
+        "mad": 66.16500000000019,
+        "round_values": [
+          1064.1415,
+          1165.3945,
+          1184.93,
+          1099.2295,
+          1225.4665,
+          1049.679,
+          1346.478
+        ]
+      }
+    },
+    {
+      "case": "ss2022-wireguard",
+      "network": "tcp",
+      "variant": "hybrid",
+      "rounds": [
+        {
+          "round": 1,
+          "source": "r01-ss2022-wireguard-tcp-hybrid/sample.json",
+          "established_rtt_round_median_ns": 308966.0,
+          "setup_first_response_round_median_ns": 1326992.0,
+          "upload_MB_s": 207.62433470913675,
+          "upload_Mbit_s": 1660.994677673094,
+          "download_MB_s": 213.9901422597289,
+          "download_Mbit_s": 1711.9211380778313
+        },
+        {
+          "round": 2,
+          "source": "r02-ss2022-wireguard-tcp-hybrid/sample.json",
+          "established_rtt_round_median_ns": 298860.0,
+          "setup_first_response_round_median_ns": 1309402.0,
+          "upload_MB_s": 228.28210326015528,
+          "upload_Mbit_s": 1826.2568260812423,
+          "download_MB_s": 211.06957475749334,
+          "download_Mbit_s": 1688.5565980599467
+        },
+        {
+          "round": 3,
+          "source": "r03-ss2022-wireguard-tcp-hybrid/sample.json",
+          "established_rtt_round_median_ns": 262338.5,
+          "setup_first_response_round_median_ns": 1084867.5,
+          "upload_MB_s": 183.46142942807091,
+          "upload_Mbit_s": 1467.6914354245673,
+          "download_MB_s": 184.32955843940445,
+          "download_Mbit_s": 1474.6364675152356
+        },
+        {
+          "round": 4,
+          "source": "r04-ss2022-wireguard-tcp-hybrid/sample.json",
+          "established_rtt_round_median_ns": 295670.5,
+          "setup_first_response_round_median_ns": 999701.5,
+          "upload_MB_s": 195.8419959718317,
+          "upload_Mbit_s": 1566.7359677746535,
+          "download_MB_s": 210.6165030486745,
+          "download_Mbit_s": 1684.932024389396
+        },
+        {
+          "round": 5,
+          "source": "r05-ss2022-wireguard-tcp-hybrid/sample.json",
+          "established_rtt_round_median_ns": 282759.0,
+          "setup_first_response_round_median_ns": 1250467.0,
+          "upload_MB_s": 220.71238603312258,
+          "upload_Mbit_s": 1765.6990882649807,
+          "download_MB_s": 191.7745648086808,
+          "download_Mbit_s": 1534.1965184694463
+        },
+        {
+          "round": 6,
+          "source": "r06-ss2022-wireguard-tcp-hybrid/sample.json",
+          "established_rtt_round_median_ns": 349120.5,
+          "setup_first_response_round_median_ns": 1329588.0,
+          "upload_MB_s": 209.63962589754968,
+          "upload_Mbit_s": 1677.1170071803974,
+          "download_MB_s": 226.92447303435372,
+          "download_Mbit_s": 1815.3957842748298
+        },
+        {
+          "round": 7,
+          "source": "r07-ss2022-wireguard-tcp-hybrid/sample.json",
+          "established_rtt_round_median_ns": 286003.5,
+          "setup_first_response_round_median_ns": 1275048.0,
+          "upload_MB_s": 198.46053382608648,
+          "upload_Mbit_s": 1587.6842706086918,
+          "download_MB_s": 171.7364200492232,
+          "download_Mbit_s": 1373.8913603937856
+        }
+      ],
+      "established_rtt_round_median_ns": {
+        "n": 7,
+        "median": 295670.5,
+        "q1": 284381.25,
+        "q3": 303913.0,
+        "min": 262338.5,
+        "max": 349120.5,
+        "mad": 12911.5,
+        "round_values": [
+          308966.0,
+          298860.0,
+          262338.5,
+          295670.5,
+          282759.0,
+          349120.5,
+          286003.5
+        ]
+      },
+      "setup_first_response_round_median_ns": {
+        "n": 7,
+        "median": 1275048.0,
+        "q1": 1167667.25,
+        "q3": 1318197.0,
+        "min": 999701.5,
+        "max": 1329588.0,
+        "mad": 51944.0,
+        "round_values": [
+          1326992.0,
+          1309402.0,
+          1084867.5,
+          999701.5,
+          1250467.0,
+          1329588.0,
+          1275048.0
+        ]
+      },
+      "upload_MB_s": {
+        "n": 7,
+        "median": 207.62433470913675,
+        "q1": 197.15126489895908,
+        "q3": 215.17600596533612,
+        "min": 183.46142942807091,
+        "max": 228.28210326015528,
+        "mad": 11.782338737305054,
+        "round_values": [
+          207.62433470913675,
+          228.28210326015528,
+          183.46142942807091,
+          195.8419959718317,
+          220.71238603312258,
+          209.63962589754968,
+          198.46053382608648
+        ]
+      },
+      "upload_Mbit_s": {
+        "n": 7,
+        "median": 1660.994677673094,
+        "q1": 1577.2101191916727,
+        "q3": 1721.408047722689,
+        "min": 1467.6914354245673,
+        "max": 1826.2568260812423,
+        "mad": 94.25870989844043,
+        "round_values": [
+          1660.994677673094,
+          1826.2568260812423,
+          1467.6914354245673,
+          1566.7359677746535,
+          1765.6990882649807,
+          1677.1170071803974,
+          1587.6842706086918
+        ]
+      },
+      "download_MB_s": {
+        "n": 7,
+        "median": 210.6165030486745,
+        "q1": 188.0520616240426,
+        "q3": 212.52985850861114,
+        "min": 171.7364200492232,
+        "max": 226.92447303435372,
+        "mad": 16.30796998567922,
+        "round_values": [
+          213.9901422597289,
+          211.06957475749334,
+          184.32955843940445,
+          210.6165030486745,
+          191.7745648086808,
+          226.92447303435372,
+          171.7364200492232
+        ]
+      },
+      "download_Mbit_s": {
+        "n": 7,
+        "median": 1684.932024389396,
+        "q1": 1504.4164929923409,
+        "q3": 1700.2388680688891,
+        "min": 1373.8913603937856,
+        "max": 1815.3957842748298,
+        "mad": 130.46375988543377,
+        "round_values": [
+          1711.9211380778313,
+          1688.5565980599467,
+          1474.6364675152356,
+          1684.932024389396,
+          1534.1965184694463,
+          1815.3957842748298,
+          1373.8913603937856
+        ]
+      },
+      "established_rtt_us": {
+        "n": 7,
+        "median": 295.6705,
+        "q1": 284.38125,
+        "q3": 303.913,
+        "min": 262.3385,
+        "max": 349.1205,
+        "mad": 12.91149999999999,
+        "round_values": [
+          308.966,
+          298.86,
+          262.3385,
+          295.6705,
+          282.759,
+          349.1205,
+          286.0035
+        ]
+      },
+      "setup_first_response_us": {
+        "n": 7,
+        "median": 1275.048,
+        "q1": 1167.66725,
+        "q3": 1318.1970000000001,
+        "min": 999.7015,
+        "max": 1329.588,
+        "mad": 51.94399999999996,
+        "round_values": [
+          1326.992,
+          1309.402,
+          1084.8675,
+          999.7015,
+          1250.467,
+          1329.588,
+          1275.048
+        ]
+      }
+    },
+    {
+      "case": "ss2022-wireguard",
+      "network": "tcp",
+      "variant": "official",
+      "rounds": [
+        {
+          "round": 1,
+          "source": "r01-ss2022-wireguard-tcp-official/sample.json",
+          "established_rtt_round_median_ns": 299270.5,
+          "setup_first_response_round_median_ns": 1269116.0,
+          "upload_MB_s": 125.34965178450288,
+          "upload_Mbit_s": 1002.797214276023,
+          "download_MB_s": 182.15906619865623,
+          "download_Mbit_s": 1457.2725295892499
+        },
+        {
+          "round": 2,
+          "source": "r02-ss2022-wireguard-tcp-official/sample.json",
+          "established_rtt_round_median_ns": 251418.5,
+          "setup_first_response_round_median_ns": 1064092.0,
+          "upload_MB_s": 135.15093697560943,
+          "upload_Mbit_s": 1081.2074958048754,
+          "download_MB_s": 179.69725002027218,
+          "download_Mbit_s": 1437.5780001621774
+        },
+        {
+          "round": 3,
+          "source": "r03-ss2022-wireguard-tcp-official/sample.json",
+          "established_rtt_round_median_ns": 340410.5,
+          "setup_first_response_round_median_ns": 1301446.0,
+          "upload_MB_s": 116.55561759889531,
+          "upload_Mbit_s": 932.4449407911625,
+          "download_MB_s": 185.4895454349034,
+          "download_Mbit_s": 1483.9163634792271
+        },
+        {
+          "round": 4,
+          "source": "r04-ss2022-wireguard-tcp-official/sample.json",
+          "established_rtt_round_median_ns": 297400.0,
+          "setup_first_response_round_median_ns": 1377842.0,
+          "upload_MB_s": 115.54976435946257,
+          "upload_Mbit_s": 924.3981148757006,
+          "download_MB_s": 186.4122870037598,
+          "download_Mbit_s": 1491.2982960300783
+        },
+        {
+          "round": 5,
+          "source": "r05-ss2022-wireguard-tcp-official/sample.json",
+          "established_rtt_round_median_ns": 361994.5,
+          "setup_first_response_round_median_ns": 1347043.0,
+          "upload_MB_s": 119.45943734070887,
+          "upload_Mbit_s": 955.675498725671,
+          "download_MB_s": 175.43523441523593,
+          "download_Mbit_s": 1403.4818753218874
+        },
+        {
+          "round": 6,
+          "source": "r06-ss2022-wireguard-tcp-official/sample.json",
+          "established_rtt_round_median_ns": 288768.5,
+          "setup_first_response_round_median_ns": 1217471.5,
+          "upload_MB_s": 135.85032311476465,
+          "upload_Mbit_s": 1086.8025849181172,
+          "download_MB_s": 154.4192644613719,
+          "download_Mbit_s": 1235.3541156909753
+        },
+        {
+          "round": 7,
+          "source": "r07-ss2022-wireguard-tcp-official/sample.json",
+          "established_rtt_round_median_ns": 332009.0,
+          "setup_first_response_round_median_ns": 1225272.0,
+          "upload_MB_s": 139.54786910321386,
+          "upload_Mbit_s": 1116.3829528257108,
+          "download_MB_s": 180.97683185235587,
+          "download_Mbit_s": 1447.814654818847
+        }
+      ],
+      "established_rtt_round_median_ns": {
+        "n": 7,
+        "median": 299270.5,
+        "q1": 293084.25,
+        "q3": 336209.75,
+        "min": 251418.5,
+        "max": 361994.5,
+        "mad": 32738.5,
+        "round_values": [
+          299270.5,
+          251418.5,
+          340410.5,
+          297400.0,
+          361994.5,
+          288768.5,
+          332009.0
+        ]
+      },
+      "setup_first_response_round_median_ns": {
+        "n": 7,
+        "median": 1269116.0,
+        "q1": 1221371.75,
+        "q3": 1324244.5,
+        "min": 1064092.0,
+        "max": 1377842.0,
+        "mad": 51644.5,
+        "round_values": [
+          1269116.0,
+          1064092.0,
+          1301446.0,
+          1377842.0,
+          1347043.0,
+          1217471.5,
+          1225272.0
+        ]
+      },
+      "upload_MB_s": {
+        "n": 7,
+        "median": 125.34965178450288,
+        "q1": 118.00752746980208,
+        "q3": 135.50063004518705,
+        "min": 115.54976435946257,
+        "max": 139.54786910321386,
+        "mad": 9.79988742504031,
+        "round_values": [
+          125.34965178450288,
+          135.15093697560943,
+          116.55561759889531,
+          115.54976435946257,
+          119.45943734070887,
+          135.85032311476465,
+          139.54786910321386
+        ]
+      },
+      "upload_Mbit_s": {
+        "n": 7,
+        "median": 1002.797214276023,
+        "q1": 944.0602197584167,
+        "q3": 1084.0050403614964,
+        "min": 924.3981148757006,
+        "max": 1116.3829528257108,
+        "mad": 78.39909940032248,
+        "round_values": [
+          1002.797214276023,
+          1081.2074958048754,
+          932.4449407911625,
+          924.3981148757006,
+          955.675498725671,
+          1086.8025849181172,
+          1116.3829528257108
+        ]
+      },
+      "download_MB_s": {
+        "n": 7,
+        "median": 180.97683185235587,
+        "q1": 177.56624221775405,
+        "q3": 183.82430581677983,
+        "min": 154.4192644613719,
+        "max": 186.4122870037598,
+        "mad": 4.512713582547519,
+        "round_values": [
+          182.15906619865623,
+          179.69725002027218,
+          185.4895454349034,
+          186.4122870037598,
+          175.43523441523593,
+          154.4192644613719,
+          180.97683185235587
+        ]
+      },
+      "download_Mbit_s": {
+        "n": 7,
+        "median": 1447.814654818847,
+        "q1": 1420.5299377420324,
+        "q3": 1470.5944465342386,
+        "min": 1235.3541156909753,
+        "max": 1491.2982960300783,
+        "mad": 36.101708660380154,
+        "round_values": [
+          1457.2725295892499,
+          1437.5780001621774,
+          1483.9163634792271,
+          1491.2982960300783,
+          1403.4818753218874,
+          1235.3541156909753,
+          1447.814654818847
+        ]
+      },
+      "established_rtt_us": {
+        "n": 7,
+        "median": 299.2705,
+        "q1": 293.08425,
+        "q3": 336.20975,
+        "min": 251.4185,
+        "max": 361.9945,
+        "mad": 32.73849999999999,
+        "round_values": [
+          299.2705,
+          251.4185,
+          340.4105,
+          297.4,
+          361.9945,
+          288.7685,
+          332.009
+        ]
+      },
+      "setup_first_response_us": {
+        "n": 7,
+        "median": 1269.116,
+        "q1": 1221.37175,
+        "q3": 1324.2444999999998,
+        "min": 1064.092,
+        "max": 1377.842,
+        "mad": 51.64449999999988,
+        "round_values": [
+          1269.116,
+          1064.092,
+          1301.446,
+          1377.842,
+          1347.043,
+          1217.4715,
+          1225.272
+        ]
+      }
+    },
+    {
+      "case": "ss2022-wireguard",
+      "network": "tcp",
+      "variant": "original-gso",
+      "rounds": [
+        {
+          "round": 1,
+          "source": "r01-ss2022-wireguard-tcp-original-gso/sample.json",
+          "established_rtt_round_median_ns": 285244.0,
+          "setup_first_response_round_median_ns": 1140454.0,
+          "upload_MB_s": 114.67590849493644,
+          "upload_Mbit_s": 917.4072679594915,
+          "download_MB_s": 167.08040056798689,
+          "download_Mbit_s": 1336.643204543895
+        },
+        {
+          "round": 2,
+          "source": "r02-ss2022-wireguard-tcp-original-gso/sample.json",
+          "established_rtt_round_median_ns": 281169.5,
+          "setup_first_response_round_median_ns": 1097912.5,
+          "upload_MB_s": 128.65035371035142,
+          "upload_Mbit_s": 1029.2028296828114,
+          "download_MB_s": 188.04550186935901,
+          "download_Mbit_s": 1504.3640149548721
+        },
+        {
+          "round": 3,
+          "source": "r03-ss2022-wireguard-tcp-original-gso/sample.json",
+          "established_rtt_round_median_ns": 314165.0,
+          "setup_first_response_round_median_ns": 1291446.5,
+          "upload_MB_s": 128.36410910162664,
+          "upload_Mbit_s": 1026.912872813013,
+          "download_MB_s": 195.96627389325332,
+          "download_Mbit_s": 1567.7301911460265
+        },
+        {
+          "round": 4,
+          "source": "r04-ss2022-wireguard-tcp-original-gso/sample.json",
+          "established_rtt_round_median_ns": 267528.5,
+          "setup_first_response_round_median_ns": 1255941.5,
+          "upload_MB_s": 141.55039219150018,
+          "upload_Mbit_s": 1132.4031375320014,
+          "download_MB_s": 182.04266767166266,
+          "download_Mbit_s": 1456.3413413733012
+        },
+        {
+          "round": 5,
+          "source": "r05-ss2022-wireguard-tcp-original-gso/sample.json",
+          "established_rtt_round_median_ns": 297209.5,
+          "setup_first_response_round_median_ns": 1147415.5,
+          "upload_MB_s": 117.05595426279402,
+          "upload_Mbit_s": 936.4476341023521,
+          "download_MB_s": 147.25096624111328,
+          "download_Mbit_s": 1178.0077299289062
+        },
+        {
+          "round": 6,
+          "source": "r06-ss2022-wireguard-tcp-original-gso/sample.json",
+          "established_rtt_round_median_ns": 249293.0,
+          "setup_first_response_round_median_ns": 1034524.0,
+          "upload_MB_s": 124.0981941225039,
+          "upload_Mbit_s": 992.7855529800312,
+          "download_MB_s": 178.74261822906354,
+          "download_Mbit_s": 1429.9409458325083
+        },
+        {
+          "round": 7,
+          "source": "r07-ss2022-wireguard-tcp-original-gso/sample.json",
+          "established_rtt_round_median_ns": 261468.0,
+          "setup_first_response_round_median_ns": 1438674.5,
+          "upload_MB_s": 134.90900511493405,
+          "upload_Mbit_s": 1079.2720409194724,
+          "download_MB_s": 185.40059735006122,
+          "download_Mbit_s": 1483.2047788004897
+        }
+      ],
+      "established_rtt_round_median_ns": {
+        "n": 7,
+        "median": 281169.5,
+        "q1": 264498.25,
+        "q3": 291226.75,
+        "min": 249293.0,
+        "max": 314165.0,
+        "mad": 16040.0,
+        "round_values": [
+          285244.0,
+          281169.5,
+          314165.0,
+          267528.5,
+          297209.5,
+          249293.0,
+          261468.0
+        ]
+      },
+      "setup_first_response_round_median_ns": {
+        "n": 7,
+        "median": 1147415.5,
+        "q1": 1119183.25,
+        "q3": 1273694.0,
+        "min": 1034524.0,
+        "max": 1438674.5,
+        "mad": 108526.0,
+        "round_values": [
+          1140454.0,
+          1097912.5,
+          1291446.5,
+          1255941.5,
+          1147415.5,
+          1034524.0,
+          1438674.5
+        ]
+      },
+      "upload_MB_s": {
+        "n": 7,
+        "median": 128.36410910162664,
+        "q1": 120.57707419264895,
+        "q3": 131.77967941264274,
+        "min": 114.67590849493644,
+        "max": 141.55039219150018,
+        "mad": 6.544896013307408,
+        "round_values": [
+          114.67590849493644,
+          128.65035371035142,
+          128.36410910162664,
+          141.55039219150018,
+          117.05595426279402,
+          124.0981941225039,
+          134.90900511493405
+        ]
+      },
+      "upload_Mbit_s": {
+        "n": 7,
+        "median": 1026.912872813013,
+        "q1": 964.6165935411916,
+        "q3": 1054.2374353011419,
+        "min": 917.4072679594915,
+        "max": 1132.4031375320014,
+        "mad": 52.359168106459265,
+        "round_values": [
+          917.4072679594915,
+          1029.2028296828114,
+          1026.912872813013,
+          1132.4031375320014,
+          936.4476341023521,
+          992.7855529800312,
+          1079.2720409194724
+        ]
+      },
+      "download_MB_s": {
+        "n": 7,
+        "median": 182.04266767166266,
+        "q1": 172.9115093985252,
+        "q3": 186.72304960971013,
+        "min": 147.25096624111328,
+        "max": 195.96627389325332,
+        "mad": 6.002834197696359,
+        "round_values": [
+          167.08040056798689,
+          188.04550186935901,
+          195.96627389325332,
+          182.04266767166266,
+          147.25096624111328,
+          178.74261822906354,
+          185.40059735006122
+        ]
+      },
+      "download_Mbit_s": {
+        "n": 7,
+        "median": 1456.3413413733012,
+        "q1": 1383.2920751882016,
+        "q3": 1493.784396877681,
+        "min": 1178.0077299289062,
+        "max": 1567.7301911460265,
+        "mad": 48.02267358157087,
+        "round_values": [
+          1336.643204543895,
+          1504.3640149548721,
+          1567.7301911460265,
+          1456.3413413733012,
+          1178.0077299289062,
+          1429.9409458325083,
+          1483.2047788004897
+        ]
+      },
+      "established_rtt_us": {
+        "n": 7,
+        "median": 281.1695,
+        "q1": 264.49825,
+        "q3": 291.22675000000004,
+        "min": 249.293,
+        "max": 314.165,
+        "mad": 16.039999999999964,
+        "round_values": [
+          285.244,
+          281.1695,
+          314.165,
+          267.5285,
+          297.2095,
+          249.293,
+          261.468
+        ]
+      },
+      "setup_first_response_us": {
+        "n": 7,
+        "median": 1147.4155,
+        "q1": 1119.18325,
+        "q3": 1273.694,
+        "min": 1034.524,
+        "max": 1438.6745,
+        "mad": 108.52599999999984,
+        "round_values": [
+          1140.454,
+          1097.9125,
+          1291.4465,
+          1255.9415,
+          1147.4155,
+          1034.524,
+          1438.6745
+        ]
+      }
+    }
+  ],
+  "source_sample_sha256": {
+    "r01-ss2022-wireguard-tcp-batching-only/sample.json": "2ef1960173e95a0fd33039f6291a8999ac18d071195ff4f5f47c187c5743a3ae",
+    "r01-ss2022-wireguard-tcp-hybrid/sample.json": "f2eac565918ae40fc77702e2b06e9828ac5f3a637dcdfa0cd6104b8641839a85",
+    "r01-ss2022-wireguard-tcp-official/sample.json": "3fe38d1eb84eb20dc365083cdfe7aea236d351a6bd31f1b33bce4dea75f635e0",
+    "r01-ss2022-wireguard-tcp-original-gso/sample.json": "1ce11ff8bceb78ae93cbdf18f1126653938b440c063be3ea4d8ecab46890a3f7",
+    "r02-ss2022-wireguard-tcp-batching-only/sample.json": "e3d073ee1ab6b9be8f4b8e8443ffbce9561aa9de1fa65246e31f740582088e47",
+    "r02-ss2022-wireguard-tcp-hybrid/sample.json": "4bf6b47720aa1cda32fbc3ee46d136fa7d653b6bf9de37b2e882f31282203f4f",
+    "r02-ss2022-wireguard-tcp-official/sample.json": "73f92feec5a7b1d88a85e305126fe20be3f89e3bb49c17c557cdb79877bc48e5",
+    "r02-ss2022-wireguard-tcp-original-gso/sample.json": "92316cac885d6a208a37e80d7a950da989b241772bb2c2eb8d35d3bfad4c890c",
+    "r03-ss2022-wireguard-tcp-batching-only/sample.json": "e4c1e80b9a13017b42727ccca135ffecc4de5831ecc1f9a26375ad96fe5114d8",
+    "r03-ss2022-wireguard-tcp-hybrid/sample.json": "8926fc2852966b4b3833c44be3cb7a68671ca372ffeb9a3e5d39870c76844071",
+    "r03-ss2022-wireguard-tcp-official/sample.json": "d678a42e17c28e01a04210d4a117fed4dc9fd81389aa627d7b1ce72ec314d64c",
+    "r03-ss2022-wireguard-tcp-original-gso/sample.json": "73717599b10fc34da45ae2f66f67aa9ffa0c953e02b81de672ef9d0c8791460c",
+    "r04-ss2022-wireguard-tcp-batching-only/sample.json": "aad91ad2c77d49bea8643dd5cb7186555030000c027949f3f71e3f09faed9bb9",
+    "r04-ss2022-wireguard-tcp-hybrid/sample.json": "97653dea5c3c0ad60e8e66b987a36045b0954cb88e7a80ca0083a7c5b884f57b",
+    "r04-ss2022-wireguard-tcp-official/sample.json": "403ad14777e9565b814d3ea060e33fb4f339d7fd582e19a75ba120f8243d4ca6",
+    "r04-ss2022-wireguard-tcp-original-gso/sample.json": "6e4151656f5388ab36f05e4e1c78fa745f808ed6c7924f45a722706e5b8b855a",
+    "r05-ss2022-wireguard-tcp-batching-only/sample.json": "bbc8f5642c3957c4b4c2e3a49c7a12a7f9a15cfd410a22534533af4f3e0c78d0",
+    "r05-ss2022-wireguard-tcp-hybrid/sample.json": "220a517fa262d5b487f8b70c83d242ee2165baec62a9b1298bedcd56a70f1451",
+    "r05-ss2022-wireguard-tcp-official/sample.json": "c8631e595f0c10d6ad2490de89ae94756906da8a4460800249687502fa5f19d0",
+    "r05-ss2022-wireguard-tcp-original-gso/sample.json": "160af0d0f483c1436694b8202e68dcb9c79e5e84f473b5c8159c51ae88be66a2",
+    "r06-ss2022-wireguard-tcp-batching-only/sample.json": "0b9b3d1e2a2068e825e4482931523f7b5133a73df1cb6a53052c185047c9c66a",
+    "r06-ss2022-wireguard-tcp-hybrid/sample.json": "7dccbe34462cbfee90e1d7b5be8a606fc74b9df0849da32fdf329dc59de0c2a0",
+    "r06-ss2022-wireguard-tcp-official/sample.json": "99942be5a41c235f30167c22247dbab177bebe67505f7b71df029aad92882d82",
+    "r06-ss2022-wireguard-tcp-original-gso/sample.json": "0f943660f1f88be6fda9300208b752d88cd517a97a0d2633366e3880489f03a7",
+    "r07-ss2022-wireguard-tcp-batching-only/sample.json": "329e1ea72d1e9031f1b7c54b5dce69121cf09588100bf53edf010b65171f433a",
+    "r07-ss2022-wireguard-tcp-hybrid/sample.json": "c08fc6823f03d852ce6beb68e5a105034c8d100d7683d51477ef3193eb538da2",
+    "r07-ss2022-wireguard-tcp-official/sample.json": "0bd7a5ad8420dfebd6f8816a64b71e4400452b69b9fd257332364298ca3fc167",
+    "r07-ss2022-wireguard-tcp-original-gso/sample.json": "c9cdecdc3db2b3fff2adae3614f2949d0794f9a58cf31f02950659967ecc2686"
+  }
+}

@@ -1,0 +1,16 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:56:36.315262 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-tcp-v2-20261015/configs/vmess-wireguard-client.json Format:json}
+2026/10/15 17:56:36.316014 [Warning] common/errors: The feature VMess (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 17:56:36.316799 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:56:36.324714 from 127.0.0.1:54690 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.327713 from 127.0.0.1:54696 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.344754 from 127.0.0.1:54704 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.346555 from 127.0.0.1:54710 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.348136 from 127.0.0.1:54722 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.349582 from 127.0.0.1:54736 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.351109 from 127.0.0.1:54742 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.352740 from 127.0.0.1:54756 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.354361 from 127.0.0.1:54766 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.355773 from 127.0.0.1:54772 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]
+2026/10/15 17:56:36.357343 from 127.0.0.1:54788 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vmess]

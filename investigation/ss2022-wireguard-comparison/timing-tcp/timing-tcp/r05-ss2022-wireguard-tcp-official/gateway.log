@@ -1,0 +1,15 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 19:20:15.864407 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/configs/gateway.json Format:json}
+2026/10/15 19:20:15.866351 [Warning] core: Xray 26.10.10 started
+2026/10/15 19:20:15.896252 from tcp:10.77.0.2:26010 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.896896 from tcp:10.77.0.2:59369 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.911471 from tcp:10.77.0.2:49483 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.912969 from tcp:10.77.0.2:58277 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.914245 from tcp:10.77.0.2:24296 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.915563 from tcp:10.77.0.2:31233 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.916865 from tcp:10.77.0.2:45911 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.918049 from tcp:10.77.0.2:42443 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.919259 from tcp:10.77.0.2:55226 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.922238 from tcp:10.77.0.2:56590 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]
+2026/10/15 19:20:15.923708 from tcp:10.77.0.2:39380 accepted tcp:10.77.0.1:19090 [from-wireguard >> to-echo]

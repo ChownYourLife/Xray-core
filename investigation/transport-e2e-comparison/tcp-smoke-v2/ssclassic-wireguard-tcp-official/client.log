@@ -1,0 +1,17 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:48:13.977275 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-20261015/configs/ssclassic-wireguard-client.json Format:json}
+2026/10/15 17:48:13.977886 [Warning] common/errors: The feature Shadowsocks (with no Forward Secrecy, etc.) is deprecated, not recommended for using and might be removed. Please migrate to VLESS Encryption as soon as possible.
+2026/10/15 17:48:13.978498 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:48:13.987246 from 127.0.0.1:55316 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:13.989451 from 127.0.0.1:55332 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.012513 from 127.0.0.1:55346 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.014400 from 127.0.0.1:55352 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.015974 from 127.0.0.1:55364 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.017969 from 127.0.0.1:55368 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.020022 from 127.0.0.1:55370 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.021691 from 127.0.0.1:55380 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.023260 from 127.0.0.1:55392 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.024914 from 127.0.0.1:55394 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.026676 from 127.0.0.1:55396 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]
+2026/10/15 17:48:14.819968 from 127.0.0.1:55402 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-shadowsocks]

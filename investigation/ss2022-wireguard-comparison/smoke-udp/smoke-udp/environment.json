@@ -1,0 +1,132 @@
+{
+  "cohort": "separately-collected-ss2022-wireguard-supplement",
+  "phase": "smoke",
+  "network": "udp",
+  "started_utc": "2026-10-15T19:18:49.538352+00:00",
+  "netns": "net:[4026532379]",
+  "pins": {
+    "binaries/application": "2e019359aebb56a18c6d90eabe46e0413a0a8f67b9839ac96b8286b701741de3",
+    "binaries/batching-only": "cc611fbcc5285bb3522a8896932a0e70ef464fe1e7a59bef7bfc0c61a9c58a58",
+    "binaries/hybrid": "ceb61a447998d76fee2715990f48667792b5d5078339bfc8bce871121d69108f",
+    "binaries/official": "2c7793c9320118924ded7f259cb289dd4cb9e97770db81865f2463a037e73616",
+    "binaries/original-gso": "2bf7e21ae3dcc8ad1123eb587664d6a20a9d5e7be2be0f2bb1991f3bfa4bfe2c",
+    "configs/gateway.json": "beed4308f396d8a5ea72e8f33cf82a90340d013739c227a09b534838ccdc9eb1",
+    "configs/ss2022-wireguard-client.json": "fa3137c6186a2e12a1a188b69aedd2ec36a850b10d35d0946bd98eb75b799bb0",
+    "configs/ss2022-wireguard-relay.json": "764a161d046932897cb335fa8ddd811243ae78e5977d26754ff484ae8dafb90c"
+  },
+  "source_pins": {
+    "remote_runner.py": "bddc71c8e25ad91d284c1021d2d0d51cfc18e43b324df6db4f4a7bf288a97f31",
+    "udp_cohort.py": "aeb0f82a465f1af0438c81faad537fb36557176d6c13bae8f356db3ce92a6107",
+    "supplement.py": "632879b2977f61b7ca3045ec9b75ab007a29b831a52d1115fd27438e0ef4e77d"
+  },
+  "round_orders": [
+    [
+      "official",
+      "original-gso",
+      "batching-only",
+      "hybrid"
+    ],
+    [
+      "original-gso",
+      "batching-only",
+      "hybrid",
+      "official"
+    ],
+    [
+      "batching-only",
+      "hybrid",
+      "official",
+      "original-gso"
+    ],
+    [
+      "hybrid",
+      "official",
+      "original-gso",
+      "batching-only"
+    ],
+    [
+      "hybrid",
+      "batching-only",
+      "original-gso",
+      "official"
+    ],
+    [
+      "official",
+      "hybrid",
+      "batching-only",
+      "original-gso"
+    ],
+    [
+      "original-gso",
+      "official",
+      "hybrid",
+      "batching-only"
+    ]
+  ],
+  "assignments": {
+    "relay": {
+      "cpus": [
+        2,
+        3
+      ],
+      "GOMAXPROCS": 2
+    },
+    "fixed_support": {
+      "cpus": [
+        0,
+        1
+      ],
+      "GOMAXPROCS": 2
+    }
+  },
+  "facts": [
+    {
+      "argv": [
+        "uname",
+        "-a"
+      ],
+      "exit": 0,
+      "output": "Linux VM-SJC1-5XG4FNGHFR 6.8.0-49-generic #49-Ubuntu SMP PREEMPT_DYNAMIC Mon Nov  4 02:06:24 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux\n"
+    },
+    {
+      "argv": [
+        "lscpu"
+      ],
+      "exit": 0,
+      "output": "Architecture:                         x86_64\nCPU op-mode(s):                       32-bit, 64-bit\nAddress sizes:                        48 bits physical, 48 bits virtual\nByte Order:                           Little Endian\nCPU(s):                               4\nOn-line CPU(s) list:                  0-3\nVendor ID:                            AuthenticAMD\nBIOS Vendor ID:                       Red Hat\nModel name:                           AMD EPYC 7663 56-Core Processor\nBIOS Model name:                      RHEL 7.6.0 PC (i440FX + PIIX, 1996)  CPU @ 2.0GHz\nBIOS CPU family:                      1\nCPU family:                           25\nModel:                                1\nThread(s) per core:                   1\nCore(s) per socket:                   4\nSocket(s):                            1\nStepping:                             1\nBogoMIPS:                             3999.99\nFlags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero xsaveerptr wbnoinvd arat npt nrip_save umip pku ospke vaes vpclmulqdq rdpid fsrm arch_capabilities\nVirtualization:                       AMD-V\nHypervisor vendor:                    KVM\nVirtualization type:                  full\nL1d cache:                            256 KiB (4 instances)\nL1i cache:                            256 KiB (4 instances)\nL2 cache:                             2 MiB (4 instances)\nL3 cache:                             64 MiB (4 instances)\nNUMA node(s):                         1\nNUMA node0 CPU(s):                    0-3\nVulnerability Gather data sampling:   Not affected\nVulnerability Itlb multihit:          Not affected\nVulnerability L1tf:                   Not affected\nVulnerability Mds:                    Not affected\nVulnerability Meltdown:               Not affected\nVulnerability Mmio stale data:        Not affected\nVulnerability Reg file data sampling: Not affected\nVulnerability Retbleed:               Not affected\nVulnerability Spec rstack overflow:   Vulnerable\nVulnerability Spec store bypass:      Vulnerable\nVulnerability Spectre v1:             Vulnerable: __user pointer sanitization and usercopy barriers only; no swapgs barriers\nVulnerability Spectre v2:             Vulnerable; IBPB: disabled; STIBP: disabled; PBRSB-eIBRS: Not affected; BHI: Not affected\nVulnerability Srbds:                  Not affected\nVulnerability Tsx async abort:        Not affected\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "addr"
+      ],
+      "exit": 0,
+      "output": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "route"
+      ],
+      "exit": 0,
+      "output": "[]\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "-6",
+        "route"
+      ],
+      "exit": 0,
+      "output": "[]\n"
+    }
+  ],
+  "ipv6_disable": {
+    "all": "0",
+    "default": "0",
+    "lo": "0"
+  }
+}

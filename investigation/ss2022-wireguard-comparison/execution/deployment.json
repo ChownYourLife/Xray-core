@@ -1,0 +1,157 @@
+[
+  {
+    "argv": [
+      "ssh",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "root@216.195.211.248",
+      "mkdir /tmp/xray-ss2022-wireguard-supplement-20261015"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "ssh",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "root@216.195.211.248",
+      "mkdir /tmp/xray-ss2022-wireguard-supplement-20261015/tcp && cp -R /tmp/xray-transport-e2e-comparison-tcp-v2-20261015/binaries /tmp/xray-ss2022-wireguard-supplement-20261015/tcp/"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "scp",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/tcp/udp_cohort.py",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/tcp/application.go",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/tcp/supplement.py",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/tcp/remote_runner.py",
+      "root@216.195.211.248:/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "scp",
+      "-r",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/configs",
+      "root@216.195.211.248:/tmp/xray-ss2022-wireguard-supplement-20261015/tcp/"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "ssh",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "root@216.195.211.248",
+      "mkdir /tmp/xray-ss2022-wireguard-supplement-20261015/udp && cp -R /tmp/xray-transport-e2e-comparison-udp-final-20261015/binaries /tmp/xray-ss2022-wireguard-supplement-20261015/udp/"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "scp",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/udp/udp_cohort.py",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/udp/application.go",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/udp/supplement.py",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/udp/remote_runner.py",
+      "root@216.195.211.248:/tmp/xray-ss2022-wireguard-supplement-20261015/udp/"
+    ],
+    "exit": 0,
+    "output": ""
+  },
+  {
+    "argv": [
+      "scp",
+      "-r",
+      "-i",
+      "/Users/hosi/.ssh/id_ed25519",
+      "-o",
+      "IdentitiesOnly=yes",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ServerAliveInterval=30",
+      "-o",
+      "ServerAliveCountMax=6",
+      "/Users/hosi/D/V2ray/xray-transport-e2e-comparison-20261015/ss2022-wireguard-supplement/configs",
+      "root@216.195.211.248:/tmp/xray-ss2022-wireguard-supplement-20261015/udp/"
+    ],
+    "exit": 0,
+    "output": ""
+  }
+]

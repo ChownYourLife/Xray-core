@@ -1,0 +1,42 @@
+{
+  "agent": "SS2022Writer",
+  "round": 2,
+  "level": "xhigh collaborative",
+  "entry_read_path": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md",
+  "bootstrap_receipts": "Own actual entry read and controller read/repo view in round1; own tool pulse consumed current state before round2",
+  "challenge": "Weakest integration seam: old evidence-link identity and immutable row retention versus new independently audited numerics; separate-cohort framing and combined supplement navigation",
+  "report": "report.html",
+  "combined_anchor": "report.html#ss2022-wireguard-supplement",
+  "sources": ["report.html", "summary-tcp.json", "summary-udp.json", "audit/independent-results.json", "audit/reconciliation.json", "execution/plan-pins.json", "execution/completion-receipts.json", "../transport-e2e-comparison/report.html"],
+  "checks": {
+    "all_40_original_full_rows_exact_except_href_rebases": true,
+    "original_relative_href_occurrences_all_rebased_to_original_root": 312,
+    "original_prefix_has_no_unrebased_same_name_summary_links": true,
+    "top_link_label": "SS2022 → WireGuard (TCP + UDP supplement)",
+    "combined_target_wraps_tcp_and_udp_sections": true,
+    "new_independent_median_q1_q3_attribute_comparisons": 120,
+    "new_independent_three_decimal_median_q1_q3_display_comparisons": 120,
+    "new_independent_exact_min_max_mad_comparisons": 120,
+    "native_details_summary_dispersion_sections": 2,
+    "separate_original280_and_supplement56_text_retained": true,
+    "not_jointly_interleaved_boundary_retained": true,
+    "actual_udp_upload_loss_medians_retained": {
+      "official": 19.703268348623855,
+      "original-gso": 20.0759747706422,
+      "batching-only": 0,
+      "hybrid": 0
+    },
+    "all_udp_download_loss_medians_zero": true,
+    "earlier_fwupd_service_31_to_30_cause_unobserved_caveat_retained": true,
+    "contemporaneous_pid_identity_not_verified_caveat_retained": true,
+    "round1_artifact_unchanged": true,
+    "report_unchanged_from_round1": true
+  },
+  "round1_sha256": "6074c06420b2e7e7cc09fbbda3533621089255b55c3244aac6a697a6d65b7895",
+  "report_sha256": "6ae8e6bdfebf7facae3960da8b8f560377e49e6e5eaabcf48dd7eff036efb2eb",
+  "check_execution_note": "First numeric/dispersion checking cell stopped on an undefined local names variable after earlier link/row checks passed. Defined the local product-label map and completed the numeric/dispersion phase successfully; no deliverable discrepancy or edit resulted.",
+  "discrepancies": [],
+  "disposition": "Retain report unchanged: all challenged evidence-link, row, independent displayed-value, exact-dispersion and interpretation boundaries pass the authorized offline checks.",
+  "limitations": ["Structural/offline text checks are not browser visual rendering or a full external HTML standards-validator run", "Independent auditor and parent final acceptance remain separate obligations", "No server commands, measurements, build/test/lint executed"],
+  "next": "Independent HTML audit and parent final acceptance"
+}

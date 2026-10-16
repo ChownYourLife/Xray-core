@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "purpose": "Final focused/race verification after closed-TCP empty-boundary regression landed",
+  "results": [
+    {
+      "command": "go test ./common/buf ./proxy/freedom ./proxy/socks",
+      "exit_code": 0,
+      "stdout": "ok  \tgithub.com/xtls/xray-core/common/buf\t0.630s\n?   \tgithub.com/xtls/xray-core/proxy/freedom\t[no test files]\nok  \tgithub.com/xtls/xray-core/proxy/socks\t(cached)\n",
+      "stderr": "",
+      "elapsed_seconds": 1.051
+    },
+    {
+      "command": "go test -race ./common/buf",
+      "exit_code": 0,
+      "stdout": "ok  \tgithub.com/xtls/xray-core/common/buf\t1.781s\n",
+      "stderr": "",
+      "elapsed_seconds": 2.295
+    }
+  ],
+  "source_sha256_after": {
+    "common/buf/writer.go": "7e54cb71bf77ce7e05713a7107ae2ed2875e1318391e814bca28c94a587457f0",
+    "common/buf/writer_test.go": "cb6716188ab9e80b8f46c4d130898d72dd9d56f53614f0f3532bc98f733da073",
+    "common/buf/io.go": "47b92abf0d9981f51126d05eeb954b1f79f2b048db311d04d4d79e4ab519664e",
+    "README.md": "add33c0cb2390cdb481aaec98219d97f31457ba640755c9aeefb9aea52d86085"
+  },
+  "scope": "No benchmark rerun; production writer and harness unchanged; no benchmark executed."
+}

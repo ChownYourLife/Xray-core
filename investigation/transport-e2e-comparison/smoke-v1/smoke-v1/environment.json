@@ -1,0 +1,103 @@
+{
+  "started_utc": "2026-10-15T17:39:52.709580+00:00",
+  "netns": "net:[4026532379]",
+  "invocation": [
+    "unshare",
+    "--net",
+    "python3",
+    "/tmp/xray-transport-e2e-comparison-20261015/remote_runner.py",
+    "--phase",
+    "smoke",
+    "--output",
+    "/tmp/xray-transport-e2e-comparison-20261015/smoke-v1"
+  ],
+  "harness_source_pins": {
+    "remote_runner.py": "d76c65e5bd09b3e33bc7b6d30a734100cc826a3347322eb1bcce7394e8541467",
+    "application.go": "a08bd068246e2c2f1592d42deea0b532a6c37652fd075cf4081cf9e3812a663c"
+  },
+  "facts": [
+    {
+      "argv": [
+        "uname",
+        "-a"
+      ],
+      "exit": 0,
+      "output": "Linux VM-SJC1-5XG4FNGHFR 6.8.0-49-generic #49-Ubuntu SMP PREEMPT_DYNAMIC Mon Nov  4 02:06:24 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "addr"
+      ],
+      "exit": 0,
+      "output": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "route"
+      ],
+      "exit": 0,
+      "output": "[]\n"
+    },
+    {
+      "argv": [
+        "ip",
+        "-j",
+        "-6",
+        "route"
+      ],
+      "exit": 0,
+      "output": "[]\n"
+    },
+    {
+      "argv": [
+        "lscpu"
+      ],
+      "exit": 0,
+      "output": "Architecture:                         x86_64\nCPU op-mode(s):                       32-bit, 64-bit\nAddress sizes:                        48 bits physical, 48 bits virtual\nByte Order:                           Little Endian\nCPU(s):                               4\nOn-line CPU(s) list:                  0-3\nVendor ID:                            AuthenticAMD\nBIOS Vendor ID:                       Red Hat\nModel name:                           AMD EPYC 7663 56-Core Processor\nBIOS Model name:                      RHEL 7.6.0 PC (i440FX + PIIX, 1996)  CPU @ 2.0GHz\nBIOS CPU family:                      1\nCPU family:                           25\nModel:                                1\nThread(s) per core:                   1\nCore(s) per socket:                   4\nSocket(s):                            1\nStepping:                             1\nBogoMIPS:                             3999.99\nFlags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero xsaveerptr wbnoinvd arat npt nrip_save umip pku ospke vaes vpclmulqdq rdpid fsrm arch_capabilities\nVirtualization:                       AMD-V\nHypervisor vendor:                    KVM\nVirtualization type:                  full\nL1d cache:                            256 KiB (4 instances)\nL1i cache:                            256 KiB (4 instances)\nL2 cache:                             2 MiB (4 instances)\nL3 cache:                             64 MiB (4 instances)\nNUMA node(s):                         1\nNUMA node0 CPU(s):                    0-3\nVulnerability Gather data sampling:   Not affected\nVulnerability Itlb multihit:          Not affected\nVulnerability L1tf:                   Not affected\nVulnerability Mds:                    Not affected\nVulnerability Meltdown:               Not affected\nVulnerability Mmio stale data:        Not affected\nVulnerability Reg file data sampling: Not affected\nVulnerability Retbleed:               Not affected\nVulnerability Spec rstack overflow:   Vulnerable\nVulnerability Spec store bypass:      Vulnerable\nVulnerability Spectre v1:             Vulnerable: __user pointer sanitization and usercopy barriers only; no swapgs barriers\nVulnerability Spectre v2:             Vulnerable; IBPB: disabled; STIBP: disabled; PBRSB-eIBRS: Not affected; BHI: Not affected\nVulnerability Srbds:                  Not affected\nVulnerability Tsx async abort:        Not affected\n"
+    }
+  ],
+  "ipv6_disable": {
+    "all": "0",
+    "default": "0",
+    "lo": "0"
+  },
+  "pins": {
+    "binaries/application": "320fcc9cda001dd139de50ad30517b19a65863bf60f0d7ad5dcb18b8242a16b8",
+    "binaries/batching-only": "cc611fbcc5285bb3522a8896932a0e70ef464fe1e7a59bef7bfc0c61a9c58a58",
+    "binaries/hybrid": "ceb61a447998d76fee2715990f48667792b5d5078339bfc8bce871121d69108f",
+    "binaries/official": "2c7793c9320118924ded7f259cb289dd4cb9e97770db81865f2463a037e73616",
+    "binaries/original-gso": "2bf7e21ae3dcc8ad1123eb587664d6a20a9d5e7be2be0f2bb1991f3bfa4bfe2c",
+    "configs/gateway.json": "beed4308f396d8a5ea72e8f33cf82a90340d013739c227a09b534838ccdc9eb1",
+    "configs/ss2022-freedom-client.json": "f0a8057be7321c1b3ecc4257a0ffabf9e43e63fc7128c32cb91350a6b21ef5c6",
+    "configs/ss2022-freedom-relay.json": "0fc2b83dd9f709683e617d7d29a1b60d20d7cd5ab16940f3a41487d7d2df4b7e",
+    "configs/ssclassic-freedom-client.json": "b3dabf30ca13d25a29475ae5779b373afbc14a05a7486da2a6e30da8e54fe2f9",
+    "configs/ssclassic-freedom-relay.json": "9ecc66a380818b085bddef710db3b77fb729f6712c280e34507d0e9001d1b7b0",
+    "configs/ssclassic-wireguard-client.json": "e90911efcaa2efcd49ec0394e6cf47929a27d11c85f96c01c4e7f6240f6a4fac",
+    "configs/ssclassic-wireguard-relay.json": "91ce03e20f17b2743ec2530d26ead21c6db32616880210d4703fabeab92bebc4",
+    "configs/vless-wireguard-client.json": "8404a36eaff3043b8f9ad0c31924037b7d83b1a4abb561894a29bbb80c9a3634",
+    "configs/vless-wireguard-relay.json": "57de6d9cb6dfe720dcc085ccc2ccb077e88c85c4ef2cc1b1b5e84901b941d7ea",
+    "configs/vmess-wireguard-client.json": "c8c2056f570ace05756a00d848c6c45d0554f4dc7f5823627adb45e48d14f23f",
+    "configs/vmess-wireguard-relay.json": "6106618e6b44d8504dea3b88369113e6d2522ee196632509ff661ff003b26a04"
+  },
+  "assignments": {
+    "relay": {
+      "cpus": [
+        2,
+        3
+      ],
+      "GOMAXPROCS": 2
+    },
+    "client_gateway_echo_measurement": {
+      "cpus": [
+        0,
+        1
+      ],
+      "GOMAXPROCS": 2
+    }
+  },
+  "interpretation": "Private network namespace loopback CPU-isolation comparison, not WAN capacity. Fixed support endpoints share CPU0,1 and may bottleneck; no post-result retuning."
+}

@@ -1,0 +1,35 @@
+{
+  "disposition": "ACCEPT focused units/estimators/cohorts/loss challenge; actual PR body remains pending.",
+  "challenge": "Could unit conversion, pooled latency, cohort merging, rounding or loss aggregation hide a regression?",
+  "findings": [],
+  "checks": [
+    {
+      "boundary": "Units",
+      "evidence": "Every48group MB/s equals Mbit/s\u00f78; independent original first-response ms converted *1000 to us, supplement already us. No MiB/s substitution."
+    },
+    {
+      "boundary": "Estimator",
+      "evidence": "Recomputed each primary from exactly seven summary round records; RTT and first-response from per-round medians, never pooled raw requests."
+    },
+    {
+      "boundary": "Cohorts",
+      "evidence": "40 original rows /280timed cells plus8 separately measured SS2022-WG rows /56timed cells; input preserves identities and forbids joint interleaving claims."
+    },
+    {
+      "boundary": "Rounding",
+      "evidence": "Decimal(str(value)) ROUND_HALF_UP3dp: SSclassic-WG TCP RTT292.1045us\u2192292.105us; SS2022-WG UDP fresh755.7805\u2192823.4715us displays755.781\u2192823.472. Exact values retained."
+    },
+    {
+      "boundary": "Regressions",
+      "evidence": "SSclassic-freedom TCP download1055.611\u21921028.154MB/s; SSclassic-WG TCP RTT274.823\u2192292.105us; SS2022-WG UDP fresh755.781\u2192823.472us retained; no universal wins."
+    },
+    {
+      "boundary": "Loss",
+      "evidence": "Official SSclassic-freedom,SS2022-freedom,SSclassic-WG,SS2022-WG upload lost totals19402/12390/18078/19599; hybrid0. Official VLESS/VMess and all downloads0. Median loss percentage not mislabeled aggregate."
+    }
+  ],
+  "input_path": "investigation/completed-benchmark-publication-20261016/before-after.json",
+  "input_sha256": "65cfb8fdfb3ec59ffd255f532322f5f53dbffb62df12cff372ae0b74cd9b1f65",
+  "excluded": "Latest failed/interrupted/recovery/calibration and planned168 latency values are excluded, not converted to zeros or complete results.",
+  "next": "Review actual writer PR body and later actual PR receipt; parent judgment remains required."
+}

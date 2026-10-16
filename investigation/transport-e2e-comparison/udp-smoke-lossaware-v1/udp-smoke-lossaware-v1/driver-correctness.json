@@ -1,0 +1,65 @@
+[
+  {
+    "transfer_id": 101,
+    "same_bound_source": [
+      "127.0.0.1",
+      49355
+    ],
+    "offered_datagrams": 32,
+    "unique_verified": 26,
+    "duplicates": 1,
+    "corrupt": 1,
+    "lost_datagrams": 6,
+    "receiver_duration_ns": 200134034,
+    "expected": [
+      32,
+      26,
+      1,
+      1
+    ],
+    "passed": true,
+    "retransmissions": 0
+  },
+  {
+    "transfer_id": 102,
+    "same_bound_source": [
+      "127.0.0.1",
+      49355
+    ],
+    "offered_datagrams": 32,
+    "unique_verified": 26,
+    "duplicates": 1,
+    "corrupt": 1,
+    "lost_datagrams": 6,
+    "receiver_duration_ns": 200284796,
+    "expected": [
+      32,
+      26,
+      1,
+      1
+    ],
+    "passed": true,
+    "retransmissions": 0
+  },
+  {
+    "transfer_id": 103,
+    "same_bound_source": [
+      "127.0.0.1",
+      49355
+    ],
+    "offered_datagrams": 32,
+    "unique_verified": 0,
+    "duplicates": 0,
+    "corrupt": 0,
+    "lost_datagrams": 32,
+    "receiver_duration_ns": 200204905,
+    "expected": [
+      32,
+      0,
+      0,
+      0
+    ],
+    "passed": true,
+    "retransmissions": 0
+  }
+]

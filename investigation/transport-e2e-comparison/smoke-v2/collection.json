@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "ssh",
+    "-i",
+    "/Users/hosi/.ssh/id_ed25519",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "BatchMode=yes",
+    "root@216.195.211.248",
+    "tar -czf /tmp/xray-transport-e2e-comparison-20261015/smoke-v2.tar.gz -C /tmp/xray-transport-e2e-comparison-20261015 smoke-v2"
+  ],
+  "exit": 0,
+  "output": ""
+}

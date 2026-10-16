@@ -1,0 +1,106 @@
+{
+  "scope": "Independent offline validation of new supplemental HTML against historical report, raw links, and verified numeric summaries",
+  "report_sha256": "6ae8e6bdfebf7facae3960da8b8f560377e49e6e5eaabcf48dd7eff036efb2eb",
+  "historical_report_sha256": "e9d8550dac4304221c5e01521896d0ecbe9d444f4265ad84e2a403c5a939d197",
+  "checks": {
+    "valid_html5_doctype": {
+      "passed": true
+    },
+    "static_self_contained_no_external_assets": {
+      "passed": true,
+      "detail": {
+        "scripts": [],
+        "stylesheets": [],
+        "images": []
+      }
+    },
+    "primary_row_count_48": {
+      "passed": true,
+      "detail": 48
+    },
+    "original_row_keys_preserved": {
+      "passed": true,
+      "detail": {
+        "historical": 40,
+        "present": 40
+      }
+    },
+    "original_40_rows_data_values_q1_q3_and_display_unchanged": {
+      "passed": true
+    },
+    "original_raw_links_rebased_to_same_existing_targets": {
+      "passed": true,
+      "detail": {
+        "original_links": 280
+      }
+    },
+    "exact_eight_supplement_rows": {
+      "passed": true,
+      "detail": 8
+    },
+    "eight_supplement_med_q1_q3_and_display_match_summaries": {
+      "passed": true,
+      "detail": []
+    },
+    "all_336_raw_sample_links_resolve": {
+      "passed": true,
+      "detail": 56
+    },
+    "seven_correctly_numbered_round_links_per_supplement_row": {
+      "passed": true
+    },
+    "336_raw_sample_links_total_all_primary_rows": {
+      "passed": true,
+      "detail": 336
+    },
+    "all_local_evidence_hyperlinks_resolve": {
+      "passed": true,
+      "detail": []
+    },
+    "combined_supplement_navigation_anchor": {
+      "passed": true
+    },
+    "separate_cohort_not_jointly_interleaved": {
+      "passed": true
+    },
+    "route_cipher_and_gateway_semantics": {
+      "passed": true
+    },
+    "tcp_workload_and_warmup": {
+      "passed": true
+    },
+    "per_round_median_rtt_setup_semantics": {
+      "passed": true
+    },
+    "udp_loss_median_semantics": {
+      "passed": true
+    },
+    "static_no_external_resources": {
+      "passed": true
+    },
+    "all_original_relative_links_rebased_to_same_targets_in_order": {
+      "passed": true,
+      "detail": {
+        "historical_local_href_count": 312,
+        "preserved_in_order": true,
+        "all_targets_exist": true
+      }
+    }
+  },
+  "result": "pass",
+  "failed_checks": [],
+  "method": "Python standard-library HTMLParser, exact old-row/display snapshots, summary-stat comparisons, and filesystem link resolution.",
+  "bootstrap": {
+    "entry_read_path": "/Users/hosi/.omp/agent/skills/j-space/SKILL.md",
+    "entry_read_sha256": "949128c52eb16fc997ce08384d4be4abfdf8a326596dc4fb75457975fbae98bc",
+    "selected_level": "xhigh collaborative",
+    "controller_sources": "Fresh control.py read --agent SS2022Audit completed after writer map sync; sources included entry plus active capacity/orchestration/repository/controller.",
+    "repository_view": {
+      "status": "passed",
+      "map_fingerprint": "63ce7ab8c8bdeee6199bdb93f59dda44bb8fe7eef381f6bb32da019df1c9cb7d",
+      "map_source": "map.json",
+      "map_sha256": "74d3ce375a60fa58ed5026a03fabf95881b9f827d43e5063a389596b553e8157",
+      "note": "A later director-writer-acceptance.json was added; executor will perform the single final sync and all participants will refresh receipts after final audit artifacts."
+    }
+  }
+}

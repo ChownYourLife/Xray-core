@@ -1,0 +1,12 @@
+{
+  "reviewer": "Main/director",
+  "recorded_by": "ChainBench, explicitly authorized single mechanical root publisher; this records the director's independent verdict, not self-review",
+  "verdict": "accepted",
+  "report": "report.html",
+  "report_sha256": "e9d8550dac4304221c5e01521896d0ecbe9d444f4265ad84e2a403c5a939d197",
+  "native_writer": {"actual_role": "task", "host_agent": "ChainBench.TransportReport", "controller_agent": "TransportReport", "entry_read_transcript": "history://ChainBench.TransportReport:16"},
+  "director_read": ["Actual native task invocation and absolute J-Space entry-read/controller transcript", "writer/round1.json", "writer/round2.json", "Actual HTML product/table samples and complete untruncated methodology/loss/CPU/routes/limits/evidence narrative", "audit/report-audit.json with40 unique rows,200 numerical cells,600 median/quartile values, visible rounding,280 raw sample links and312 resolved relative links,zero mismatches"],
+  "accepted_latest_work": ["ChainBench execution and both complete fixed protocol cohorts", "ResultAudit independent numeric and HTML findings", "TransportReport actual native task assembly and focused second consideration"],
+  "publication_authorization": "Persist goal-by-goal completion, submit/review current native reports using these explicit parent judgments, perform single final map sync and each agent's own-source/map views, then publish actual ALLOW ship stdout outside task root. No further approval needed; no report/source edits or new measurements requested.",
+  "retained_boundaries": ["fwupd disappearance cause unobserved; no all-services-unchanged claim", "No contemporaneous manual/container Xray PID preservation proof", "Whole-product/dependency confounds, fixed support CPU limits and same-host private-loopback scope", "Loss-aware UDP includes100ms receiver drain and per32 reliable TCP control; not raw UDP capacity or cross-protocol capacity comparison"]
+}

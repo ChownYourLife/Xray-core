@@ -1,0 +1,15 @@
+Xray 26.10.10 (Xray, Penetrates Everything.) Custom (go1.27.0 linux/amd64)
+A unified platform for anti-censorship.
+2026/10/15 17:57:26.789861 [Info] infra/conf/serial: Reading config: &{Name:/tmp/xray-transport-e2e-comparison-tcp-v2-20261015/configs/vless-wireguard-client.json Format:json}
+2026/10/15 17:57:26.791261 [Warning] core: Xray 26.10.10 started
+2026/10/15 17:57:26.799003 from 127.0.0.1:46766 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.801339 from 127.0.0.1:46768 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.821004 from 127.0.0.1:46784 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.822547 from 127.0.0.1:46786 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.823780 from 127.0.0.1:46790 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.825132 from 127.0.0.1:46802 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.826370 from 127.0.0.1:46816 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.827632 from 127.0.0.1:46830 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.828891 from 127.0.0.1:46842 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.830160 from 127.0.0.1:46852 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
+2026/10/15 17:57:26.831421 from 127.0.0.1:46868 accepted tcp:10.77.0.1:19090 [application-entry >> common-client-vless]
