@@ -1,7 +1,0 @@
-{
-  "same_host_netns": true,
-  "host_ipv6_sysctls_unchanged": true,
-  "route_v4_unchanged": true,
-  "route_v6_unchanged": true,
-  "running_services_unchanged": true
-}

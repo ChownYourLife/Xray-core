@@ -40,6 +40,9 @@ errorgen
 # Build assets
 /build_assets/
 
+# Local investigation artifacts
+/investigation/
+
 # Output from dlv test
 **/debug.*
 
